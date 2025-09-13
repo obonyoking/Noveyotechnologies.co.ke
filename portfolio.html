@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Noveyo Technologies</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #41c1ba 0%, #060644 100%);
+        }
+        
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        /* Banner-specific styling for proper aspect ratio */
+        .portfolio-item[data-category="banners"] {
+            aspect-ratio: 16/9;
+        }
+        
+        .portfolio-item[data-category="banners"] img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+        }
+        
+        /* Business Card-specific styling for proper aspect ratio */
+        .portfolio-item[data-category="business-cards"] {
+            aspect-ratio: 3.5/2;
+        }
+        
+        .portfolio-item[data-category="business-cards"] .relative {
+            width: 100%;
+            height: 100%;
+            background-color: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .portfolio-item[data-category="business-cards"] img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+        }
+        
+        /* Merchandise-specific styling for proper aspect ratio */
+        .portfolio-item[data-category="merchandise"] {
+            aspect-ratio: 1/1;
+        }
+        
+        .portfolio-item[data-category="merchandise"] .relative {
+            width: 100%;
+            height: 100%;
+            background-color: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .portfolio-item[data-category="merchandise"] img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+        }
+        
+        /* Flyers & Brochures-specific styling for proper aspect ratio */
+        .portfolio-item[data-category="flyers"] {
+            aspect-ratio: 3/4;
+        }
+        
+        .portfolio-item[data-category="flyers"] .relative {
+            width: 100%;
+            height: 100%;
+            background-color: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .portfolio-item[data-category="flyers"] img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, #41c1ba, #060644);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 0.9;
+        }
+        
+        .filter-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn.active {
+            background: linear-gradient(135deg, #41c1ba 0%, #060644 100%);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .category-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="text-2xl font-bold gradient-bg bg-clip-text text-transparent">
+                        Noveyo Technologies
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Home</a>
+                        <a href="index.html#services" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Services</a>
+                        <a href="portfolio.html" class="text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Portfolio</a>
+                        <a href="index.html#about" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">About</a>
+                        <a href="index.html#contact" class="text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors" style="background-color: #060644;">
+                            Get Quote
+                        </a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-indigo-600">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Home</a>
+                <a href="index.html#services" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Services</a>
+                <a href="portfolio.html" class="block px-3 py-2 text-indigo-600">Portfolio</a>
+                <a href="index.html#about" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">About</a>
+                <a href="index.html#contact" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Portfolio Header -->
+    <section class="gradient-bg pt-20 pb-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center text-white">
+                <h1 class="text-5xl lg:text-6xl font-bold mb-6">Our Portfolio</h1>
+                <p class="text-xl mb-8 text-gray-100 max-w-3xl mx-auto">
+                    Explore our diverse collection of creative work across different categories. From logos to motion graphics, we bring your vision to life.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Filter by Category</h2>
+                <p class="text-gray-600">Click on any category to view specific projects</p>
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-4 mb-8">
+                <button class="filter-btn active px-6 py-3 rounded-full border-2 border-gray-300 text-gray-700 font-semibold hover:border-indigo-500" data-category="all">
+                    All Projects
+                </button>
+                <button class="filter-btn px-6 py-3 rounded-full border-2 border-gray-300 text-gray-700 font-semibold hover:border-indigo-500" data-category="logos">
+                    Logos
+                </button>
+                <button class="filter-btn px-6 py-3 rounded-full border-2 border-gray-300 text-gray-700 font-semibold hover:border-indigo-500" data-category="banners">
+                    Banners
+                </button>
+                <button class="filter-btn px-6 py-3 rounded-full border-2 border-gray-300 text-gray-700 font-semibold hover:border-indigo-500" data-category="business-cards">
+                    Business Cards
+                </button>
+                <button class="filter-btn px-6 py-3 rounded-full border-2 border-gray-300 text-gray-700 font-semibold hover:border-indigo-500" data-category="merchandise">
+                    Corporate Merchandise
+                </button>
+                <button class="filter-btn px-6 py-3 rounded-full border-2 border-gray-300 text-gray-700 font-semibold hover:border-indigo-500" data-category="flyers">
+                    Flyers & Brochures
+                </button>
+                <button class="filter-btn px-6 py-3 rounded-full border-2 border-gray-300 text-gray-700 font-semibold hover:border-indigo-500" data-category="social-media">
+                    Social Media Graphics
+                </button>
+                <button class="filter-btn px-6 py-3 rounded-full border-2 border-gray-300 text-gray-700 font-semibold hover:border-indigo-500" data-category="video">
+                    Video & Motion Graphics
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Grid -->
+    <section class="py-12 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                
+                <!-- Logo Projects -->
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="logos">
+                    <div class="relative">
+                        <img src="images/clients logo/Kribisha.png" alt="Logo Design 1" class="w-full h-64 object-cover" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2QjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxvZ28gRGVzaWduPC90ZXh0Pgo8L3N2Zz4K'">
+                        <div class="category-badge">Logos</div>
+                        <div class="portfolio-overlay">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Kribisha Logo</h3>
+                                <p class="text-sm">Interior design Company</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="logos">
+                    <div class="relative">
+                        <img src="images/clients logo/Mwas Grilll logo.png" alt="Logo Design 2" class="w-full h-64 object-cover" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2QjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkZvb2QgQnJhbmQgTG9nbzwvdGV4dD4KPC9zdmc+Cg=='">
+                        <div class="category-badge">Logos</div>
+                        <div class="portfolio-overlay">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Mwas Grilll Logo</h3>
+                                <p class="text-sm">Restaurant</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="logos">
+                    <div class="relative">
+                        <img src="images/clients logo/pluged talent agency.png" alt="Logo Design 2" class="w-full h-64 object-cover" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2QjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkZvb2QgQnJhbmQgTG9nbzwvdGV4dD4KPC9zdmc+Cg=='">
+                        <div class="category-badge">Logos</div>
+                        <div class="portfolio-overlay">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Pluged Talent Agency Logo</h3>
+                                <p class="text-sm">Talent agency</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="logos">
+                    <div class="relative">
+                        <img src="images/clients logo/Digirentals.png" alt="Logo Design 2" class="w-full h-64 object-cover" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2QjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkZvb2QgQnJhbmQgTG9nbzwvdGV4dD4KPC9zdmc+Cg=='">
+                        <div class="category-badge">Logos</div>
+                        <div class="portfolio-overlay">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Digirentals Logo</h3>
+                                <p class="text-sm">Rental management system</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="logos">
+                    <div class="relative">
+                        <img src="images/clients logo/Metropoly.png" alt="Logo Design 2" class="w-full h-64 object-cover" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2QjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkZvb2QgQnJhbmQgTG9nbzwvdGV4dD4KPC9zdmc+Cg=='">
+                        <div class="category-badge">Logos</div>
+                        <div class="portfolio-overlay">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Metropoly Logo</h3>
+                                <p class="text-sm">Rubber Products Company</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="logos">
+                    <div class="relative">
+                        <img src="images/clients logo/ChefPete.png" alt="Logo Design 2" class="w-full h-64 object-cover" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2QjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkZvb2QgQnJhbmQgTG9nbzwvdGV4dD4KPC9zdmc+Cg=='">
+                        <div class="category-badge">Logos</div>
+                        <div class="portfolio-overlay">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Chef Pete Logo</h3>
+                                <p class="text-sm">Professional Chef</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="logos">
+                    <div class="relative">
+                        <img src="images/clients logo/capital nest.png  " alt="Logo Design 2" class="w-full h-64 object-cover" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2QjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkZvb2QgQnJhbmQgTG9nbzwvdGV4dD4KPC9zdmc+Cg=='">
+                        <div class="category-badge">Logos</div>
+                        <div class="portfolio-overlay">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Capital Nest Logo</h3>
+                                <p class="text-sm">Financial Services Company</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="logos">
+                    <div class="relative">
+                        <img src="images/clients logo/CAREVEYO logo.png  " alt="Logo Design 2" class="w-full h-64 object-cover" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2QjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkZvb2QgQnJhbmQgTG9nbzwvdGV4dD4KPC9zdmc+Cg=='">
+                        <div class="category-badge">Logos</div>
+                        <div class="portfolio-overlay">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Careveyo Logo</h3>
+                                <p class="text-sm">Charity Organization</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Banner Projects -->
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="banners">
+                    <div class="relative w-full h-full bg-gray-100 flex items-center justify-center">
+                        <img src="images/DigiskoolSTEM roll up banner.jpeg" alt="Banner Design 1" class="w-full h-full" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIyNSIgdmlld0JveD0iMCAwIDQwMCAyMjUiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjI1IiBmaWxsPSIjRjNGNEY2Ii8+CjxyZWN0IHg9IjIwIiB5PSIyMCIgd2lkdGg9IjM2MCIgaGVpZ2h0PSIxODUiIGZpbGw9IiNFNUU3RUIiLz4KPHRleHQgeD0iMjAwIiB5PSIxMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzZCNzI4MCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RGlnaXNrb29sU1RFTTwvdGV4dD4KPHRleHQgeD0iMjAwIiB5PSIxMzAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzlCOUJBNSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RWR1Y2F0aW9uICYgVHJhaW5pbmcgQ2VudGVyPC90ZXh0Pgo8L3N2Zz4K'">
+                        <div class="category-badge">Banners</div>
+                        <div class="portfolio-overlay">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">DigiskoolSTEM roll up banner</h3>
+                                <p class="text-sm">Education & Training Center</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="banners">
+                    <div class="relative w-full h-full bg-gray-100 flex items-center justify-center">
+                        <img src="images/Digiskool system roll up banner.jpeg" alt="Banner Design 2" class="w-full h-full" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIyNSIgdmlld0JveD0iMCAwIDQwMCAyMjUiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjI1IiBmaWxsPSIjRjNGNEY2Ii8+CjxyZWN0IHg9IjIwIiB5PSIyMCIgd2lkdGg9IjM2MCIgaGVpZ2h0PSIxODUiIGZpbGw9IiNFNUU3RUIiLz4KPHRleHQgeD0iMjAwIiB5PSIxMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzZCNzI4MCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RGlnaXNrb29sIFN5c3RlbTwvdGV4dD4KPHRleHQgeD0iMjAwIiB5PSIxMzAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzlCOUJBNSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+U2Nob29sIE1hbmFnZW1lbnQgU3lzdGVtPC90ZXh0Pgo8L3N2Zz4K'">
+                        <div class="category-badge">Banners</div>
+                        <div class="portfolio-overlay">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Digiskool system roll up banner</h3>
+                                <p class="text-sm">School Management System</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="banners">
+                    <div class="relative w-full h-full bg-gray-100 flex items-center justify-center">
+                        <img src="images/Digiskool dual service retractable banner.png" alt="Banner Design 2" class="w-full h-full" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIyNSIgdmlld0JveD0iMCAwIDQwMCAyMjUiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjI1IiBmaWxsPSIjRjNGNEY2Ii8+CjxyZWN0IHg9IjIwIiB5PSIyMCIgd2lkdGg9IjM2MCIgaGVpZ2h0PSIxODUiIGZpbGw9IiNFNUU3RUIiLz4KPHRleHQgeD0iMjAwIiB5PSIxMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzZCNzI4MCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RGlnaXNrb29sIER1YWw8L3RleHQ+Cjx0ZXh0IHg9IjIwMCIgeT0iMTMwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiM5QjlCQTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlNlcnZpY2UgUmV0cmFjdGFibGUgQmFubmVyPC90ZXh0Pgo8L3N2Zz4K'">
+                        <div class="category-badge">Banners</div>
+                        <div class="portfolio-overlay">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Digiskool dual service retractable banner</h3>
+                                <p class="text-sm">School Management System</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="banners">
+                    <div class="relative w-full h-full bg-gray-100 flex items-center justify-center">
+                        <img src="images/Quick flight support roll up banner .png" alt="Banner Design 2" class="w-full h-full" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIyNSIgdmlld0JveD0iMCAwIDQwMCAyMjUiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjI1IiBmaWxsPSIjRjNGNEY2Ii8+CjxyZWN0IHg9IjIwIiB5PSIyMCIgd2lkdGg9IjM2MCIgaGVpZ2h0PSIxODUiIGZpbGw9IiNFNUU3RUIiLz4KPHRleHQgeD0iMjAwIiB5PSIxMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzZCNzI4MCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+UXVpY2sgRmxpZ2h0PC90ZXh0Pgo8dGV4dCB4PSIyMDAiIHk9IjEzMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjOUI5QkE1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5TdXBwb3J0IEJhbm5lcjwvdGV4dD4KPC9zdmc+Cg=='">
+                        <div class="category-badge">Banners</div>
+                        <div class="portfolio-overlay">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Quick flight Support Banner</h3>
+                                <p class="text-sm">Flight Charter Company</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Business Card Projects -->
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="business-cards">
+                    <div class="relative w-full h-full bg-gray-100 flex items-center justify-center">
+                        <img src="images/Phil_s front.png" alt="Business Card 1" class="w-full h-full" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDM1MCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzNTAiIGhlaWdodD0iMjAwIiBmaWxsPSIjRjNGNEY2Ii8+CjxyZWN0IHg9IjEwIiB5PSIxMCIgd2lkdGg9IjMzMCIgaGVpZ2h0PSIxODAiIGZpbGw9IiNFNUU3RUIiLz4KPHRleHQgeD0iMTc1IiB5PSI4MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSIjNkI3MjgwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5DaGVmIFBldGU8L3RleHQ+Cjx0ZXh0IHg9IjE3NSIgeT0iMTEwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiM5QjlCQTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlByb2Zlc3Npb25hbCBDaGVmPC90ZXh0Pgo8L3N2Zz4K'">
+                        <div class="category-badge">Business Cards</div>
+                        <div class="portfolio-overlay">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Chef Pete</h3>
+                                <p class="text-sm">Professional Chef</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="business-cards">
+                    <div class="relative w-full h-full bg-gray-100 flex items-center justify-center">
+                        <img src="images/6.png" alt="Business Card 1" class="w-full h-full" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDM1MCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzNTAiIGhlaWdodD0iMjAwIiBmaWxsPSIjRjNGNEY2Ii8+CjxyZWN0IHg9IjEwIiB5PSIxMCIgd2lkdGg9IjMzMCIgaGVpZ2h0PSIxODAiIGZpbGw9IiNFNUU3RUIiLz4KPHRleHQgeD0iMTc1IiB5PSI4MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSIjNkI3MjgwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5DaGVmIFBldGU8L3RleHQ+Cjx0ZXh0IHg9IjE3NSIgeT0iMTEwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiM5QjlCQTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlByb2Zlc3Npb25hbCBDaGVmPC90ZXh0Pgo8L3N2Zz4K'">
+                        <div class="category-badge">Business Cards</div>
+                        <div class="portfolio-overlay">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Chef Pete</h3>
+                                <p class="text-sm">Professional Chef</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="business-cards">
+                    <div class="relative w-full h-full bg-gray-100 flex items-center justify-center">
+                        <img src="images/Business Card back.png" alt="Business Card 2" class="w-full h-full" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDM1MCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzNTAiIGhlaWdodD0iMjAwIiBmaWxsPSIjRjNGNEY2Ii8+CjxyZWN0IHg9IjEwIiB5PSIxMCIgd2lkdGg9IjMzMCIgaGVpZ2h0PSIxODAiIGZpbGw9IiNFNUU3RUIiLz4KPHRleHQgeD0iMTc1IiB5PSI4MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSIjNkI3MjgwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5EaWdpc2tvb2w8L3RleHQ+Cjx0ZXh0IHg9IjE3NSIgeT0iMTEwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiM5QjlCQTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlNjaG9vbCBNYW5hZ2VtZW50PC90ZXh0Pgo8L3N2Zz4K'">
+                        <div class="category-badge">Business Cards</div>
+                        <div class="portfolio-overlay">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Digiskool</h3>
+                                <p class="text-sm">School Management Solutions</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="business-cards">
+                    <div class="relative w-full h-full bg-gray-100 flex items-center justify-center">
+                        <img src="images/Digiskool Business card.png" alt="Business Card 2" class="w-full h-full" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDM1MCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzNTAiIGhlaWdodD0iMjAwIiBmaWxsPSIjRjNGNEY2Ii8+CjxyZWN0IHg9IjEwIiB5PSIxMCIgd2lkdGg9IjMzMCIgaGVpZ2h0PSIxODAiIGZpbGw9IiNFNUU3RUIiLz4KPHRleHQgeD0iMTc1IiB5PSI4MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSIjNkI3MjgwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5EaWdpc2tvb2w8L3RleHQ+Cjx0ZXh0IHg9IjE3NSIgeT0iMTEwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiM5QjlCQTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlNjaG9vbCBNYW5hZ2VtZW50PC90ZXh0Pgo8L3N2Zz4K'">
+                        <div class="category-badge">Business Cards</div>
+                        <div class="portfolio-overlay">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Digiskool</h3>
+                                <p class="text-sm">School Management Solutions</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Merchandise Projects -->
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="merchandise">
+                    <div class="relative">
+                        <img src="images/Branded cup.png" alt="Merchandise 1" class="w-full h-full" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjRjNGNEY2Ii8+CjxyZWN0IHg9IjEwIiB5PSIxMCIgd2lkdGg9IjI4MCIgaGVpZ2h0PSIyODAiIGZpbGw9IiNFNUU3RUIiLz4KPHRleHQgeD0iMTUwIiB5PSIxNDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzZCNzI4MCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+QnJhbmRlZCBDdXA8L3RleHQ+Cjx0ZXh0IHg9IjE1MCIgeT0iMTcwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiM5QjlCQTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkNvcnBvcmF0ZSBtZXJjaGFuZGlzZTwvdGV4dD4KPC9zdmc+Cg=='">
+                        <div class="category-badge">Merchandise</div>
+                        <div class="portfolio-overlay">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Branded Cup</h3>
+                                <p class="text-sm">Corporate merchandise</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="merchandise">
+                    <div class="relative">
+                        <img src="images/Gift bag Mockup.png" alt="Merchandise 2" class="w-full h-full" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjRjNGNEY2Ii8+CjxyZWN0IHg9IjEwIiB5PSIxMCIgd2lkdGg9IjI4MCIgaGVpZ2h0PSIyODAiIGZpbGw9IiNFNUU3RUIiLz4KPHRleHQgeD0iMTUwIiB5PSIxNDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzZCNzI4MCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+VG90ZSBCYWc8L3RleHQ+Cjx0ZXh0IHg9IjE1MCIgeT0iMTcwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiM5QjlCQTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkJyYW5kZWQgbWVyY2hhbmRpc2U8L3RleHQ+Cjwvc3ZnPgo='">
+                        <div class="category-badge">Merchandise</div>
+                        <div class="portfolio-overlay">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Tote Bag Design</h3>
+                                <p class="text-sm">Branded merchandise</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="merchandise">
+                    <div class="relative">
+                        <img src="images/Tshirt.png" alt="Merchandise 2" class="w-full h-full" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjRjNGNEY2Ii8+CjxyZWN0IHg9IjEwIiB5PSIxMCIgd2lkdGg9IjI4MCIgaGVpZ2h0PSIyODAiIGZpbGw9IiNFNUU3RUIiLz4KPHRleHQgeD0iMTUwIiB5PSIxNDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzZCNzI4MCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+VC1zaGlydDwvdGV4dD4KPHRleHQgeD0iMTUwIiB5PSIxNzAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzlCOUJBNSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+QnJhbmRlZCBtZXJjaGFuZGlzZTwvdGV4dD4KPC9zdmc+Cg=='">
+                        <div class="category-badge">Merchandise</div>
+                        <div class="portfolio-overlay">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">T-shirt Design</h3>
+                                <p class="text-sm">Branded merchandise</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Flyers & Brochures Projects -->
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="flyers">
+                    <div class="relative">
+                        <img src="images/outside.png" alt="Flyer 1" class="w-full h-full" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDMwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjRjNGNEY2Ii8+CjxyZWN0IHg9IjEwIiB5PSIxMCIgd2lkdGg9IjI4MCIgaGVpZ2h0PSIzODAiIGZpbGw9IiNFNUU3RUIiLz4KPHRleHQgeD0iMTUwIiB5PSIxODAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzZCNzI4MCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+UHJvZHVjdCBGbHllcjwvdGV4dD4KPHRleHQgeD0iMTUwIiB5PSIyMTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzlCOUJBNSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TWFya2V0aW5nIGZseWVyIGRlc2lnbjwvdGV4dD4KPC9zdmc+Cg=='">
+                        <div class="category-badge">Flyers</div>
+                        <div class="portfolio-overlay">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Product Description Flyer</h3>
+                                <p class="text-sm">Marketing flyer design</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="flyers">
+                    <div class="relative">
+                        <img src="images/brochure.jpg" alt="Brochure 1" class="w-full h-full" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDMwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjRjNGNEY2Ii8+CjxyZWN0IHg9IjEwIiB5PSIxMCIgd2lkdGg9IjI4MCIgaGVpZ2h0PSIzODAiIGZpbGw9IiNFNUU3RUIiLz4KPHRleHQgeD0iMTUwIiB5PSIxODAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzZCNzI4MCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+UHJvZHVjdCBCcm9jaHVyZTwvdGV4dD4KPHRleHQgeD0iMTUwIiB5PSIyMTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzlCOUJBNSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+Q29ycG9yYXRlIGJyb2NodXJlIGRlc2lnbjwvdGV4dD4KPC9zdmc+Cg=='">
+                        <div class="category-badge">Brochures</div>
+                        <div class="portfolio-overlay">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Product Description Brochure</h3>
+                                <p class="text-sm">Corporate brochure design</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="flyers">
+                    <div class="relative">
+                        <img src="images/FREE BEAUTY_20250827_180318_0000.png" alt="Brochure 1" class="w-full h-full" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDMwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjRjNGNEY2Ii8+CjxyZWN0IHg9IjEwIiB5PSIxMCIgd2lkdGg9IjI4MCIgaGVpZ2h0PSIzODAiIGZpbGw9IiNFNUU3RUIiLz4KPHRleHQgeD0iMTUwIiB5PSIxODAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzZCNzI4MCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RXZlbnQgQnJvY2h1cmU8L3RleHQ+Cjx0ZXh0IHg9IjE1MCIgeT0iMjEwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiM5QjlCQTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkNvcnBvcmF0ZSBicm9jaHVyZSBkZXNpZ248L3RleHQ+Cjwvc3ZnPgo='">
+                        <div class="category-badge">Brochures</div>
+                        <div class="portfolio-overlay">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Event Brochure</h3>
+                                <p class="text-sm">Corporate brochure design</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="flyers">
+                    <div class="relative">
+                        <img src="images/flier.jpg" alt="Brochure 1" class="w-full h-full" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDMwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjRjNGNEY2Ii8+CjxyZWN0IHg9IjEwIiB5PSIxMCIgd2lkdGg9IjI4MCIgaGVpZ2h0PSIzODAiIGZpbGw9IiNFNUU3RUIiLz4KPHRleHQgeD0iMTUwIiB5PSIxODAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzZCNzI4MCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RXZlbnQgRmxpZXI8L3RleHQ+Cjx0ZXh0IHg9IjE1MCIgeT0iMjEwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiM5QjlCQTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkNvcnBvcmF0ZSBmbHllciBkZXNpZ248L3RleHQ+Cjwvc3ZnPgo='">
+                        <div class="category-badge">Brochures</div>
+                        <div class="portfolio-overlay">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Event Brochure</h3>
+                                <p class="text-sm">Corporate brochure design</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Social Media Graphics Projects -->
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="social-media">
+                    <div class="relative">
+                        <img src="images/social-sample-1.jpg" alt="Social Media 1" class="w-full h-64 object-cover" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2QjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlNvY2lhbCBNZWRpYTwvdGV4dD4KPC9zdmc+Cg=='">
+                        <div class="category-badge">Social Media</div>
+                        <div class="portfolio-overlay">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Instagram Post</h3>
+                                <p class="text-sm">Social media graphics</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="social-media">
+                    <div class="relative">
+                        <img src="images/social-sample-2.jpg" alt="Social Media 2" class="w-full h-64 object-cover" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2QjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkZhY2Vib29rIEFkPC90ZXh0Pgo8L3N2Zz4K'">
+                        <div class="category-badge">Social Media</div>
+                        <div class="portfolio-overlay">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Facebook Ad</h3>
+                                <p class="text-sm">Digital marketing graphics</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video & Motion Graphics Projects -->
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="video">
+                    <div class="relative">
+                        <img src="images/video-sample-1.jpg" alt="Video 1" class="w-full h-64 object-cover" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2QjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk1vdGlvbiBHcmFwaGljPC90ZXh0Pgo8L3N2Zz4K'">
+                        <div class="category-badge">Video</div>
+                        <div class="portfolio-overlay">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Logo Animation</h3>
+                                <p class="text-sm">Motion graphics design</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="video">
+                    <div class="relative">
+                        <img src="images/video-sample-2.jpg" alt="Video 2" class="w-full h-64 object-cover" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2QjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkNvcnBvcmF0ZSBWaWRlbzwvdGV4dD4KPC9zdmc+Cg=='">
+                        <div class="category-badge">Video</div>
+                        <div class="portfolio-overlay">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Corporate Video</h3>
+                                <p class="text-sm">Professional video content</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Ready to Start Your Project?</h2>
+            <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+                Let's discuss how we can bring your vision to life with our creative design services.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="index.html#contact" class="bg-indigo-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-indigo-700 transition-colors">
+                    Get Your Free Quote
+                </a>
+                <a href="index.html#services" class="border-2 border-indigo-600 text-indigo-600 px-8 py-4 rounded-lg font-semibold hover:bg-indigo-600 hover:text-white transition-colors">
+                    View Our Services
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="text-2xl font-bold gradient-bg bg-clip-text text-transparent mb-4">
+                        Noveyo Technologies
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Your Vision, Our Innovation.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="index.html#services" class="hover:text-white transition-colors">Graphics & Branding</a></li>
+                        <li><a href="index.html#services" class="hover:text-white transition-colors">Digital & Social Media</a></li>
+                        <li><a href="index.html#services" class="hover:text-white transition-colors">Print & Product Designs</a></li>
+                        <li><a href="index.html#services" class="hover:text-white transition-colors">Website & Digital Solutions</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="index.html#about" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="portfolio.html" class="hover:text-white transition-colors">Portfolio</a></li>
+                        <li><a href="index.html#contact" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                    <div class="space-y-2 text-gray-400">
+                        <p>noveyotechnologies@gmail.com</p>
+                        <p>+254 793 520615</p>
+                        <p>Roysambu, Nairobi Kenya</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Noveyo Technologies. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Portfolio filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const category = this.getAttribute('data-category');
+                
+                // Update active button
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Filter portfolio items
+                portfolioItems.forEach(item => {
+                    if (category === 'all' || item.getAttribute('data-category') === category) {
+                        item.style.display = 'block';
+                        item.classList.add('fade-in');
+                    } else {
+                        item.style.display = 'none';
+                        item.classList.remove('fade-in');
+                    }
+                });
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
