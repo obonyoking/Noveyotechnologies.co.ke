@@ -316,6 +316,30 @@
         .video-preview {
             cursor: pointer;
         }
+        
+        /* Image Optimization for Mobile */
+        .portfolio-item img {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            image-rendering: pixelated;
+        }
+        
+        /* Mobile-specific optimizations */
+        @media (max-width: 768px) {
+            .portfolio-item img {
+                max-width: 100%;
+                height: auto;
+                transform: translateZ(0); /* Force hardware acceleration */
+                will-change: transform; /* Optimize for animations */
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 1rem;
+            }
+        }
+        
+        /* Preload critical images - handled via HTML loading attribute */
     </style>
 </head>
 <body class="bg-gray-50">
@@ -416,7 +440,7 @@
                 <!-- Logo Projects -->
                 <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="logos" data-title="Kribisha Logo" data-description="Modern logo design for interior design company with elegant typography and sophisticated color scheme">
                     <div class="relative">
-                        <img src="images/clients logo/Kribisha.png" alt="Kribisha Logo" class="w-full h-64 object-cover" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2QjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxvZ28gRGVzaWduPC90ZXh0Pgo8L3N2Zz4K'">
+                        <img src="images/clients logo/Kribisha.png" alt="Kribisha Logo" class="w-full h-64 object-cover" loading="eager" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2QjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxvZ28gRGVzaWduPC90ZXh0Pgo8L3N2Zz4K'">
                         <div class="category-badge">Logos</div>
                     </div>
                 </div>
@@ -1212,6 +1236,33 @@
                 }
             });
         });
+        
+        // Lazy loading for portfolio images
+        function setupLazyLoading() {
+            const images = document.querySelectorAll('.portfolio-item img[loading="lazy"]');
+            
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.classList.add('fade-in');
+                            observer.unobserve(img);
+                        }
+                    });
+                });
+                
+                images.forEach(img => imageObserver.observe(img));
+            } else {
+                // Fallback for older browsers
+                images.forEach(img => {
+                    img.classList.add('fade-in');
+                });
+            }
+        }
+        
+        // Initialize lazy loading when DOM is loaded
+        document.addEventListener('DOMContentLoaded', setupLazyLoading);
     </script>
 </body>
 </html>
