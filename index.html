@@ -955,6 +955,9 @@
         </div>
     </div>
 
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    
     <!-- Firebase SDK -->
     <script type="module">
         // Import the functions you need from the SDKs you need
@@ -977,6 +980,11 @@
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const database = getDatabase(app);
+
+    // Initialize EmailJS
+    (function() {
+        emailjs.init("YOUR_EMAILJS_PUBLIC_KEY"); // Replace with your EmailJS public key
+    })();
 
         // Notification functions
         function showNotification(message, type = 'success') {
@@ -1008,6 +1016,41 @@
             document.getElementById('notification').classList.add('hidden');
         }
 
+        // Email notification functions
+        function sendQuoteEmailNotification(quoteData) {
+            const templateParams = {
+                to_email: 'your-email@example.com', // Replace with your email
+                from_name: `${quoteData.firstName} ${quoteData.lastName}`,
+                from_email: quoteData.email,
+                service: quoteData.service,
+                project_details: quoteData.projectDetails,
+                source: quoteData.source,
+                timestamp: new Date().toLocaleString()
+            };
+
+            emailjs.send('YOUR_SERVICE_ID', 'YOUR_QUOTE_TEMPLATE_ID', templateParams)
+                .then(function(response) {
+                    console.log('Quote email notification sent successfully!', response.status, response.text);
+                }, function(error) {
+                    console.log('Failed to send quote email notification:', error);
+                });
+        }
+
+        function sendNewsletterEmailNotification(email) {
+            const templateParams = {
+                to_email: 'your-email@example.com', // Replace with your email
+                subscriber_email: email,
+                timestamp: new Date().toLocaleString()
+            };
+
+            emailjs.send('YOUR_SERVICE_ID', 'YOUR_NEWSLETTER_TEMPLATE_ID', templateParams)
+                .then(function(response) {
+                    console.log('Newsletter email notification sent successfully!', response.status, response.text);
+                }, function(error) {
+                    console.log('Failed to send newsletter email notification:', error);
+                });
+        }
+
         // Make Firebase functions available globally
         window.addQuoteToFirebase = async function(quoteData) {
             try {
@@ -1025,7 +1068,11 @@
                     status: "new"
                 });
                 console.log("Quote added with ID: ", newQuoteRef.key);
-                showNotification('Quote sent successfully! We\'ll get back to you within 2 hours.', 'success');
+                showNotification('Quote request sent successfully! We\'ll get back to you within 2 hours.', 'success');
+                
+                // Send email notification
+                sendQuoteEmailNotification(quoteData);
+                
                 return true;
             } catch (error) {
                 console.error("Error adding quote: ", error);
@@ -1047,6 +1094,10 @@
                 });
                 console.log("Newsletter subscription added with ID: ", newNewsletterRef.key);
                 showNotification('Successfully subscribed to our newsletter!', 'success');
+                
+                // Send email notification
+                sendNewsletterEmailNotification(email);
+                
                 return true;
             } catch (error) {
                 console.error("Error adding newsletter subscription: ", error);
