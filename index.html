@@ -694,20 +694,20 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
-                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent" required>
+                                    <input type="text" name="firstName" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent" required>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
-                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent" required>
+                                    <input type="text" name="lastName" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent" required>
                                 </div>
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                                <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent" required>
+                                <input type="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent" required>
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Service Needed</label>
-                                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent" required>
+                                <select name="service" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent" required>
                                     <option value="">Select a service</option>
                                     <option value="digital">Digital Media</option>
                                     <option value="print">Print Materials</option>
@@ -719,7 +719,7 @@
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Project Details</label>
-                                <textarea rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent" placeholder="Tell us about your project requirements..."></textarea>
+                                <textarea name="projectDetails" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent" placeholder="Tell us about your project requirements..."></textarea>
                             </div>
                             <button type="submit" class="w-full bg-indigo-600 text-white py-4 rounded-lg font-semibold hover:bg-indigo-700 transition-colors">
                                 Send Message
@@ -879,9 +879,19 @@
                 <p class="text-gray-600">We'll get back to you within 2 hours!</p>
             </div>
             <form class="space-y-4">
-                <input type="text" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent" required>
-                <input type="email" placeholder="Your Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent" required>
-                <textarea rows="3" placeholder="Project details..." class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"></textarea>
+                <input type="text" name="firstName" placeholder="First Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent" required>
+                <input type="text" name="lastName" placeholder="Last Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent" required>
+                <input type="email" name="email" placeholder="Your Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent" required>
+                <select name="service" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent" required>
+                    <option value="">Select Service</option>
+                    <option value="Graphics & Branding">Graphics & Branding</option>
+                    <option value="Digital & Social Media">Digital & Social Media</option>
+                    <option value="Print & Product Designs">Print & Product Designs</option>
+                    <option value="Website & Digital Solutions">Website & Digital Solutions</option>
+                    <option value="IT Solutions">IT Solutions</option>
+                    <option value="Custom Designs">Custom Designs</option>
+                </select>
+                <textarea name="projectDetails" rows="3" placeholder="Project details..." class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent" required></textarea>
                 <div class="flex gap-4">
                     <button type="button" onclick="closeQuoteModal()" class="flex-1 bg-gray-300 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-400 transition-colors">
                         Cancel
@@ -924,6 +934,105 @@
         </div>
     </div>
 
+    <!-- Success/Error Notification -->
+    <div id="notification" class="fixed top-4 right-4 z-50 hidden">
+        <div class="bg-white rounded-lg shadow-lg p-4 max-w-sm">
+            <div class="flex items-center">
+                <div id="notification-icon" class="flex-shrink-0">
+                    <!-- Icon will be added by JavaScript -->
+                </div>
+                <div class="ml-3">
+                    <p id="notification-message" class="text-sm font-medium text-gray-900"></p>
+                </div>
+                <button onclick="closeNotification()" class="ml-4 text-gray-400 hover:text-gray-600">
+                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getDatabase, ref, push, set } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
+
+        // Your web app's Firebase configuration
+        // Replace this with your actual Firebase config
+        const firebaseConfig = {
+            apiKey: "AIzaSyAFmne0ScTC41OnQFYkkYtntWv9M8eShXY",
+            authDomain: "noveyotechnologies-85cac.firebaseapp.com",
+            databaseURL: "https://noveyotechnologies-85cac-default-rtdb.firebaseio.com",
+            projectId: "noveyotechnologies-85cac",
+            storageBucket: "noveyotechnologies-85cac.firebasestorage.app",
+            messagingSenderId: "1054231755361",
+            appId: "1:1054231755361:web:8d3cc5dff4ef36afc80820",
+            measurementId: "G-2JSTP0DEGR"
+        };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+
+        // Notification functions
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            const icon = document.getElementById('notification-icon');
+            const messageEl = document.getElementById('notification-message');
+            
+            // Clear previous content
+            icon.innerHTML = '';
+            
+            if (type === 'success') {
+                icon.innerHTML = '<svg class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>';
+                notification.className = 'fixed top-4 right-4 z-50 bg-white rounded-lg shadow-lg p-4 max-w-sm border-l-4 border-green-400';
+            } else {
+                icon.innerHTML = '<svg class="h-6 w-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>';
+                notification.className = 'fixed top-4 right-4 z-50 bg-white rounded-lg shadow-lg p-4 max-w-sm border-l-4 border-red-400';
+            }
+            
+            messageEl.textContent = message;
+            notification.classList.remove('hidden');
+            
+            // Auto-hide after 5 seconds
+            setTimeout(() => {
+                closeNotification();
+            }, 5000);
+        }
+
+        function closeNotification() {
+            document.getElementById('notification').classList.add('hidden');
+        }
+
+        // Make Firebase functions available globally
+        window.addQuoteToFirebase = async function(quoteData) {
+            try {
+                console.log('Sending quote data:', quoteData);
+                const quotesRef = ref(database, 'quotes');
+                const newQuoteRef = push(quotesRef);
+                await set(newQuoteRef, {
+                    firstName: quoteData.firstName || '',
+                    lastName: quoteData.lastName || '',
+                    email: quoteData.email || '',
+                    service: quoteData.service || '',
+                    projectDetails: quoteData.projectDetails || '',
+                    source: quoteData.source || 'Unknown',
+                    timestamp: new Date().toISOString(),
+                    status: "new"
+                });
+                console.log("Quote added with ID: ", newQuoteRef.key);
+                showNotification('Quote sent successfully! We\'ll get back to you within 2 hours.', 'success');
+                return true;
+            } catch (error) {
+                console.error("Error adding quote: ", error);
+                showNotification('Error sending quote. Please try again.', 'error');
+                return false;
+            }
+        };
+    </script>
+
     <script>
         // Mobile menu toggle
         document.getElementById('mobile-menu-btn').addEventListener('click', function() {
@@ -962,18 +1071,78 @@
         }
 
         // Form submission
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
+        document.getElementById('contact-form').addEventListener('submit', async function(e) {
             e.preventDefault();
-            alert('Thank you for your message! We\'ll get back to you within 2 hours.');
-            this.reset();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const contactData = {
+                firstName: formData.get('firstName'),
+                lastName: formData.get('lastName'),
+                email: formData.get('email'),
+                service: formData.get('service'),
+                projectDetails: formData.get('projectDetails'),
+                source: 'Contact Form'
+            };
+            
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            try {
+                // Send to Firebase
+                const success = await window.addQuoteToFirebase(contactData);
+                
+                if (success) {
+                    this.reset();
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            } finally {
+                // Reset button state
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
         });
 
         // Quote form submission
-        document.querySelector('#quote-modal form').addEventListener('submit', function(e) {
+        document.querySelector('#quote-modal form').addEventListener('submit', async function(e) {
             e.preventDefault();
-            alert('Quote request sent! We\'ll contact you within 2 hours with a detailed proposal.');
-            closeQuoteModal();
-            this.reset();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const quoteData = {
+                firstName: formData.get('firstName'),
+                lastName: formData.get('lastName'),
+                email: formData.get('email'),
+                service: formData.get('service'),
+                projectDetails: formData.get('projectDetails'),
+                source: 'Get Quote Button - Services Section'
+            };
+            
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            try {
+                // Send to Firebase
+                const success = await window.addQuoteToFirebase(quoteData);
+                
+                if (success) {
+                    closeQuoteModal();
+                    this.reset();
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            } finally {
+                // Reset button state
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
         });
 
         // Newsletter subscription
