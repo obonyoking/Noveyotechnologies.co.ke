@@ -337,6 +337,30 @@
                 grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
                 gap: 1rem;
             }
+            
+            /* Ensure mobile view matches desktop */
+            body {
+                background-color: #ffffff !important;
+                color: #000000 !important;
+            }
+            
+            .gradient-bg {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+            }
+            
+            /* Mobile menu styling */
+            #mobile-menu {
+                background-color: #ffffff !important;
+                border-top: 1px solid #e5e7eb !important;
+            }
+            
+            #mobile-menu a {
+                color: #374151 !important;
+            }
+            
+            #mobile-menu a:hover {
+                color: #4f46e5 !important;
+            }
         }
         
         /* Preload critical images - handled via HTML loading attribute */
@@ -1201,7 +1225,7 @@
 
     // Initialize EmailJS
     (function() {
-        emailjs.init("YOUR_EMAILJS_PUBLIC_KEY"); // Replace with your EmailJS public key
+        emailjs.init("uRHTzpQ1K8P2XgfOM"); // Replace with your EmailJS public key
     })();
 
         // Notification functions
@@ -1237,7 +1261,7 @@
         // Email notification functions
         function sendQuoteEmailNotification(quoteData) {
             const templateParams = {
-                to_email: 'your-email@example.com', // Replace with your email
+                to_email: 'noveyotechnologies@gmail.com', // Replace with your email
                 from_name: `${quoteData.firstName} ${quoteData.lastName}`,
                 from_email: quoteData.email,
                 service: quoteData.service,
@@ -1246,7 +1270,7 @@
                 timestamp: new Date().toLocaleString()
             };
 
-            emailjs.send('YOUR_SERVICE_ID', 'YOUR_QUOTE_TEMPLATE_ID', templateParams)
+            emailjs.send('service_2htqfpv', 'template_epk71l8', templateParams)
                 .then(function(response) {
                     console.log('Quote email notification sent successfully!', response.status, response.text);
                 }, function(error) {
@@ -1256,12 +1280,12 @@
 
         function sendNewsletterEmailNotification(email) {
             const templateParams = {
-                to_email: 'your-email@example.com', // Replace with your email
+                to_email: 'noveyotechnologies@gmail.com', // Replace with your email
                 subscriber_email: email,
                 timestamp: new Date().toLocaleString()
             };
 
-            emailjs.send('YOUR_SERVICE_ID', 'YOUR_NEWSLETTER_TEMPLATE_ID', templateParams)
+            emailjs.send('service_2htqfpv', 'template_vdni0kk', templateParams)
                 .then(function(response) {
                     console.log('Newsletter email notification sent successfully!', response.status, response.text);
                 }, function(error) {
@@ -1330,6 +1354,17 @@
         document.getElementById('mobile-menu-btn').addEventListener('click', function() {
             const mobileMenu = document.getElementById('mobile-menu');
             mobileMenu.classList.toggle('hidden');
+        });
+
+        // Ensure page starts at top on mobile
+        window.addEventListener('load', function() {
+            // Scroll to top on page load
+            window.scrollTo(0, 0);
+            
+            // Remove any hash from URL to prevent auto-scrolling
+            if (window.location.hash) {
+                history.replaceState(null, null, window.location.pathname);
+            }
         });
 
         // Quote modal functions
