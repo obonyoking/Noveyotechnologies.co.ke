@@ -1251,6 +1251,27 @@
                 return false;
             }
         };
+
+        // Newsletter subscription function
+        window.addNewsletterToFirebase = async function(email) {
+            try {
+                console.log('Sending newsletter subscription:', email);
+                const newsletterRef = ref(database, 'newsletters');
+                const newNewsletterRef = push(newsletterRef);
+                await set(newNewsletterRef, {
+                    email: email,
+                    timestamp: new Date().toISOString(),
+                    status: "active"
+                });
+                console.log("Newsletter subscription added with ID: ", newNewsletterRef.key);
+                showNotification('Successfully subscribed to our newsletter!', 'success');
+                return true;
+            } catch (error) {
+                console.error("Error adding newsletter subscription: ", error);
+                showNotification('Error subscribing to newsletter. Please try again.', 'error');
+                return false;
+            }
+        };
     </script>
 
     <script>

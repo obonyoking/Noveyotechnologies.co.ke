@@ -856,12 +856,14 @@
                 <div>
                     <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
                     <p class="text-gray-400 mb-4">Stay updated with our latest work and design tips.</p>
-                    <div class="flex flex-col sm:flex-row gap-2">
-                        <input type="email" placeholder="Your email" class="flex-1 px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg sm:rounded-r-none focus:outline-none focus:border-indigo-500 text-sm">
-                        <button class="bg-indigo-600 hover:bg-indigo-700 px-6 py-3 rounded-lg sm:rounded-l-none transition-colors text-sm font-medium whitespace-nowrap">
-                            Subscribe
-                        </button>
-                    </div>
+                    <form class="newsletter-form">
+                        <div class="flex flex-col sm:flex-row gap-2">
+                            <input type="email" name="email" placeholder="Your email" class="flex-1 px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg sm:rounded-r-none focus:outline-none focus:border-indigo-500 text-sm" required>
+                            <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 px-6 py-3 rounded-lg sm:rounded-l-none transition-colors text-sm font-medium whitespace-nowrap">
+                                Subscribe
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
             
@@ -1031,6 +1033,27 @@
                 return false;
             }
         };
+
+        // Newsletter subscription function
+        window.addNewsletterToFirebase = async function(email) {
+            try {
+                console.log('Sending newsletter subscription:', email);
+                const newsletterRef = ref(database, 'newsletters');
+                const newNewsletterRef = push(newsletterRef);
+                await set(newNewsletterRef, {
+                    email: email,
+                    timestamp: new Date().toISOString(),
+                    status: "active"
+                });
+                console.log("Newsletter subscription added with ID: ", newNewsletterRef.key);
+                showNotification('Successfully subscribed to our newsletter!', 'success');
+                return true;
+            } catch (error) {
+                console.error("Error adding newsletter subscription: ", error);
+                showNotification('Error subscribing to newsletter. Please try again.', 'error');
+                return false;
+            }
+        };
     </script>
 
     <script>
@@ -1146,10 +1169,31 @@
         });
 
         // Newsletter subscription
-        document.querySelector('footer form').addEventListener('submit', function(e) {
+        document.querySelector('.newsletter-form').addEventListener('submit', async function(e) {
             e.preventDefault();
-            alert('Thank you for subscribing to our newsletter!');
-            this.reset();
+            
+            const email = this.querySelector('input[name="email"]').value;
+            
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Subscribing...';
+            submitBtn.disabled = true;
+            
+            try {
+                // Send to Firebase
+                const success = await window.addNewsletterToFirebase(email);
+                
+                if (success) {
+                    this.reset();
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            } finally {
+                // Reset button state
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
         });
 
         // Animate stats on scroll
