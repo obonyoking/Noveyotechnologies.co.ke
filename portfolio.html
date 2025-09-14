@@ -192,6 +192,43 @@
             object-fit: contain;
         }
         
+        .image-popup video {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+            background: #000;
+            border-radius: 8px;
+        }
+        
+        /* Video optimization for better playback */
+        .video-preview video,
+        .image-popup video {
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-perspective: 1000;
+            perspective: 1000;
+        }
+        
+        /* Fullscreen video support */
+        .image-popup video::-webkit-media-controls-fullscreen-button {
+            display: block;
+        }
+        
+        .image-popup video::-webkit-media-controls-play-button {
+            display: block;
+        }
+        
+        .image-popup video::-webkit-media-controls-timeline {
+            display: block;
+        }
+        
+        .image-popup video::-webkit-media-controls-volume-slider {
+            display: block;
+        }
+        
         .image-popup-close {
             position: absolute;
             top: 15px;
@@ -310,7 +347,7 @@
             height: 100%;
             object-fit: cover;
             border-radius: 8px;
-            pointer-events: none; /* Prevent video interaction in preview */
+            pointer-events: auto; /* Allow video interaction */
         }
         
         .video-preview {
@@ -331,11 +368,34 @@
                 height: auto;
                 transform: translateZ(0); /* Force hardware acceleration */
                 will-change: transform; /* Optimize for animations */
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges;
+                image-rendering: pixelated;
+                /* Mobile loading optimizations */
+                loading: lazy;
+                decoding: async;
+                fetchpriority: low;
+                /* Additional mobile performance */
+                content-visibility: auto;
+                contain-intrinsic-size: 300px 240px;
             }
             
             .portfolio-grid {
                 grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
                 gap: 1rem;
+            }
+            
+            /* Mobile portfolio loading improvements */
+            .portfolio-item {
+                contain: layout style paint;
+                transform: translateZ(0);
+            }
+            
+            /* Reduce image quality on mobile for faster loading */
+            .portfolio-item img {
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges;
+                filter: contrast(1.1) brightness(1.05);
             }
             
             /* Ensure mobile view matches desktop */
@@ -346,6 +406,49 @@
             
             .gradient-bg {
                 background: linear-gradient(135deg, #41c1ba 0%, #060644 100%) !important;
+            }
+            
+            /* Mobile speed optimizations */
+            * {
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+            
+            img {
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges;
+                image-rendering: pixelated;
+                loading: lazy;
+                decoding: async;
+            }
+            
+            /* Optimize all images for mobile */
+            .portfolio-item img,
+            .service-card img {
+                transform: translateZ(0);
+                will-change: transform;
+                content-visibility: auto;
+            }
+            
+            /* Mobile video optimizations */
+            .video-preview video,
+            .image-popup video {
+                -webkit-transform: translateZ(0);
+                transform: translateZ(0);
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+                will-change: transform;
+            }
+            
+            /* Mobile video popup sizing */
+            .image-popup-content {
+                max-width: 95vw;
+                max-height: 85vh;
+            }
+            
+            .image-popup video {
+                max-height: 70vh;
+                width: 100%;
             }
             
             /* Mobile menu styling */
@@ -360,6 +463,20 @@
             
             #mobile-menu a:hover {
                 color: #4f46e5 !important;
+            }
+            
+            /* Fix mobile Get Quote button */
+            #mobile-menu button {
+                touch-action: manipulation !important;
+                -webkit-tap-highlight-color: transparent !important;
+                cursor: pointer !important;
+                pointer-events: auto !important;
+                z-index: 10 !important;
+                position: relative !important;
+            }
+            
+            #mobile-menu button:hover {
+                background-color: #4f46e5 !important;
             }
             
             /* Fix company name visibility on mobile */
@@ -379,6 +496,19 @@
         }
         
         /* Preload critical images - handled via HTML loading attribute */
+        
+        /* Fix desktop Get Quote button */
+        button[onclick*="openQuoteModal"] {
+            cursor: pointer !important;
+            pointer-events: auto !important;
+            z-index: 10 !important;
+            position: relative !important;
+        }
+        
+        button[onclick*="openQuoteModal"]:hover {
+            opacity: 0.9 !important;
+            transform: translateY(-1px) !important;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -397,7 +527,7 @@
                         <a href="index.html#services" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Services</a>
                         <a href="portfolio.html" class="text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Portfolio</a>
                         <a href="index.html#about" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">About</a>
-                        <button onclick="openQuoteModal('Portfolio Inquiry')" class="text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors" style="background-color: #060644;">
+                        <button onclick="openQuoteModal('Portfolio Inquiry')" class="text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-opacity-90 cursor-pointer" style="background-color: #060644;" type="button">
                             Get Quote
                         </button>
                     </div>
@@ -482,7 +612,7 @@
                 <!-- Logo Projects -->
                 <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="logos" data-title="Kribisha Logo" data-description="Modern logo design for interior design company with elegant typography and sophisticated color scheme">
                     <div class="relative">
-                        <img src="images/clients logo/Kribisha.png" alt="Kribisha Logo" class="w-full h-64 object-cover" loading="eager" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2QjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxvZ28gRGVzaWduPC90ZXh0Pgo8L3N2Zz4K'">
+                        <img src="images/clients logo/Kribisha.png" alt="Kribisha Logo" class="w-full h-64 object-cover" loading="eager" decoding="async" fetchpriority="high" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2QjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxvZ28gRGVzaWduPC90ZXh0Pgo8L3N2Zz4K'">
                         <div class="category-badge">Logos</div>
                     </div>
                 </div>
@@ -1009,7 +1139,7 @@
                 <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="video" data-title="Floydeez Logo Animation" data-description="Professional logo animation with smooth transitions and modern motion graphics" data-video-src="videos/floydeez.mp4">
                     <div class="relative">
                         <div class="video-preview">
-                            <video class="w-full h-64 object-cover" muted preload="metadata" poster="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMDAwIi8+CjxyZWN0IHg9IjEwIiB5PSIxMCIgd2lkdGg9IjI4MCIgaGVpZ2h0PSIyMjAiIGZpbGw9IiMzMzMiLz4KPHRleHQgeD0iMTUwIiB5PSIxMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RmxveWRlZXo8L3RleHQ+Cjx0ZXh0IHg9IjE1MCIgeT0iMTMwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiNjY2MiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxvZ28gQW5pbWF0aW9uPC90ZXh0Pgo8L3N2Zz4K'">
+                            <video class="w-full h-64 object-cover" preload="metadata" poster="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMDAwIi8+CjxyZWN0IHg9IjEwIiB5PSIxMCIgd2lkdGg9IjI4MCIgaGVpZ2h0PSIyMjAiIGZpbGw9IiMzMzMiLz4KPHRleHQgeD0iMTUwIiB5PSIxMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RmxveWRlZXo8L3RleHQ+Cjx0ZXh0IHg9IjE1MCIgeT0iMTMwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiNjY2MiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxvZ28gQW5pbWF0aW9uPC90ZXh0Pgo8L3N2Zz4K'">
                                 <source src="videos/floydeez.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
@@ -1022,7 +1152,7 @@
                 <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="video" data-title="Efficient Corporate Video" data-description="Professional corporate video showcasing business efficiency and modern solutions" data-video-src="videos/efficient.mp4">
                     <div class="relative">
                         <div class="video-preview">
-                            <video class="w-full h-64 object-cover" muted preload="metadata" poster="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMDAwIi8+CjxyZWN0IHg9IjEwIiB5PSIxMCIgd2lkdGg9IjI4MCIgaGVpZ2h0PSIyMjAiIGZpbGw9IiMzMzMiLz4KPHRleHQgeD0iMTUwIiB5PSIxMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RWZmaWNpZW50PC90ZXh0Pgo8dGV4dCB4PSIxNTAiIHk9IjEzMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmaWxsPSIjY2NjIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Db3Jwb3JhdGUgVmlkZW88L3RleHQ+Cjwvc3ZnPgo='">
+                            <video class="w-full h-64 object-cover" preload="metadata" poster="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMDAwIi8+CjxyZWN0IHg9IjEwIiB5PSIxMCIgd2lkdGg9IjI4MCIgaGVpZ2h0PSIyMjAiIGZpbGw9IiMzMzMiLz4KPHRleHQgeD0iMTUwIiB5PSIxMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RWZmaWNpZW50PC90ZXh0Pgo8dGV4dCB4PSIxNTAiIHk9IjEzMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmaWxsPSIjY2NjIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Db3Jwb3JhdGUgVmlkZW88L3RleHQ+Cjwvc3ZnPgo='">
                                 <source src="videos/efficient.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
@@ -1139,7 +1269,7 @@
         <div class="image-popup-content">
             <button class="image-popup-close" onclick="closeImagePopup()">&times;</button>
             <img id="popup-image" src="" alt="" style="display: none;">
-            <video id="popup-video" controls style="display: none;">
+            <video id="popup-video" controls preload="metadata" style="display: none;" webkit-playsinline playsinline>
                 <source src="" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -1157,7 +1287,7 @@
                 <h3 class="text-2xl font-bold text-gray-900 mb-2">Get Quote for <span id="service-name"></span></h3>
                 <p class="text-gray-600">We'll get back to you within 2 hours!</p>
             </div>
-            <form class="space-y-4">
+            <form id="quote-form" class="space-y-4">
                 <div>
                     <input type="text" name="firstName" placeholder="First Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent" required>
                 </div>
@@ -1370,6 +1500,34 @@
             const mobileMenu = document.getElementById('mobile-menu');
             mobileMenu.classList.toggle('hidden');
         });
+        
+        // Add click handlers for Get Quote buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const quoteButtons = document.querySelectorAll('button[onclick*="openQuoteModal"]');
+            quoteButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('Get Quote button clicked');
+                    openQuoteModal('Portfolio Inquiry');
+                });
+            });
+            
+            // Add form submission handler as backup
+            const quoteForm = document.getElementById('quote-form');
+            if (quoteForm) {
+                quoteForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    console.log('Quote form submitted via backup handler!');
+                    
+                    // Get form data
+                    const formData = new FormData(this);
+                    console.log('Form data:', Object.fromEntries(formData));
+                    
+                    // Call the main submission function
+                    await handleQuoteSubmission(formData);
+                });
+            }
+        });
 
         // Ensure page starts at top on mobile
         window.addEventListener('load', function() {
@@ -1384,6 +1542,7 @@
 
         // Quote modal functions
         function openQuoteModal(serviceName) {
+            console.log('Opening quote modal for:', serviceName);
             document.getElementById('service-name').textContent = serviceName;
             document.getElementById('quote-modal').classList.remove('hidden');
             document.getElementById('quote-modal').classList.add('flex');
@@ -1394,12 +1553,51 @@
             document.getElementById('quote-modal').classList.remove('flex');
         }
 
+        // Handle quote form submission
+        async function handleQuoteSubmission(formData) {
+            const quoteData = {
+                firstName: formData.get('firstName'),
+                lastName: formData.get('lastName'),
+                email: formData.get('email'),
+                service: formData.get('service'),
+                projectDetails: formData.get('projectDetails'),
+                source: 'Get Quote Button - Portfolio Page'
+            };
+            
+            // Show loading state
+            const submitBtn = document.querySelector('#quote-form button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            try {
+                // Send to Firebase
+                await window.addQuoteToFirebase(quoteData);
+                
+                // Reset form
+                document.getElementById('quote-form').reset();
+                
+                // Close modal
+                closeQuoteModal();
+                
+            } catch (error) {
+                console.error('Error submitting quote:', error);
+                showNotification('Error submitting quote request. Please try again.', 'error');
+            } finally {
+                // Reset button
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        }
+
         // Quote modal form submission
-        document.getElementById('quote-modal').addEventListener('submit', async function(e) {
+        document.getElementById('quote-form').addEventListener('submit', async function(e) {
             e.preventDefault();
+            console.log('Quote form submitted!');
             
             // Get form data
             const formData = new FormData(this);
+            console.log('Form data:', Object.fromEntries(formData));
             const quoteData = {
                 firstName: formData.get('firstName'),
                 lastName: formData.get('lastName'),
@@ -1417,7 +1615,9 @@
             
             try {
                 // Send to Firebase
+                console.log('Sending quote data to Firebase:', quoteData);
                 const result = await window.addQuoteToFirebase(quoteData);
+                console.log('Firebase result:', result);
                 
                 if (result) {
                     // Reset form
@@ -1425,9 +1625,15 @@
                     
                     // Close modal
                     closeQuoteModal();
+                    
+                    // Show success notification
+                    showNotification('Quote request sent successfully!', 'success');
+                } else {
+                    showNotification('Error sending quote request. Please try again.', 'error');
                 }
             } catch (error) {
                 console.error('Error sending quote:', error);
+                showNotification('Error sending quote request. Please try again.', 'error');
             } finally {
                 // Reset button state
                 submitBtn.textContent = originalText;
@@ -1480,8 +1686,22 @@
                 // Show video, hide image
                 popupImage.style.display = 'none';
                 popupVideo.style.display = 'block';
-                popupVideo.querySelector('source').src = videoSrc;
-                popupVideo.load(); // Reload video source
+                
+                // Set video source and load
+                const source = popupVideo.querySelector('source');
+                source.src = videoSrc;
+                popupVideo.load();
+                
+                // Add error handling
+                popupVideo.onerror = function() {
+                    console.error('Error loading video:', videoSrc);
+                    showNotification('Error loading video. Please try again.', 'error');
+                };
+                
+                // Add load event
+                popupVideo.onloadeddata = function() {
+                    console.log('Video loaded successfully:', videoSrc);
+                };
             } else {
                 // Show image, hide video
                 popupImage.style.display = 'block';
@@ -1541,6 +1761,22 @@
         document.getElementById('image-popup').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeImagePopup();
+            }
+        });
+        
+        // Add click handlers for video play buttons
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('play-button') || e.target.closest('.play-button')) {
+                const portfolioItem = e.target.closest('.portfolio-item');
+                if (portfolioItem) {
+                    const videoSrc = portfolioItem.getAttribute('data-video-src');
+                    const title = portfolioItem.getAttribute('data-title');
+                    const description = portfolioItem.getAttribute('data-description');
+                    
+                    if (videoSrc) {
+                        openImagePopup('', title, description, true, videoSrc);
+                    }
+                }
             }
         });
         

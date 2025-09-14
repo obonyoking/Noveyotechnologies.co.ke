@@ -114,6 +114,37 @@
                 background: linear-gradient(135deg, #41c1ba 0%, #060644 100%) !important;
             }
             
+            /* Mobile speed optimizations */
+            * {
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+            
+            img {
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges;
+                image-rendering: pixelated;
+                loading: lazy;
+                decoding: async;
+            }
+            
+            /* Optimize testimonial images for mobile */
+            .testimonial img {
+                loading: lazy;
+                decoding: async;
+                fetchpriority: low;
+                content-visibility: auto;
+                contain-intrinsic-size: 48px 48px;
+            }
+            
+            /* Optimize all images for mobile */
+            .service-card img,
+            .portfolio-item img,
+            .testimonial img {
+                transform: translateZ(0);
+                will-change: transform;
+            }
+            
             /* Mobile menu styling */
             #mobile-menu {
                 background-color: #ffffff !important;
@@ -183,7 +214,7 @@
         }
         
         .sleek-border {
-            background: linear-gradient(45deg, #06b6d4, #8b5cf6);
+            background: linear-gradient(45deg, #41c1ba, #060644);
             padding: 4px;
             border-radius: 1rem;
         }
@@ -635,7 +666,7 @@
                 <!-- Testimonial 1 -->
                 <div class="bg-white rounded-2xl p-6 shadow-lg">
                     <div class="flex items-center mb-4">
-                        <img src="images/slater.jpg" alt="John Slater" class="w-12 h-12 rounded-full object-cover"> 
+                        <img src="images/slater.jpg" alt="John Slater" class="w-12 h-12 rounded-full object-cover" loading="lazy" decoding="async" fetchpriority="low"> 
                         <!-- <div class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
                             A
                         </div> -->
@@ -655,7 +686,7 @@
                 <!-- Testimonial 2 -->
                 <div class="bg-white rounded-2xl p-6 shadow-lg">
                     <div class="flex items-center mb-4">
-                        <img src="images/vicky.jpg" alt="Victor Mudeyizi" class="w-12 h-12 rounded-full object-cover">
+                        <img src="images/vicky.jpg" alt="Victor Mudeyizi" class="w-12 h-12 rounded-full object-cover" loading="lazy" decoding="async" fetchpriority="low">
                         <!-- <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
                             S
                         </div> -->
@@ -675,7 +706,7 @@
                 <!-- Testimonial 3 -->
                 <div class="bg-white rounded-2xl p-6 shadow-lg">
                     <div class="flex items-center mb-4">
-                        <img src="images/cynthia.jpg" alt="Cynthia Thoithi" class="w-12 h-12 rounded-full object-cover">
+                        <img src="images/cynthia.jpg" alt="Cynthia Thoithi" class="w-12 h-12 rounded-full object-cover" loading="lazy" decoding="async" fetchpriority="low">
                         <!-- <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
                             D
                         </div> -->
@@ -695,7 +726,7 @@
                 <!-- Testimonial 4 -->
                 <div class="bg-white rounded-2xl p-6 shadow-lg">
                     <div class="flex items-center mb-4">
-                        <img src="images/mercy.jpg" alt="Mercy Gathigia" class="w-12 h-12 rounded-full object-cover">
+                        <img src="images/mercy.jpg" alt="Mercy Gathigia" class="w-12 h-12 rounded-full object-cover" loading="lazy" decoding="async" fetchpriority="low">
                         <!-- <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
                             M
                         </div> -->
