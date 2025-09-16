@@ -177,6 +177,38 @@
                 background-color: #ffffff !important;
                 color: #000000 !important;
             }
+            
+            /* Mobile menu styling */
+            #mobile-menu {
+                background-color: #ffffff !important;
+                border-top: 1px solid #e5e7eb !important;
+                z-index: 40 !important;
+            }
+            
+            #mobile-menu a {
+                color: #374151 !important;
+            }
+            
+            #mobile-menu a:hover {
+                color: #2563eb !important;
+            }
+            
+            #mobile-menu a.text-blue-600 {
+                color: #2563eb !important;
+                font-weight: 600 !important;
+            }
+            
+            /* Mobile button spacing */
+            .flex.flex-col.gap-6 > * + * {
+                margin-top: 1.5rem !important;
+            }
+            
+            /* Ensure buttons have proper spacing on mobile */
+            @media (max-width: 640px) {
+                .flex.flex-col.gap-6 {
+                    gap: 1.5rem !important;
+                }
+            }
         }
     </style>
 </head>
@@ -218,7 +250,7 @@
                 <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Home</a>
                 <a href="index.html#services" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Services</a>
                 <a href="portfolio.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Portfolio</a>
-                <a href="vesial.html" class="block px-3 py-2 text-blue-600">Vesial</a>
+                <a href="vesial.html" class="block px-3 py-2 text-blue-600 font-semibold">Vesial</a>
                 <a href="index.html#about" class="block px-3 py-2 text-gray-700 hover:text-blue-600">About</a>
                 <a href="index.html#contact" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Contact</a>
                 <button onclick="openInquiryModal()" class="block w-full text-left px-3 py-2 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors cta-button">
@@ -238,7 +270,7 @@
                 <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto fade-in">
                     Comprehensive social media management and design services that combine strategic management with powerful visuals to give your brand a voice that connects, engages, and grows.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in">
+                <div class="flex flex-col sm:flex-row gap-6 sm:gap-4 justify-center fade-in">
                     <button onclick="openInquiryModal()" class="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg hover:shadow-xl">
                         <i class="fas fa-rocket mr-2"></i>Start Your Project
                     </button>
@@ -471,7 +503,7 @@
             <p class="text-xl mb-8 max-w-3xl mx-auto fade-in">
                 Let's work together to create a social media presence that truly represents your brand and drives real business results.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in">
+            <div class="flex flex-col sm:flex-row gap-6 sm:gap-4 justify-center fade-in">
                 <button onclick="openInquiryModal()" class="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg hover:shadow-xl">
                     <i class="fas fa-rocket mr-2"></i>Start Your Project
                 </button>
@@ -487,9 +519,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div class="col-span-1 md:col-span-2">
-                    <div class="flex items-center space-x-3 mb-4">
-                        <img src="images/VESIAL LOGO.png" alt="Vesial Logo" class="h-10 w-auto">
-                        <span class="text-2xl font-bold">Vesial</span>
+                    <div class="mb-4">
+                        <span class="text-2xl font-bold vesial-gradient-text">Vesial</span>
                     </div>
                     <p class="text-gray-400 mb-4 max-w-md">
                         Your Brand Amplified. Comprehensive social media management and design services by Noveyo Technologies.
