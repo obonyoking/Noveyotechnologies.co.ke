@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vesial - Your Brand Amplified | Social Media Management & Design</title>
+    <meta name="description" content="Vesial by Noveyo Technologies - Comprehensive social media management and design services. We combine strategic management with powerful visuals to amplify your brand.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .vesial-gradient {
+            background: linear-gradient(135deg, #060644 0%, #007bff 100%);
+        }
+        
+        .vesial-gradient-text {
+            background: linear-gradient(135deg, #060644 0%, #007bff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .vesial-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+        }
+        
+        .vesial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
+            padding: 2px;
+            background: linear-gradient(135deg, #060644, #007bff);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+        }
+        
+        .service-icon {
+            background: linear-gradient(135deg, #060644 0%, #007bff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #060644 0%, #007bff 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(6, 6, 68, 0.3);
+        }
+        
+        .secondary-cta {
+            background: linear-gradient(135deg, #007bff 0%, #060644 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .secondary-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 123, 255, 0.3);
+        }
+        
+        .fade-in {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 16px 24px;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+            z-index: 1000;
+            transform: translateX(400px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            max-width: 350px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification.success {
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-left: 4px solid #047857;
+        }
+        
+        .notification.error {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            border-left: 4px solid #b91c1c;
+        }
+        
+        .notification-icon {
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        
+        .notification-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-left: auto;
+            transition: background 0.2s ease;
+        }
+        
+        .notification-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Ensure content is visible */
+        body {
+            background-color: #f9fafb !important;
+            color: #000000 !important;
+        }
+        
+        section {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+        
+        .fade-in {
+            opacity: 1 !important;
+            visibility: visible !important;
+            display: block !important;
+        }
+        
+        @media (max-width: 768px) {
+            .vesial-gradient {
+                background: linear-gradient(135deg, #060644 0%, #007bff 100%) !important;
+            }
+            
+            .vesial-gradient-text {
+                background: linear-gradient(135deg, #060644 0%, #007bff 100%) !important;
+                -webkit-background-clip: text !important;
+                -webkit-text-fill-color: transparent !important;
+                background-clip: text !important;
+            }
+            
+            body {
+                background-color: #ffffff !important;
+                color: #000000 !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50" style="background-color: #f9fafb !important;">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center space-x-3">
+                        <img src="images/VESIAL LOGO.png" alt="Vesial Logo" class="h-10 w-auto">
+                        <span class="text-2xl font-bold vesial-gradient-text">Vesial</span>
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Home</a>
+                        <a href="index.html#services" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Services</a>
+                        <a href="portfolio.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Portfolio</a>
+                        <a href="vesial.html" class="text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Vesial</a>
+                        <a href="index.html#about" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">About</a>
+                        <a href="index.html#contact" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Contact</a>
+                        <button onclick="openInquiryModal()" class="text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors cta-button">
+                            Start Project
+                        </button>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-blue-600">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Home</a>
+                <a href="index.html#services" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Services</a>
+                <a href="portfolio.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Portfolio</a>
+                <a href="vesial.html" class="block px-3 py-2 text-blue-600">Vesial</a>
+                <a href="index.html#about" class="block px-3 py-2 text-gray-700 hover:text-blue-600">About</a>
+                <a href="index.html#contact" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Contact</a>
+                <button onclick="openInquiryModal()" class="block w-full text-left px-3 py-2 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors cta-button">
+                    Start Project
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="vesial-gradient text-white py-20 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6 fade-in">
+                    Your Brand <span class="text-yellow-300">Amplified</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto fade-in">
+                    Comprehensive social media management and design services that combine strategic management with powerful visuals to give your brand a voice that connects, engages, and grows.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in">
+                    <button onclick="openInquiryModal()" class="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg hover:shadow-xl">
+                        <i class="fas fa-rocket mr-2"></i>Start Your Project
+                    </button>
+                    <button onclick="openConsultationModal()" class="bg-yellow-400 text-gray-900 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-yellow-300 transition-colors shadow-lg hover:shadow-xl">
+                        <i class="fas fa-comments mr-2"></i>Free Consultation
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4 fade-in">Our Services</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto fade-in">
+                    We offer comprehensive social media management and design services tailored to amplify your brand's presence across all platforms.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Social Media Management -->
+                <div class="vesial-card p-8 rounded-xl fade-in">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full vesial-gradient flex items-center justify-center">
+                            <i class="fas fa-share-alt text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Social Media Management</h3>
+                        <p class="text-gray-600">Complete management of your social media presence across all platforms</p>
+                    </div>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Content Strategy & Planning</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Daily Posting & Engagement</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Community Management</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Analytics & Reporting</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Hashtag Research & Optimization</li>
+                    </ul>
+                </div>
+
+                <!-- Content Creation -->
+                <div class="vesial-card p-8 rounded-xl fade-in">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full vesial-gradient flex items-center justify-center">
+                            <i class="fas fa-palette text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Content Creation</h3>
+                        <p class="text-gray-600">Eye-catching visuals and engaging content that resonates with your audience</p>
+                    </div>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Social Media Graphics</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Poster Design</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Video Content</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Infographics</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Branded Templates</li>
+                    </ul>
+                </div>
+
+                <!-- Brand Development -->
+                <div class="vesial-card p-8 rounded-xl fade-in">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full vesial-gradient flex items-center justify-center">
+                            <i class="fas fa-bullhorn text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Brand Development</h3>
+                        <p class="text-gray-600">Building a strong, consistent brand identity across all touchpoints</p>
+                    </div>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Brand Strategy</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Visual Identity Design</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Brand Guidelines</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Logo Design</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Brand Voice Development</li>
+                    </ul>
+                </div>
+
+                <!-- Advertising -->
+                <div class="vesial-card p-8 rounded-xl fade-in">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full vesial-gradient flex items-center justify-center">
+                            <i class="fas fa-chart-line text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Social Media Advertising</h3>
+                        <p class="text-gray-600">Targeted advertising campaigns that drive results and maximize ROI</p>
+                    </div>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Campaign Strategy</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Ad Creative Design</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Targeting & Optimization</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Performance Tracking</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Budget Management</li>
+                    </ul>
+                </div>
+
+                <!-- Influencer Marketing -->
+                <div class="vesial-card p-8 rounded-xl fade-in">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full vesial-gradient flex items-center justify-center">
+                            <i class="fas fa-users text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Influencer Marketing</h3>
+                        <p class="text-gray-600">Connect with the right influencers to amplify your brand message</p>
+                    </div>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Influencer Research</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Outreach & Negotiation</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Campaign Management</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Content Collaboration</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Performance Analysis</li>
+                    </ul>
+                </div>
+
+                <!-- Analytics & Insights -->
+                <div class="vesial-card p-8 rounded-xl fade-in">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full vesial-gradient flex items-center justify-center">
+                            <i class="fas fa-chart-bar text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Analytics & Insights</h3>
+                        <p class="text-gray-600">Data-driven insights to optimize your social media performance</p>
+                    </div>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Performance Reports</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Audience Insights</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Competitor Analysis</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Growth Tracking</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>ROI Measurement</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Vesial Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4 fade-in">Why Choose Vesial?</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto fade-in">
+                    We combine strategic thinking with creative excellence to deliver results that matter.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center fade-in">
+                    <div class="w-20 h-20 mx-auto mb-6 rounded-full vesial-gradient flex items-center justify-center">
+                        <i class="fas fa-lightbulb text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Strategic Approach</h3>
+                    <p class="text-gray-600">Data-driven strategies tailored to your business goals and target audience.</p>
+                </div>
+
+                <div class="text-center fade-in">
+                    <div class="w-20 h-20 mx-auto mb-6 rounded-full vesial-gradient flex items-center justify-center">
+                        <i class="fas fa-paint-brush text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Creative Excellence</h3>
+                    <p class="text-gray-600">Stunning visuals and compelling content that captures attention and drives engagement.</p>
+                </div>
+
+                <div class="text-center fade-in">
+                    <div class="w-20 h-20 mx-auto mb-6 rounded-full vesial-gradient flex items-center justify-center">
+                        <i class="fas fa-chart-line text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Proven Results</h3>
+                    <p class="text-gray-600">Track record of delivering measurable growth and engagement for our clients.</p>
+                </div>
+
+                <div class="text-center fade-in">
+                    <div class="w-20 h-20 mx-auto mb-6 rounded-full vesial-gradient flex items-center justify-center">
+                        <i class="fas fa-handshake text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Dedicated Support</h3>
+                    <p class="text-gray-600">Personalized attention and ongoing support to ensure your success.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4 fade-in">Our Process</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto fade-in">
+                    A streamlined approach to delivering exceptional social media management and design services.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center fade-in">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-full vesial-gradient flex items-center justify-center">
+                        <i class="fas fa-search text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Discovery</h3>
+                    <p class="text-gray-600">We learn about your brand, goals, and target audience to create a tailored strategy.</p>
+                </div>
+
+                <div class="text-center fade-in">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-full vesial-gradient flex items-center justify-center">
+                        <i class="fas fa-lightbulb text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Strategy</h3>
+                    <p class="text-gray-600">Develop a comprehensive social media strategy aligned with your business objectives.</p>
+                </div>
+
+                <div class="text-center fade-in">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-full vesial-gradient flex items-center justify-center">
+                        <i class="fas fa-rocket text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Execution</h3>
+                    <p class="text-gray-600">Create and publish engaging content while managing your social media presence.</p>
+                </div>
+
+                <div class="text-center fade-in">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-full vesial-gradient flex items-center justify-center">
+                        <i class="fas fa-chart-line text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Optimize</h3>
+                    <p class="text-gray-600">Monitor performance, analyze data, and continuously optimize for better results.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 vesial-gradient text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-bold mb-6 fade-in">Ready to Amplify Your Brand?</h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto fade-in">
+                Let's work together to create a social media presence that truly represents your brand and drives real business results.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in">
+                <button onclick="openInquiryModal()" class="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg hover:shadow-xl">
+                    <i class="fas fa-rocket mr-2"></i>Start Your Project
+                </button>
+                <button onclick="openConsultationModal()" class="bg-yellow-400 text-gray-900 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-yellow-300 transition-colors shadow-lg hover:shadow-xl">
+                    <i class="fas fa-phone mr-2"></i>Schedule Consultation
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="images/VESIAL LOGO.png" alt="Vesial Logo" class="h-10 w-auto">
+                        <span class="text-2xl font-bold">Vesial</span>
+                    </div>
+                    <p class="text-gray-400 mb-4 max-w-md">
+                        Your Brand Amplified. Comprehensive social media management and design services by Noveyo Technologies.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://facebook.com" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="https://twitter.com" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="https://instagram.com" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="https://linkedin.com" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-linkedin-in text-xl"></i>
+                        </a>
+                        <a href="https://wa.me/254700000000" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-whatsapp text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Services</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#services" class="hover:text-white transition-colors">Social Media Management</a></li>
+                        <li><a href="#services" class="hover:text-white transition-colors">Content Creation</a></li>
+                        <li><a href="#services" class="hover:text-white transition-colors">Brand Development</a></li>
+                        <li><a href="#services" class="hover:text-white transition-colors">Advertising</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Company</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+                        <li><a href="portfolio.html" class="hover:text-white transition-colors">Portfolio</a></li>
+                        <li><a href="index.html#about" class="hover:text-white transition-colors">About</a></li>
+                        <li><a href="index.html#contact" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Vesial by Noveyo Technologies. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Inquiry Modal -->
+    <div id="inquiry-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4">
+            <div class="text-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-2">Start Your Project</h3>
+                <p class="text-gray-600">Tell us about your project and we'll get back to you within 2 hours!</p>
+            </div>
+            <form id="inquiry-form" class="space-y-4">
+                <div>
+                    <input type="text" name="firstName" placeholder="First Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                </div>
+                <div>
+                    <input type="text" name="lastName" placeholder="Last Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                </div>
+                <div>
+                    <input type="email" name="email" placeholder="Your Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                </div>
+                <div>
+                    <select name="service" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                        <option value="">Select Service</option>
+                        <option value="Social Media Management">Social Media Management</option>
+                        <option value="Content Creation">Content Creation</option>
+                        <option value="Brand Development">Brand Development</option>
+                        <option value="Advertising">Advertising</option>
+                        <option value="Influencer Marketing">Influencer Marketing</option>
+                        <option value="Analytics & Insights">Analytics & Insights</option>
+                        <option value="Full Package">Full Package</option>
+                    </select>
+                </div>
+                <div>
+                    <textarea name="projectDetails" placeholder="Tell us about your project..." rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required></textarea>
+                </div>
+                <div class="flex space-x-4">
+                    <button type="button" onclick="closeInquiryModal()" class="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+                        Cancel
+                    </button>
+                    <button type="submit" class="flex-1 px-6 py-3 text-white rounded-lg font-semibold cta-button">
+                        Send Inquiry
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Consultation Modal -->
+    <div id="consultation-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4">
+            <div class="text-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-2">Free Consultation</h3>
+                <p class="text-gray-600">Schedule a free 30-minute consultation to discuss your social media needs.</p>
+            </div>
+            <form id="consultation-form" class="space-y-4">
+                <div>
+                    <input type="text" name="firstName" placeholder="First Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                </div>
+                <div>
+                    <input type="text" name="lastName" placeholder="Last Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                </div>
+                <div>
+                    <input type="email" name="email" placeholder="Your Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                </div>
+                <div>
+                    <input type="tel" name="phone" placeholder="Phone Number" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                </div>
+                <div>
+                    <select name="preferredTime" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                        <option value="">Preferred Time</option>
+                        <option value="Morning (9AM-12PM)">Morning (9AM-12PM)</option>
+                        <option value="Afternoon (12PM-5PM)">Afternoon (12PM-5PM)</option>
+                        <option value="Evening (5PM-8PM)">Evening (5PM-8PM)</option>
+                    </select>
+                </div>
+                <div>
+                    <textarea name="message" placeholder="Tell us about your current social media challenges..." rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required></textarea>
+                </div>
+                <div class="flex space-x-4">
+                    <button type="button" onclick="closeConsultationModal()" class="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+                        Cancel
+                    </button>
+                    <button type="submit" class="flex-1 px-6 py-3 text-white rounded-lg font-semibold secondary-cta">
+                        Schedule Call
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification">
+        <i id="notification-icon" class="notification-icon"></i>
+        <span id="notification-text"></span>
+        <button id="notification-close" class="notification-close" onclick="closeNotification()">&times;</button>
+    </div>
+
+    <script>
+        // Debug Firebase loading
+        console.log('Firebase available:', typeof firebase !== 'undefined');
+        console.log('Firebase app:', typeof firebase?.app !== 'undefined');
+        console.log('Firebase database:', typeof firebase?.database !== 'undefined');
+        
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAFmne0ScTC41OnQFYkkYtntWv9M8eShXY",
+            authDomain: "noveyotechnologies-85cac.firebaseapp.com",
+            databaseURL: "https://noveyotechnologies-85cac-default-rtdb.firebaseio.com",
+            projectId: "noveyotechnologies-85cac",
+            storageBucket: "noveyotechnologies-85cac.firebasestorage.app",
+            messagingSenderId: "1054231755361",
+            appId: "1:1054231755361:web:8d3cc5dff4ef36afc80820",
+            measurementId: "G-2JSTP0DEGR"
+        };
+
+        // Initialize Firebase
+        let database;
+        try {
+            firebase.initializeApp(firebaseConfig);
+            database = firebase.database();
+            console.log('Firebase initialized successfully');
+        } catch (error) {
+            console.error('Firebase initialization error:', error);
+        }
+
+        // Initialize EmailJS
+        emailjs.init("uRHTzpQ1K8P2XgfOM");
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Fade in animation - simplified
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.classList.add('visible');
+        });
+
+        // Modal functions
+        function openInquiryModal() {
+            document.getElementById('inquiry-modal').classList.remove('hidden');
+            document.getElementById('inquiry-modal').classList.add('flex');
+        }
+
+        function closeInquiryModal() {
+            document.getElementById('inquiry-modal').classList.add('hidden');
+            document.getElementById('inquiry-modal').classList.remove('flex');
+        }
+
+        function openConsultationModal() {
+            document.getElementById('consultation-modal').classList.remove('hidden');
+            document.getElementById('consultation-modal').classList.add('flex');
+        }
+
+        function closeConsultationModal() {
+            document.getElementById('consultation-modal').classList.add('hidden');
+            document.getElementById('consultation-modal').classList.remove('flex');
+        }
+
+        // Notification functions
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            const notificationIcon = document.getElementById('notification-icon');
+            const notificationText = document.getElementById('notification-text');
+            
+            // Set message and type
+            notificationText.textContent = message;
+            notification.className = `notification ${type}`;
+            
+            // Set appropriate icon
+            if (type === 'success') {
+                notificationIcon.className = 'notification-icon fas fa-check-circle';
+            } else {
+                notificationIcon.className = 'notification-icon fas fa-exclamation-circle';
+            }
+            
+            // Show notification
+            notification.classList.add('show');
+            
+            // Auto-dismiss after 4 seconds
+            setTimeout(() => {
+                closeNotification();
+            }, 4000);
+        }
+
+        function closeNotification() {
+            const notification = document.getElementById('notification');
+            notification.classList.remove('show');
+        }
+
+        // Add inquiry to Firebase
+        window.addInquiryToFirebase = async function(inquiryData) {
+            try {
+                if (!database) {
+                    throw new Error('Firebase database not initialized');
+                }
+                console.log('Sending inquiry to Firebase:', inquiryData);
+                const inquiryRef = database.ref('inquiries').push();
+                await inquiryRef.set({
+                    firstName: inquiryData.firstName,
+                    lastName: inquiryData.lastName,
+                    email: inquiryData.email,
+                    service: inquiryData.service,
+                    projectDetails: inquiryData.projectDetails,
+                    timestamp: firebase.database.ServerValue.TIMESTAMP,
+                    source: 'Vesial Inquiry'
+                });
+                
+                console.log('Inquiry sent to Firebase successfully');
+                
+                // Send email notification
+                try {
+                    await sendInquiryEmailNotification(inquiryData);
+                } catch (emailError) {
+                    console.log('Email notification failed, but inquiry was saved:', emailError);
+                }
+                
+                return true;
+            } catch (error) {
+                console.error('Error adding inquiry to Firebase:', error);
+                throw error;
+            }
+        };
+
+        // Add consultation to Firebase
+        window.addConsultationToFirebase = async function(consultationData) {
+            try {
+                if (!database) {
+                    throw new Error('Firebase database not initialized');
+                }
+                console.log('Sending consultation to Firebase:', consultationData);
+                const consultationRef = database.ref('consultations').push();
+                await consultationRef.set({
+                    firstName: consultationData.firstName,
+                    lastName: consultationData.lastName,
+                    email: consultationData.email,
+                    phone: consultationData.phone,
+                    preferredTime: consultationData.preferredTime,
+                    message: consultationData.message,
+                    timestamp: firebase.database.ServerValue.TIMESTAMP,
+                    source: 'Vesial Consultation'
+                });
+                
+                console.log('Consultation sent to Firebase successfully');
+                
+                // Send email notification
+                try {
+                    await sendConsultationEmailNotification(consultationData);
+                } catch (emailError) {
+                    console.log('Email notification failed, but consultation was saved:', emailError);
+                }
+                
+                return true;
+            } catch (error) {
+                console.error('Error adding consultation to Firebase:', error);
+                throw error;
+            }
+        };
+
+        // Email notification functions
+        async function sendInquiryEmailNotification(data) {
+            try {
+                const templateParams = {
+                    to_email: 'noveyotechnologies@gmail.com',
+                    from_name: `${data.firstName} ${data.lastName}`,
+                    from_email: data.email,
+                    service: data.service,
+                    project_details: data.projectDetails,
+                    source: 'Vesial Inquiry'
+                };
+                
+                await emailjs.send('service_vesial', 'template_vesial_inquiry', templateParams);
+                console.log('Inquiry email sent successfully');
+            } catch (error) {
+                console.error('Error sending inquiry email:', error);
+            }
+        }
+
+        async function sendConsultationEmailNotification(data) {
+            try {
+                const templateParams = {
+                    to_email: 'noveyotechnologies@gmail.com',
+                    from_name: `${data.firstName} ${data.lastName}`,
+                    from_email: data.email,
+                    phone: data.phone,
+                    preferred_time: data.preferredTime,
+                    message: data.message,
+                    source: 'Vesial Consultation'
+                };
+                
+                await emailjs.send('service_vesial', 'template_vesial_consultation', templateParams);
+                console.log('Consultation email sent successfully');
+            } catch (error) {
+                console.error('Error sending consultation email:', error);
+            }
+        }
+
+        // Form submission handlers
+        document.getElementById('inquiry-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            console.log('Inquiry form submitted!');
+            
+            const formData = new FormData(this);
+            const inquiryData = {
+                firstName: formData.get('firstName'),
+                lastName: formData.get('lastName'),
+                email: formData.get('email'),
+                service: formData.get('service'),
+                projectDetails: formData.get('projectDetails')
+            };
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            try {
+                await window.addInquiryToFirebase(inquiryData);
+                this.reset();
+                closeInquiryModal();
+                showNotification('Inquiry sent successfully! We\'ll get back to you within 2 hours.', 'success');
+            } catch (error) {
+                console.error('Error sending inquiry:', error);
+                showNotification('Error sending inquiry. Please try again.', 'error');
+            } finally {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+
+        document.getElementById('consultation-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            console.log('Consultation form submitted!');
+            
+            const formData = new FormData(this);
+            const consultationData = {
+                firstName: formData.get('firstName'),
+                lastName: formData.get('lastName'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                preferredTime: formData.get('preferredTime'),
+                message: formData.get('message')
+            };
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Scheduling...';
+            submitBtn.disabled = true;
+            
+            try {
+                await window.addConsultationToFirebase(consultationData);
+                this.reset();
+                closeConsultationModal();
+                showNotification('Consultation scheduled! We\'ll contact you soon to confirm the time.', 'success');
+            } catch (error) {
+                console.error('Error scheduling consultation:', error);
+                showNotification('Error scheduling consultation. Please try again.', 'error');
+            } finally {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Close modals when clicking outside
+        document.getElementById('inquiry-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeInquiryModal();
+            }
+        });
+
+        document.getElementById('consultation-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeConsultationModal();
+            }
+        });
+
+        // Close modals with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeInquiryModal();
+                closeConsultationModal();
+            }
+        });
+
+        // Ensure page starts at top on mobile
+        window.addEventListener('load', function() {
+            window.scrollTo(0, 0);
+            if (window.location.hash) {
+                history.replaceState(null, null, window.location.pathname);
+            }
+        });
+    </script>
+</body>
+</html>
