@@ -198,15 +198,36 @@
                 font-weight: 600 !important;
             }
             
-            /* Mobile button spacing */
+            /* Mobile button spacing - force larger gaps */
             .flex.flex-col.gap-6 > * + * {
-                margin-top: 1.5rem !important;
+                margin-top: 2rem !important;
             }
             
             /* Ensure buttons have proper spacing on mobile */
             @media (max-width: 640px) {
                 .flex.flex-col.gap-6 {
-                    gap: 1.5rem !important;
+                    gap: 2rem !important;
+                }
+                
+                /* Force spacing for all button containers */
+                .flex.flex-col > * + * {
+                    margin-top: 2rem !important;
+                }
+                
+                /* Specific targeting for button containers */
+                .flex.flex-col.sm\\:flex-row > * + * {
+                    margin-top: 2rem !important;
+                }
+                
+                /* Target specific button sections */
+                .hero-section .flex.flex-col > * + *,
+                .cta-section .flex.flex-col > * + * {
+                    margin-top: 2rem !important;
+                }
+                
+                /* Force gap for all flex-col containers on mobile */
+                .flex.flex-col {
+                    gap: 2rem !important;
                 }
             }
         }
@@ -261,7 +282,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="vesial-gradient text-white py-20 mt-16">
+    <section class="hero-section vesial-gradient text-white py-20 mt-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
                 <h1 class="text-5xl md:text-6xl font-bold mb-6 fade-in">
@@ -497,7 +518,7 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="py-20 vesial-gradient text-white">
+    <section class="cta-section py-20 vesial-gradient text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="text-4xl font-bold mb-6 fade-in">Ready to Amplify Your Brand?</h2>
             <p class="text-xl mb-8 max-w-3xl mx-auto fade-in">
