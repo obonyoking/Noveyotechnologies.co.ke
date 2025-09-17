@@ -225,11 +225,23 @@
                     margin-top: 2rem !important;
                 }
                 
-                /* Force gap for all flex-col containers on mobile */
-                .flex.flex-col {
-                    gap: 2rem !important;
-                }
+            /* Force gap for all flex-col containers on mobile */
+            .flex.flex-col {
+                gap: 2rem !important;
             }
+        }
+
+        /* Ensure package buttons are clickable */
+        .vesial-card button {
+            cursor: pointer !important;
+            pointer-events: auto !important;
+            z-index: 10 !important;
+            position: relative !important;
+        }
+
+        .vesial-card button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
     </style>
 </head>
@@ -247,7 +259,7 @@
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-8">
                         <a href="index.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Home</a>
-                        <a href="index.html#services" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Services</a>
+                        <a href="#packages" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Packages</a>
                         <a href="portfolio.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Portfolio</a>
                         <a href="vesial.html" class="text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Vesial</a>
                         <a href="index.html#about" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">About</a>
@@ -269,7 +281,7 @@
         <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
             <div class="px-2 pt-2 pb-3 space-y-1">
                 <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Home</a>
-                <a href="index.html#services" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Services</a>
+                        <a href="#packages" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Packages</a>
                 <a href="portfolio.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Portfolio</a>
                 <a href="vesial.html" class="block px-3 py-2 text-blue-600 font-semibold">Vesial</a>
                 <a href="index.html#about" class="block px-3 py-2 text-gray-700 hover:text-blue-600">About</a>
@@ -303,123 +315,148 @@
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="py-20 bg-white">
+    <!-- Packages Section -->
+    <section id="packages" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4 fade-in">Our Services</h2>
+                <h2 class="text-4xl font-bold text-gray-900 mb-4 fade-in">Our Packages</h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto fade-in">
-                    We offer comprehensive social media management and design services tailored to amplify your brand's presence across all platforms.
+                    Choose the perfect package for your brand's social media needs. All packages include professional design and strategic management.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Social Media Management -->
-                <div class="vesial-card p-8 rounded-xl fade-in">
-                    <div class="text-center mb-6">
-                        <div class="w-16 h-16 mx-auto mb-4 rounded-full vesial-gradient flex items-center justify-center">
-                            <i class="fas fa-share-alt text-white text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Social Media Management</h3>
-                        <p class="text-gray-600">Complete management of your social media presence across all platforms</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Package 1: Visibility Boost -->
+                <div class="vesial-card p-5 rounded-xl fade-in relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-yellow-400 text-gray-900 px-2 py-1 text-xs font-semibold rounded-bl-lg">
+                        POPULAR
                     </div>
-                    <ul class="space-y-3 text-gray-700">
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Content Strategy & Planning</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Daily Posting & Engagement</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Community Management</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Analytics & Reporting</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Hashtag Research & Optimization</li>
+                    <div class="text-center mb-4">
+                        <div class="w-12 h-12 mx-auto mb-3 rounded-full vesial-gradient flex items-center justify-center">
+                            <i class="fas fa-rocket text-white text-lg"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-1">Vesial Start</h3>
+                        <p class="text-gray-600 text-xs">For brands testing the waters and seeking a steady online presence</p>
+                    </div>
+                    <div class="text-center mb-4">
+                        <div class="text-3xl font-bold text-gray-900 mb-1">KSh 9,000</div>
+                        <div class="text-xs text-green-600 font-semibold">Save up to KSh 3,000</div>
+                        <div class="text-xs text-gray-500">per month</div>
+                    </div>
+                    <ul class="space-y-2 text-gray-700 mb-6 text-sm">
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-0.5 text-xs"></i><span>8 posters per month (2 per week)</span></li>
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-0.5 text-xs"></i><span>Customized captions tailored to each post</span></li>
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-0.5 text-xs"></i><span>Posting on 1 social media platform</span></li>
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-0.5 text-xs"></i><span>Basic analytics report (reach & engagement)</span></li>
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-0.5 text-xs"></i><span>1 free branded template for future posts</span></li>
                     </ul>
+                    <button onclick="openPackageModal('Vesial Start', 'KSh 9,000', 'vesial-start')" class="w-full bg-blue-600 text-white py-2.5 px-4 rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors" style="cursor: pointer; pointer-events: auto; z-index: 10; position: relative;">
+                        Get Started
+                    </button>
                 </div>
 
-                <!-- Content Creation -->
-                <div class="vesial-card p-8 rounded-xl fade-in">
-                    <div class="text-center mb-6">
-                        <div class="w-16 h-16 mx-auto mb-4 rounded-full vesial-gradient flex items-center justify-center">
-                            <i class="fas fa-palette text-white text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Content Creation</h3>
-                        <p class="text-gray-600">Eye-catching visuals and engaging content that resonates with your audience</p>
+                <!-- Package 2: Engagement Builder -->
+                <div class="vesial-card p-5 rounded-xl fade-in relative overflow-hidden border-2 border-blue-200">
+                    <div class="absolute top-0 right-0 bg-blue-600 text-white px-2 py-1 text-xs font-semibold rounded-bl-lg">
+                        RECOMMENDED
                     </div>
-                    <ul class="space-y-3 text-gray-700">
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Social Media Graphics</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Poster Design</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Video Content</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Infographics</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Branded Templates</li>
+                    <div class="text-center mb-4">
+                        <div class="w-12 h-12 mx-auto mb-3 rounded-full vesial-gradient flex items-center justify-center">
+                            <i class="fas fa-heart text-white text-lg"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-1">Vesial Boost</h3>
+                        <p class="text-gray-600 text-xs">For growing businesses that need regular posting and interaction</p>
+                    </div>
+                    <div class="text-center mb-4">
+                        <div class="text-3xl font-bold text-gray-900 mb-1">KSh 17,000</div>
+                        <div class="text-xs text-green-600 font-semibold">Save up to KSh 5,000</div>
+                        <div class="text-xs text-gray-500">per month</div>
+                    </div>
+                    <ul class="space-y-2 text-gray-700 mb-6 text-sm">
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-0.5 text-xs"></i><span>15 posters per month (3–4 per week)</span></li>
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-0.5 text-xs"></i><span>Strategic captions + hashtag optimization</span></li>
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-0.5 text-xs"></i><span>Posting & scheduling on up to 2 platforms</span></li>
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-0.5 text-xs"></i><span>Audience engagement (comments & messages)</span></li>
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-0.5 text-xs"></i><span>Mid-month + end-month performance reports</span></li>
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-0.5 text-xs"></i><span>2 branded templates for easy updates</span></li>
                     </ul>
+                    <button onclick="openPackageModal('Vesial Boost', 'KSh 17,000', 'vesial-boost')" class="w-full bg-blue-600 text-white py-2.5 px-4 rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors" style="cursor: pointer; pointer-events: auto; z-index: 10; position: relative;">
+                        Get Started
+                    </button>
                 </div>
 
-                <!-- Brand Development -->
-                <div class="vesial-card p-8 rounded-xl fade-in">
-                    <div class="text-center mb-6">
-                        <div class="w-16 h-16 mx-auto mb-4 rounded-full vesial-gradient flex items-center justify-center">
-                            <i class="fas fa-bullhorn text-white text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Brand Development</h3>
-                        <p class="text-gray-600">Building a strong, consistent brand identity across all touchpoints</p>
+                <!-- Package 3: Digital Dominance -->
+                <div class="vesial-card p-5 rounded-xl fade-in relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-purple-600 text-white px-2 py-1 text-xs font-semibold rounded-bl-lg">
+                        PREMIUM
                     </div>
-                    <ul class="space-y-3 text-gray-700">
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Brand Strategy</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Visual Identity Design</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Brand Guidelines</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Logo Design</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Brand Voice Development</li>
+                    <div class="text-center mb-4">
+                        <div class="w-12 h-12 mx-auto mb-3 rounded-full vesial-gradient flex items-center justify-center">
+                            <i class="fas fa-crown text-white text-lg"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-1">Vesial Edge</h3>
+                        <p class="text-gray-600 text-xs">For businesses that want to dominate their market with data-driven content</p>
+                    </div>
+                    <div class="text-center mb-4">
+                        <div class="text-3xl font-bold text-gray-900 mb-1">KSh 28,000</div>
+                        <div class="text-xs text-green-600 font-semibold">Save up to KSh 10,000</div>
+                        <div class="text-xs text-gray-500">per month</div>
+                    </div>
+                    <ul class="space-y-2 text-gray-700 mb-6 text-sm">
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-0.5 text-xs"></i><span>25 posters per month (daily weekdays)</span></li>
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-0.5 text-xs"></i><span>Captions + advanced content strategy (CTA-focused)</span></li>
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-0.5 text-xs"></i><span>Posting & management across 3 platforms</span></li>
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-0.5 text-xs"></i><span>Audience engagement + community growth strategy</span></li>
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-0.5 text-xs"></i><span>Detailed monthly analytics & insights report</span></li>
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-0.5 text-xs"></i><span>Unlimited branded templates for campaigns</span></li>
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-0.5 text-xs"></i><span><strong>Bonus:</strong> 2 animated video posts per month</span></li>
                     </ul>
+                    <button onclick="openPackageModal('Vesial Edge', 'KSh 28,000', 'vesial-edge')" class="w-full bg-blue-600 text-white py-2.5 px-4 rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors" style="cursor: pointer; pointer-events: auto; z-index: 10; position: relative;">
+                        Get Started
+                    </button>
                 </div>
 
-                <!-- Advertising -->
-                <div class="vesial-card p-8 rounded-xl fade-in">
-                    <div class="text-center mb-6">
-                        <div class="w-16 h-16 mx-auto mb-4 rounded-full vesial-gradient flex items-center justify-center">
-                            <i class="fas fa-chart-line text-white text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Social Media Advertising</h3>
-                        <p class="text-gray-600">Targeted advertising campaigns that drive results and maximize ROI</p>
+                <!-- Package 4: The Custom Edge -->
+                <div class="vesial-card p-5 rounded-xl fade-in relative overflow-hidden border-2 border-yellow-200">
+                    <div class="absolute top-0 right-0 bg-yellow-500 text-gray-900 px-2 py-1 text-xs font-semibold rounded-bl-lg">
+                        CUSTOM
                     </div>
-                    <ul class="space-y-3 text-gray-700">
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Campaign Strategy</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Ad Creative Design</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Targeting & Optimization</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Performance Tracking</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Budget Management</li>
+                    <div class="text-center mb-4">
+                        <div class="w-12 h-12 mx-auto mb-3 rounded-full vesial-gradient flex items-center justify-center">
+                            <i class="fas fa-cog text-white text-lg"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-1">The Custom Edge</h3>
+                        <p class="text-gray-600 text-xs">Because every business is unique, we offer a tailored package</p>
+                    </div>
+                    <div class="text-center mb-4">
+                        <div class="text-3xl font-bold text-gray-900 mb-1">Custom</div>
+                        <div class="text-xs text-blue-600 font-semibold">Based on your needs</div>
+                        <div class="text-xs text-gray-500">pricing</div>
+                    </div>
+                    <ul class="space-y-2 text-gray-700 mb-6 text-sm">
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-0.5 text-xs"></i><span>You choose the number of posters per month</span></li>
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-0.5 text-xs"></i><span>Flexible mix of design, captions, and posting</span></li>
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-0.5 text-xs"></i><span>Option to manage specific platforms only</span></li>
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-0.5 text-xs"></i><span>Add-ons available: animations, reels, reports</span></li>
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-0.5 text-xs"></i><span>Built fully around your brand's goals and budget</span></li>
                     </ul>
+                    <button onclick="openPackageModal('Custom Package', 'Custom Pricing', 'custom-package')" class="w-full bg-yellow-500 text-gray-900 py-2.5 px-4 rounded-lg text-sm font-semibold hover:bg-yellow-400 transition-colors" style="cursor: pointer; pointer-events: auto; z-index: 10; position: relative;">
+                        Get Quote
+                    </button>
                 </div>
+            </div>
 
-                <!-- Influencer Marketing -->
-                <div class="vesial-card p-8 rounded-xl fade-in">
-                    <div class="text-center mb-6">
-                        <div class="w-16 h-16 mx-auto mb-4 rounded-full vesial-gradient flex items-center justify-center">
-                            <i class="fas fa-users text-white text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Influencer Marketing</h3>
-                        <p class="text-gray-600">Connect with the right influencers to amplify your brand message</p>
-                    </div>
-                    <ul class="space-y-3 text-gray-700">
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Influencer Research</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Outreach & Negotiation</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Campaign Management</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Content Collaboration</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Performance Analysis</li>
-                    </ul>
-                </div>
-
-                <!-- Analytics & Insights -->
-                <div class="vesial-card p-8 rounded-xl fade-in">
-                    <div class="text-center mb-6">
-                        <div class="w-16 h-16 mx-auto mb-4 rounded-full vesial-gradient flex items-center justify-center">
-                            <i class="fas fa-chart-bar text-white text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Analytics & Insights</h3>
-                        <p class="text-gray-600">Data-driven insights to optimize your social media performance</p>
-                    </div>
-                    <ul class="space-y-3 text-gray-700">
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Performance Reports</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Audience Insights</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Competitor Analysis</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Growth Tracking</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>ROI Measurement</li>
-                    </ul>
+            <!-- Package Comparison Note -->
+            <div class="mt-16 text-center">
+                <div class="bg-gray-50 rounded-xl p-8 max-w-4xl mx-auto">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Not Sure Which Package is Right for You?</h3>
+                    <p class="text-gray-600 mb-6">
+                        Our team is here to help you choose the perfect package for your business needs. 
+                        Schedule a free consultation to discuss your goals and get personalized recommendations.
+                    </p>
+                    <button onclick="openConsultationModal()" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                        <i class="fas fa-phone mr-2"></i>Schedule Free Consultation
+                    </button>
                 </div>
             </div>
         </div>
@@ -428,94 +465,110 @@
     <!-- Why Choose Vesial Section -->
     <section class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4 fade-in">Why Choose Vesial?</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto fade-in">
-                    We combine strategic thinking with creative excellence to deliver results that matter.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="text-center fade-in">
-                    <div class="w-20 h-20 mx-auto mb-6 rounded-full vesial-gradient flex items-center justify-center">
-                        <i class="fas fa-lightbulb text-white text-3xl"></i>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6 fade-in">Why Choose Vesial?</h2>
+                    <p class="text-lg text-gray-600 mb-8 fade-in">
+                        We combine strategic thinking with creative excellence to deliver social media results that matter. Our team specializes in amplifying your brand's voice across all platforms.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 rounded-lg p-2 mr-4">
+                                <span class="text-blue-600 text-xl">⚡</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-2">Strategic Approach</h4>
+                                <p class="text-gray-600">Data-driven strategies tailored to your business goals and target audience.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-purple-100 rounded-lg p-2 mr-4">
+                                <span class="text-purple-600 text-xl">🎨</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-2">Creative Excellence</h4>
+                                <p class="text-gray-600">Stunning visuals and compelling content that captures attention and drives engagement.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-green-100 rounded-lg p-2 mr-4">
+                                <span class="text-green-600 text-xl">📈</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-2">Proven Results</h4>
+                                <p class="text-gray-600">Track record of delivering measurable growth and engagement for our clients.</p>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Strategic Approach</h3>
-                    <p class="text-gray-600">Data-driven strategies tailored to your business goals and target audience.</p>
                 </div>
-
-                <div class="text-center fade-in">
-                    <div class="w-20 h-20 mx-auto mb-6 rounded-full vesial-gradient flex items-center justify-center">
-                        <i class="fas fa-paint-brush text-white text-3xl"></i>
+                
+                <div class="relative">
+                    <div class="bg-white rounded-2xl p-8 shadow-xl border border-gray-200">
+                        <h3 class="text-2xl font-bold mb-8 text-gray-900 text-center vesial-gradient-text">Our Process</h3>
+                        
+                        <!-- Process Steps with Visual Flow -->
+                        <div class="relative">
+                            <!-- Step 1 -->
+                            <div class="flex items-center mb-8">
+                                <div class="flex-shrink-0">
+                                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg border-2 border-blue-200">
+                                        <i class="fas fa-search text-blue-600 text-xl"></i>
+                                    </div>
+                                </div>
+                                <div class="ml-6">
+                                    <h4 class="text-lg font-semibold text-gray-900 mb-1">Discovery</h4>
+                                    <p class="text-gray-600 text-sm">We learn about your brand, goals, and target audience to create a tailored strategy.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Step 2 -->
+                            <div class="flex items-center mb-8">
+                                <div class="flex-shrink-0">
+                                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg border-2 border-purple-200">
+                                        <i class="fas fa-lightbulb text-purple-600 text-xl"></i>
+                                    </div>
+                                </div>
+                                <div class="ml-6">
+                                    <h4 class="text-lg font-semibold text-gray-900 mb-1">Strategy</h4>
+                                    <p class="text-gray-600 text-sm">Develop a comprehensive social media strategy aligned with your business objectives.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Step 3 -->
+                            <div class="flex items-center mb-8">
+                                <div class="flex-shrink-0">
+                                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg border-2 border-green-200">
+                                        <i class="fas fa-rocket text-green-600 text-xl"></i>
+                                    </div>
+                                </div>
+                                <div class="ml-6">
+                                    <h4 class="text-lg font-semibold text-gray-900 mb-1">Execution</h4>
+                                    <p class="text-gray-600 text-sm">Create and publish engaging content while managing your social media presence.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Step 4 -->
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0">
+                                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg border-2 border-yellow-200">
+                                        <i class="fas fa-chart-line text-yellow-600 text-xl"></i>
+                                    </div>
+                                </div>
+                                <div class="ml-6">
+                                    <h4 class="text-lg font-semibold text-gray-900 mb-1">Optimize</h4>
+                                    <p class="text-gray-600 text-sm">Monitor performance, analyze data, and continuously optimize for better results.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Creative Excellence</h3>
-                    <p class="text-gray-600">Stunning visuals and compelling content that captures attention and drives engagement.</p>
-                </div>
-
-                <div class="text-center fade-in">
-                    <div class="w-20 h-20 mx-auto mb-6 rounded-full vesial-gradient flex items-center justify-center">
-                        <i class="fas fa-chart-line text-white text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Proven Results</h3>
-                    <p class="text-gray-600">Track record of delivering measurable growth and engagement for our clients.</p>
-                </div>
-
-                <div class="text-center fade-in">
-                    <div class="w-20 h-20 mx-auto mb-6 rounded-full vesial-gradient flex items-center justify-center">
-                        <i class="fas fa-handshake text-white text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Dedicated Support</h3>
-                    <p class="text-gray-600">Personalized attention and ongoing support to ensure your success.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Process Section -->
-    <section class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4 fade-in">Our Process</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto fade-in">
-                    A streamlined approach to delivering exceptional social media management and design services.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="text-center fade-in">
-                    <div class="w-16 h-16 mx-auto mb-6 rounded-full vesial-gradient flex items-center justify-center">
-                        <i class="fas fa-search text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Discovery</h3>
-                    <p class="text-gray-600">We learn about your brand, goals, and target audience to create a tailored strategy.</p>
-                </div>
-
-                <div class="text-center fade-in">
-                    <div class="w-16 h-16 mx-auto mb-6 rounded-full vesial-gradient flex items-center justify-center">
-                        <i class="fas fa-lightbulb text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Strategy</h3>
-                    <p class="text-gray-600">Develop a comprehensive social media strategy aligned with your business objectives.</p>
-                </div>
-
-                <div class="text-center fade-in">
-                    <div class="w-16 h-16 mx-auto mb-6 rounded-full vesial-gradient flex items-center justify-center">
-                        <i class="fas fa-rocket text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Execution</h3>
-                    <p class="text-gray-600">Create and publish engaging content while managing your social media presence.</p>
-                </div>
-
-                <div class="text-center fade-in">
-                    <div class="w-16 h-16 mx-auto mb-6 rounded-full vesial-gradient flex items-center justify-center">
-                        <i class="fas fa-chart-line text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Optimize</h3>
-                    <p class="text-gray-600">Monitor performance, analyze data, and continuously optimize for better results.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- CTA Section -->
     <section class="cta-section py-20 vesial-gradient text-white">
@@ -679,6 +732,70 @@
         </div>
     </div>
 
+    <!-- Package Modal -->
+    <div id="package-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl p-6 max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <div class="text-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-2" id="package-title">Package Details</h3>
+                <p class="text-gray-600" id="package-description">Fill out the form below to get started with your chosen package.</p>
+                <div class="mt-4 p-4 bg-blue-50 rounded-lg">
+                    <div class="text-lg font-semibold text-blue-900" id="package-name">Package Name</div>
+                    <div class="text-2xl font-bold text-blue-600" id="package-price">Price</div>
+                </div>
+            </div>
+            <form id="package-form" class="space-y-3">
+                <input type="hidden" name="packageType" id="package-type">
+                <div class="grid grid-cols-2 gap-3">
+                    <input type="text" name="firstName" placeholder="First Name" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm" required>
+                    <input type="text" name="lastName" placeholder="Last Name" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm" required>
+                </div>
+                <div>
+                    <input type="email" name="email" placeholder="Your Email" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm" required>
+                </div>
+                <div>
+                    <input type="tel" name="phone" placeholder="Phone Number" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm" required>
+                </div>
+                <div>
+                    <select name="businessType" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm" required>
+                        <option value="" disabled selected>Business Type</option>
+                        <option value="Startup">Startup</option>
+                        <option value="Small Business">Small Business</option>
+                        <option value="Medium Business">Medium Business</option>
+                        <option value="Enterprise">Enterprise</option>
+                        <option value="Non-Profit">Non-Profit</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div>
+                    <select name="currentPlatforms" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm" required>
+                        <option value="" disabled selected>Current Social Media Platforms</option>
+                        <option value="None">None - Starting Fresh</option>
+                        <option value="Facebook">Facebook</option>
+                        <option value="Instagram">Instagram</option>
+                        <option value="Twitter">Twitter</option>
+                        <option value="LinkedIn">LinkedIn</option>
+                        <option value="TikTok">TikTok</option>
+                        <option value="Multiple">Multiple Platforms</option>
+                    </select>
+                </div>
+                <div>
+                    <textarea name="goals" placeholder="What are your main social media goals?" rows="2" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm" required></textarea>
+                </div>
+                <div>
+                    <textarea name="additionalInfo" placeholder="Any additional information or specific requirements?" rows="2" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"></textarea>
+                </div>
+                <div class="flex space-x-3 pt-2">
+                    <button type="button" onclick="closePackageModal()" class="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors text-sm">
+                        Cancel
+                    </button>
+                    <button type="submit" class="flex-1 px-4 py-2 text-white rounded-lg font-semibold bg-blue-600 hover:bg-blue-700 transition-colors text-sm">
+                        Submit Request
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Notification -->
     <div id="notification" class="notification">
         <i id="notification-icon" class="notification-icon"></i>
@@ -687,6 +804,38 @@
     </div>
 
     <script>
+        // Global package modal functions - must be defined first
+        window.openPackageModal = function(packageName, packagePrice, packageType) {
+            console.log('🎯 Package button clicked! Opening modal for:', packageName, packagePrice, packageType);
+            
+            // Check if modal exists
+            const modal = document.getElementById('package-modal');
+            if (!modal) {
+                console.error('❌ Package modal not found!');
+                return;
+            }
+            
+            // Update modal content
+            const nameEl = document.getElementById('package-name');
+            const priceEl = document.getElementById('package-price');
+            const typeEl = document.getElementById('package-type');
+            
+            if (nameEl) nameEl.textContent = packageName;
+            if (priceEl) priceEl.textContent = packagePrice;
+            if (typeEl) typeEl.value = packageType;
+            
+            // Show modal
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            console.log('✅ Package modal opened successfully');
+        }
+
+        window.closePackageModal = function() {
+            console.log('Closing package modal');
+            document.getElementById('package-modal').classList.add('hidden');
+            document.getElementById('package-modal').classList.remove('flex');
+        }
+
         // Debug Firebase loading
         console.log('Firebase available:', typeof firebase !== 'undefined');
         console.log('Firebase app:', typeof firebase?.app !== 'undefined');
@@ -748,6 +897,8 @@
             document.getElementById('consultation-modal').classList.add('hidden');
             document.getElementById('consultation-modal').classList.remove('flex');
         }
+
+        // Package modal functions are now defined globally at the top of the script
 
         // Notification functions
         function showNotification(message, type = 'success') {
@@ -845,6 +996,30 @@
                 return true;
             } catch (error) {
                 console.error('Error adding consultation to Firebase:', error);
+                throw error;
+            }
+        };
+
+        // Add package request to Firebase
+        window.addPackageToFirebase = async function(packageData) {
+            try {
+                if (!database) {
+                    throw new Error('Firebase database not initialized');
+                }
+                
+                console.log('Sending package request to Firebase:', packageData);
+                
+                const packageRef = database.ref('packages').push();
+                await packageRef.set({
+                    ...packageData,
+                    timestamp: firebase.database.ServerValue.TIMESTAMP,
+                    status: 'new'
+                });
+                
+                console.log('Package request sent successfully');
+                return true;
+            } catch (error) {
+                console.error('Error adding package request to Firebase:', error);
                 throw error;
             }
         };
@@ -953,6 +1128,44 @@
             }
         });
 
+        // Package form submission handler
+        document.getElementById('package-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const packageData = {
+                firstName: formData.get('firstName'),
+                lastName: formData.get('lastName'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                businessType: formData.get('businessType'),
+                currentPlatforms: formData.get('currentPlatforms'),
+                goals: formData.get('goals'),
+                additionalInfo: formData.get('additionalInfo'),
+                packageType: formData.get('packageType')
+            };
+            
+            console.log('Package form submitted!', packageData);
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Submitting...';
+            submitBtn.disabled = true;
+            
+            try {
+                await window.addPackageToFirebase(packageData);
+                this.reset();
+                closePackageModal();
+                showNotification('Package request submitted successfully! We\'ll contact you within 2 hours to discuss your needs.', 'success');
+            } catch (error) {
+                console.error('Error submitting package request:', error);
+                showNotification('Error submitting package request. Please try again.', 'error');
+            } finally {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+
         // Close modals when clicking outside
         document.getElementById('inquiry-modal').addEventListener('click', function(e) {
             if (e.target === this) {
@@ -966,11 +1179,18 @@
             }
         });
 
+        document.getElementById('package-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePackageModal();
+            }
+        });
+
         // Close modals with Escape key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeInquiryModal();
                 closeConsultationModal();
+                closePackageModal();
             }
         });
 
