@@ -16,6 +16,20 @@
             background: linear-gradient(135deg, #41c1ba 0%, #060644 100%);
         }
         
+        .line-clamp-1 {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
         .card-hover {
             transition: all 0.3s ease;
         }
@@ -265,6 +279,7 @@
                         <a href="#services" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Services</a>
                         <a href="portfolio.html" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Portfolio</a>
                         <a href="vesial.html" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Vesial</a>
+                        <a href="blogs.html" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Blogs</a>
                         <a href="#about" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">About</a>
                         <a href="#contact" class="text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors" style="background-color: #060644;">
    Get Quote
@@ -287,6 +302,7 @@
                 <a href="#services" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Services</a>
                 <a href="portfolio.html" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Portfolio</a>
                 <a href="vesial.html" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Vesial</a>
+                <a href="blogs.html" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Blogs</a>
                 <a href="#about" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">About</a>
                 <a href="#contact" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Contact</a>
             </div>
@@ -906,6 +922,53 @@
         </div>
     </section>
 
+    <!-- Latest News Section -->
+    <section class="py-8 bg-gradient-to-r from-gray-50 to-blue-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-6">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Latest News</h2>
+                <p class="text-lg text-gray-600">Stay updated with our latest insights and industry trends</p>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden">
+                <div class="flex items-center p-4">
+                    <!-- Blog Image -->
+                    <div class="w-20 h-20 flex-shrink-0">
+                        <img src="images/tech.png" alt="Latest Blog Post" class="w-full h-full object-cover rounded-lg">
+                    </div>
+                    
+                    <!-- Blog Content -->
+                    <div class="flex-1 ml-4">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded-full">Design</span>
+                            <span class="text-gray-500 text-xs ml-3">Sep 15, 2025</span>
+                        </div>
+                        
+                        <h3 class="text-lg font-bold text-gray-900 mb-2 line-clamp-1">
+                            The Future of Brand Design: Trends to Watch in 2025
+                        </h3>
+                        
+                        <p class="text-gray-700 text-sm leading-relaxed mb-3 line-clamp-2">
+                            Discover the emerging design trends that will shape brand identity in 2025. From minimalist aesthetics to bold color palettes...
+                        </p>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <img src="images/KING.jpg" alt="Author" class="w-6 h-6 rounded-full mr-2">
+                                <span class="text-xs text-gray-600">Collins Obonyo</span>
+                            </div>
+                            
+                            <a href="blog-1.html" class="inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold text-sm transition-colors">
+                                Read More
+                                <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -966,6 +1029,7 @@
                     <ul class="space-y-2 text-gray-400">
                         <li><a href="#about" class="hover:text-white transition-colors">About Us</a></li>
                         <li><a href="portfolio.html" class="hover:text-white transition-colors">Portfolio</a></li>
+                        <li><a href="blogs.html" class="hover:text-white transition-colors">Blogs</a></li>
                         <li><a href="#testimonials" class="hover:text-white transition-colors">Testimonials</a></li>
                         <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
                     </ul>
