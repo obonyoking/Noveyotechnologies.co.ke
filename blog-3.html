@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo Design Principles: Creating Memorable Brand Identities - Noveyo Technologies</title>
+    <meta name="description" content="Master the art of logo design with these essential principles. Learn how to create memorable, effective logos that represent your brand perfectly and stand the test of time.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Custom Styles -->
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #41c1ba, #060644);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .article-content {
+            line-height: 1.8;
+        }
+        
+        .article-content h2 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin: 2rem 0 1rem 0;
+        }
+        
+        .article-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #374151;
+            margin: 1.5rem 0 0.75rem 0;
+        }
+        
+        .article-content p {
+            margin-bottom: 1.5rem;
+            color: #4b5563;
+        }
+        
+        .article-content ul, .article-content ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+        
+        .article-content li {
+            margin-bottom: 0.5rem;
+            color: #4b5563;
+        }
+        
+        .article-content blockquote {
+            border-left: 4px solid #3b82f6;
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: #6b7280;
+        }
+        
+        .article-content img {
+            border-radius: 0.75rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <a href="index.html" class="text-2xl font-bold gradient-bg bg-clip-text text-transparent">
+                        Noveyo Technologies
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Home</a>
+                        <a href="index.html#services" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Services</a>
+                        <a href="portfolio.html" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Portfolio</a>
+                        <a href="vesial.html" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Vesial</a>
+                        <a href="blogs.html" class="text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Blogs</a>
+                        <a href="index.html#about" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">About</a>
+                        <a href="index.html#contact" class="text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors" style="background-color: #060644;">Get Quote</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-indigo-600 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Home</a>
+                <a href="index.html#services" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Services</a>
+                <a href="portfolio.html" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Portfolio</a>
+                <a href="vesial.html" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Vesial</a>
+                <a href="blogs.html" class="block px-3 py-2 text-indigo-600 font-semibold">Blogs</a>
+                <a href="index.html#about" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">About</a>
+                <a href="index.html#contact" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <section class="py-16 bg-gradient-to-br from-purple-50 to-indigo-100">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Breadcrumb -->
+            <nav class="mb-8">
+                <ol class="flex items-center space-x-2 text-sm text-gray-600">
+                    <li><a href="index.html" class="hover:text-indigo-600">Home</a></li>
+                    <li><i class="fas fa-chevron-right text-xs"></i></li>
+                    <li><a href="blogs.html" class="hover:text-indigo-600">Blogs</a></li>
+                    <li><i class="fas fa-chevron-right text-xs"></i></li>
+                    <li class="text-gray-900">Logo Design Principles</li>
+                </ol>
+            </nav>
+
+            <!-- Article Meta -->
+            <div class="flex items-center mb-6">
+                <span class="bg-purple-100 text-purple-800 text-sm font-semibold px-3 py-1 rounded-full mr-4">
+                    Branding
+                </span>
+                <div class="flex items-center text-sm text-gray-500">
+                    <i class="fas fa-calendar-alt mr-2"></i>
+                    <span>January 20, 2025</span>
+                    <span class="mx-2">•</span>
+                    <i class="fas fa-clock mr-1"></i>
+                    <span>6 min read</span>
+                </div>
+            </div>
+
+            <!-- Article Title -->
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                Logo Design Principles: Creating Memorable Brand Identities
+            </h1>
+
+            <!-- Article Excerpt -->
+            <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                Master the art of logo design with these essential principles. Learn how to create memorable, effective logos that represent your brand perfectly and stand the test of time.
+            </p>
+
+            <!-- Author Info -->
+            <div class="flex items-center">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                     alt="Noveyo Team" 
+                     class="w-12 h-12 rounded-full mr-4">
+                <div>
+                    <p class="font-semibold text-gray-900">Noveyo Team</p>
+                    <p class="text-sm text-gray-500">Design Experts</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <article class="py-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+                <!-- Featured Image -->
+                <div class="relative">
+                    <img src="images/logo principle.png" 
+                         alt="Logo Design Principles" 
+                         class="w-full h-64 md:h-96 object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                </div>
+
+                <!-- Article Body -->
+                <div class="p-8 md:p-12">
+                    <div class="article-content">
+                        <p class="text-lg text-gray-700 mb-6">
+                            A logo is often the first impression customers have of your brand. It's the visual foundation that communicates your company's values, personality, and professionalism. Creating an effective logo requires understanding fundamental design principles that ensure your brand identity is memorable, versatile, and timeless.
+                        </p>
+
+                        <h2>The Five Essential Logo Design Principles</h2>
+                        <p>
+                            Every successful logo follows these core principles that have been proven to work across industries and cultures. Understanding and applying these principles will help you create logos that not only look great but also serve their purpose effectively.
+                        </p>
+
+                        <h3>1. Simplicity: Less is More</h3>
+                        <p>
+                            The most memorable logos are often the simplest. Think of Apple's bitten apple, Nike's swoosh, or McDonald's golden arches. These logos are instantly recognizable because they're clean, uncluttered, and easy to understand at a glance.
+                        </p>
+
+                        <p>
+                            <strong>Why simplicity works:</strong>
+                        </p>
+                        <ul>
+                            <li>Easier to remember and recognize</li>
+                            <li>Works well at any size, from business cards to billboards</li>
+                            <li>Faster to process visually</li>
+                            <li>More versatile across different applications</li>
+                            <li>Timeless and less likely to look dated</li>
+                        </ul>
+
+                        <blockquote>
+                            "Simplicity is the ultimate sophistication. A simple logo is more likely to be remembered and recognized than a complex one."
+                        </blockquote>
+
+                        <h3>2. Memorability: Make It Stick</h3>
+                        <p>
+                            A memorable logo creates a lasting impression. It should be distinctive enough to stand out from competitors while being simple enough to be easily recalled. The goal is to create something that people can visualize even when they're not looking at it.
+                        </p>
+
+                        <p>
+                            <strong>Techniques for memorability:</strong>
+                        </p>
+                        <ul>
+                            <li>Use unique shapes or forms</li>
+                            <li>Incorporate unexpected elements</li>
+                            <li>Create visual metaphors</li>
+                            <li>Use distinctive color combinations</li>
+                            <li>Ensure it's different from competitors</li>
+                        </ul>
+
+                        <h3>3. Versatility: One Logo, Many Applications</h3>
+                        <p>
+                            Your logo needs to work across various mediums and sizes. It should look great on a business card, website header, mobile app icon, and even embroidered on a shirt. This versatility is crucial for maintaining brand consistency.
+                        </p>
+
+                        <p>
+                            <strong>Test your logo's versatility by checking:</strong>
+                        </p>
+                        <ul>
+                            <li>Does it work in black and white?</li>
+                            <li>Is it readable at small sizes?</li>
+                            <li>Does it work on both light and dark backgrounds?</li>
+                            <li>Can it be simplified for social media avatars?</li>
+                            <li>Does it work in horizontal and vertical formats?</li>
+                        </ul>
+
+                        <h3>4. Appropriateness: Match Your Brand</h3>
+                        <p>
+                            Your logo should be appropriate for your industry, target audience, and brand personality. A law firm's logo should convey trust and professionalism, while a children's toy company can be more playful and colorful.
+                        </p>
+
+                        <p>
+                            <strong>Consider these factors:</strong>
+                        </p>
+                        <ul>
+                            <li>Industry standards and expectations</li>
+                            <li>Target audience preferences</li>
+                            <li>Brand personality and values</li>
+                            <li>Cultural considerations</li>
+                            <li>Competitive landscape</li>
+                        </ul>
+
+                        <h3>5. Timelessness: Design for the Long Term</h3>
+                        <p>
+                            While trends come and go, your logo should remain relevant for years to come. Avoid overly trendy elements that might look dated in a few years. Focus on classic design principles that stand the test of time.
+                        </p>
+
+                        <p>
+                            <strong>Timeless design elements include:</strong>
+                        </p>
+                        <ul>
+                            <li>Classic typography choices</li>
+                            <li>Simple geometric shapes</li>
+                            <li>Balanced proportions</li>
+                            <li>Appropriate color palettes</li>
+                            <li>Clean, uncluttered layouts</li>
+                        </ul>
+
+                        <h2>Color Psychology in Logo Design</h2>
+                        <p>
+                            Colors play a crucial role in logo design, as they evoke specific emotions and associations. Understanding color psychology helps you choose colors that align with your brand's message and target audience.
+                        </p>
+
+                        <h3>Common Color Associations:</h3>
+                        <ul>
+                            <li><strong>Blue:</strong> Trust, reliability, professionalism, stability</li>
+                            <li><strong>Red:</strong> Energy, passion, urgency, excitement</li>
+                            <li><strong>Green:</strong> Growth, nature, health, sustainability</li>
+                            <li><strong>Yellow:</strong> Optimism, creativity, warmth, friendliness</li>
+                            <li><strong>Purple:</strong> Luxury, creativity, wisdom, mystery</li>
+                            <li><strong>Orange:</strong> Enthusiasm, confidence, warmth, innovation</li>
+                            <li><strong>Black:</strong> Sophistication, elegance, power, authority</li>
+                            <li><strong>White:</strong> Purity, simplicity, cleanliness, minimalism</li>
+                        </ul>
+
+                        <h2>Typography in Logo Design</h2>
+                        <p>
+                            The choice of typography can make or break a logo. Whether you're using a wordmark, lettermark, or incorporating text with a symbol, the font choice should reflect your brand's personality and be highly legible.
+                        </p>
+
+                        <h3>Font Categories and Their Characteristics:</h3>
+                        <ul>
+                            <li><strong>Serif Fonts:</strong> Traditional, trustworthy, established</li>
+                            <li><strong>Sans-Serif Fonts:</strong> Modern, clean, approachable</li>
+                            <li><strong>Script Fonts:</strong> Elegant, personal, creative</li>
+                            <li><strong>Display Fonts:</strong> Bold, attention-grabbing, unique</li>
+                            <li><strong>Monospace Fonts:</strong> Technical, precise, modern</li>
+                        </ul>
+
+                        <h2>Common Logo Design Mistakes to Avoid</h2>
+                        <p>
+                            Even experienced designers can fall into common traps. Being aware of these mistakes helps you create better logos and avoid costly revisions.
+                        </p>
+
+                        <h3>1. Overcomplicating the Design</h3>
+                        <p>
+                            Adding too many elements, colors, or effects can make your logo cluttered and hard to read. Remember the principle of simplicity and focus on one main concept.
+                        </p>
+
+                        <h3>2. Following Trends Too Closely</h3>
+                        <p>
+                            While it's important to stay current, following every design trend can make your logo look dated quickly. Focus on timeless design principles instead.
+                        </p>
+
+                        <h3>3. Poor Scalability</h3>
+                        <p>
+                            A logo that looks great on a computer screen might be unreadable when printed small on a business card. Always test your logo at various sizes.
+                        </p>
+
+                        <h3>4. Inconsistent Branding</h3>
+                        <p>
+                            Your logo should work harmoniously with your overall brand identity. Ensure it complements your color scheme, typography, and brand personality.
+                        </p>
+
+                        <h3>5. Copying Competitors</h3>
+                        <p>
+                            While it's good to be aware of industry standards, copying competitors' logos can lead to legal issues and confusion in the marketplace.
+                        </p>
+
+                        <h2>Testing Your Logo Design</h2>
+                        <p>
+                            Before finalizing your logo, test it thoroughly to ensure it meets all the essential principles. This testing phase is crucial for creating a successful brand identity.
+                        </p>
+
+                        <h3>Logo Testing Checklist:</h3>
+                        <ul>
+                            <li>Test at different sizes (from 16px to billboard size)</li>
+                            <li>Check readability in black and white</li>
+                            <li>Test on various backgrounds</li>
+                            <li>Ensure it works in both horizontal and vertical layouts</li>
+                            <li>Get feedback from target audience</li>
+                            <li>Check for cultural appropriateness</li>
+                            <li>Verify it's unique and not too similar to competitors</li>
+                        </ul>
+
+                        <h2>Conclusion</h2>
+                        <p>
+                            Creating an effective logo requires balancing multiple design principles while staying true to your brand's essence. By focusing on simplicity, memorability, versatility, appropriateness, and timelessness, you can create a logo that serves as a strong foundation for your brand identity.
+                        </p>
+
+                        <p>
+                            Remember that a great logo is just the beginning. It should work seamlessly with your overall brand strategy, including your website, marketing materials, and customer experience. At Noveyo Technologies, we specialize in creating comprehensive brand identities that start with exceptional logo design and extend throughout your entire visual presence.
+                        </p>
+
+                        <p class="text-lg font-semibold text-gray-900 mt-8">
+                            Ready to create a memorable logo for your brand? <a href="index.html#contact" class="text-indigo-600 hover:text-indigo-700">Get in touch</a> with our design experts today.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <!-- Related Articles -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Related Articles</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Related Article 1 -->
+                <article class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                         alt="Brand Design Trends" 
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="bg-blue-100 text-blue-800 text-sm font-semibold px-3 py-1 rounded-full">Design</span>
+                        <h3 class="text-xl font-bold text-gray-900 mt-4 mb-2">The Future of Brand Design: Trends to Watch in 2025</h3>
+                        <p class="text-gray-600 text-sm mb-4">Discover the emerging design trends that will shape brand identity...</p>
+                        <a href="blog-1.html" class="text-indigo-600 hover:text-indigo-700 font-semibold text-sm">Read More <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </article>
+
+                <!-- Related Article 2 -->
+                <article class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                         alt="Color Psychology" 
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="bg-green-100 text-green-800 text-sm font-semibold px-3 py-1 rounded-full">Marketing</span>
+                        <h3 class="text-xl font-bold text-gray-900 mt-4 mb-2">Color Psychology in Design: How Colors Affect User Behavior</h3>
+                        <p class="text-gray-600 text-sm mb-4">Understanding how colors influence emotions and behavior...</p>
+                        <a href="blog-4.html" class="text-indigo-600 hover:text-indigo-700 font-semibold text-sm">Read More <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </article>
+
+                <!-- Related Article 3 -->
+                <article class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                         alt="Web Development" 
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="bg-indigo-100 text-indigo-800 text-sm font-semibold px-3 py-1 rounded-full">Technology</span>
+                        <h3 class="text-xl font-bold text-gray-900 mt-4 mb-2">Web Development Trends: Building Modern Websites in 2025</h3>
+                        <p class="text-gray-600 text-sm mb-4">Explore the latest web development trends shaping 2025...</p>
+                        <a href="blog-5.html" class="text-indigo-600 hover:text-indigo-700 font-semibold text-sm">Read More <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-16 bg-gradient-to-r from-indigo-600 to-blue-600">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold text-white mb-4">Stay Updated</h2>
+            <p class="text-xl text-blue-100 mb-8">Get the latest articles and insights delivered to your inbox</p>
+            
+            <form class="newsletter-form max-w-md mx-auto flex gap-4">
+                <input type="email" name="email" placeholder="Enter your email" 
+                       class="flex-1 px-4 py-3 rounded-lg border-0 focus:ring-2 focus:ring-blue-300">
+                <button type="submit" class="bg-white text-indigo-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                    Subscribe
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="text-2xl font-bold gradient-bg bg-clip-text text-transparent mb-4">
+                        Noveyo Technologies
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Your trusted partner in design, branding, and digital solutions. 
+                        We create exceptional experiences that drive business growth.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://facebook.com/noveyotech" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="https://twitter.com/noveyotech" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="https://instagram.com/noveyotech" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="https://linkedin.com/company/noveyotech" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-linkedin-in text-xl"></i>
+                        </a>
+                        <a href="https://wa.me/254793520615?text=Hello%20Noveyo%20Technologies,%20I%20would%20like%20to%20discuss%20a%20project%20with%20you." class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-whatsapp text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="index.html#services" class="hover:text-white transition-colors">Brand Design</a></li>
+                        <li><a href="index.html#services" class="hover:text-white transition-colors">Web Development</a></li>
+                        <li><a href="index.html#services" class="hover:text-white transition-colors">Digital Marketing</a></li>
+                        <li><a href="vesial.html" class="hover:text-white transition-colors">Social Media</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="index.html#about" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="portfolio.html" class="hover:text-white transition-colors">Portfolio</a></li>
+                        <li><a href="blogs.html" class="hover:text-white transition-colors">Blogs</a></li>
+                        <li><a href="index.html#testimonials" class="hover:text-white transition-colors">Testimonials</a></li>
+                        <li><a href="index.html#contact" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Subscribe to our newsletter for the latest updates</p>
+                    <form class="newsletter-form">
+                        <div class="flex">
+                            <input type="email" name="email" placeholder="Your email" 
+                                   class="flex-1 px-4 py-2 bg-gray-800 text-white placeholder-gray-400 border border-gray-700 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded-r-lg hover:bg-indigo-700 transition-colors">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Noveyo Technologies. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', () => {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Newsletter form
+        document.querySelectorAll('.newsletter-form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = e.target.email.value;
+                if (email) {
+                    alert('Thank you for subscribing to our newsletter!');
+                    e.target.reset();
+                }
+            });
+        });
+
+        // Fade in animation
+        setTimeout(() => {
+            document.querySelectorAll('.fade-in').forEach(el => {
+                el.classList.add('visible');
+            });
+        }, 100);
+    </script>
+</body>
+</html>
