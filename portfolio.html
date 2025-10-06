@@ -40,6 +40,47 @@
             background: linear-gradient(135deg, #41c1ba 0%, #060644 100%);
         }
         
+        /* Smooth Hover Effect */
+        .portfolio-hero {
+            cursor: crosshair;
+            transition: all 0.3s ease;
+            will-change: transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+        
+        .portfolio-hero:hover {
+            transform: scale(1.02);
+        }
+        
+        /* Preload background image */
+        .portfolio-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('./images/portfolio hero.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.2s ease;
+        }
+        
+        .portfolio-hero.loaded::before {
+            opacity: 1;
+        }
+        
+        /* Performance optimizations */
+        .portfolio-hero {
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            perspective: 1000px;
+        }
+        
         .portfolio-item {
             position: relative;
             overflow: hidden;
@@ -150,16 +191,22 @@
             height: 100%;
             object-fit: cover;
             object-position: center;
+            transition: transform 0.3s ease;
+            background: #000;
         }
         
-        .portfolio-item[data-category="video"] .youtube-button {
+        .portfolio-item[data-category="video"] .video-thumbnail:hover .video-preview {
+            transform: scale(1.05);
+        }
+        
+        .portfolio-item[data-category="video"] .play-button {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 80px;
-            height: 80px;
-            background: rgba(255, 0, 0, 0.9);
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 0, 0, 0.7);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -167,19 +214,21 @@
             cursor: pointer;
             transition: all 0.3s ease;
             z-index: 10;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
         }
         
-        .portfolio-item[data-category="video"] .youtube-button:hover {
-            background: rgba(255, 0, 0, 1);
+        .portfolio-item[data-category="video"] .play-button:hover {
+            background: rgba(0, 0, 0, 0.8);
             transform: translate(-50%, -50%) scale(1.1);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.5);
         }
         
-        .portfolio-item[data-category="video"] .youtube-button svg {
-            width: 40px;
-            height: 40px;
+        .portfolio-item[data-category="video"] .play-button svg {
+            width: 24px;
+            height: 24px;
             fill: white;
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
         }
         
         
@@ -459,38 +508,6 @@
             object-fit: cover;
         }
         
-        .play-button {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80px;
-            height: 80px;
-            background: rgba(0,0,0,0.7);
-            border: 3px solid white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-        
-        .play-button:hover {
-            background: rgba(0,0,0,0.9);
-            transform: translate(-50%, -50%) scale(1.1);
-        }
-        
-        .play-button::before {
-            content: '';
-            width: 0;
-            height: 0;
-            border-left: 20px solid white;
-            border-top: 12px solid transparent;
-            border-bottom: 12px solid transparent;
-            margin-left: 4px;
-        }
         
         .video-popup video {
             width: 100%;
@@ -700,7 +717,7 @@
                         <a href="index.html#services" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Services</a>
                         <a href="portfolio.html" class="text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Portfolio</a>
                         <a href="vesial.html" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Vesial</a>
-                        <a href="blog/" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Blogs</a>
+                        <a href="blogs/blogs.html" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Blogs</a>
                         <a href="index.html#about" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">About</a>
                         <button onclick="openQuoteModal('Portfolio Inquiry')" class="text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-opacity-90 cursor-pointer" style="background-color: #060644;" type="button">
                             Get Quote
@@ -722,7 +739,7 @@
                 <a href="index.html#services" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Services</a>
                 <a href="portfolio.html" class="block px-3 py-2 text-indigo-600">Portfolio</a>
                 <a href="vesial.html" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Vesial</a>
-                <a href="blog/" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Blogs</a>
+                <a href="blogs/blogs.html" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Blogs</a>
                 <a href="index.html#about" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">About</a>
                 <a href="index.html#contact" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Contact</a>
                 <button onclick="openQuoteModal('Portfolio Inquiry')" class="block w-full text-left px-3 py-2 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-colors" style="background-color: #060644;">
@@ -733,13 +750,21 @@
     </nav>
 
     <!-- Portfolio Header -->
-    <section class="gradient-bg pt-20 pb-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="relative pt-20 pb-16 bg-cover bg-center bg-no-repeat portfolio-hero" style="background-image: url('./images/portfolio hero.webp'); min-height: 60vh;">
+        <!-- Dark overlay for better text readability -->
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-center">
             <div class="text-center text-white">
-                <h1 class="text-5xl lg:text-6xl font-bold mb-6">Our Portfolio</h1>
-                <p class="text-xl mb-8 text-gray-100 max-w-3xl mx-auto">
-                    Explore our diverse collection of creative work across different categories. From logos to motion graphics, we bring your vision to life.
+                <h1 class="text-5xl lg:text-7xl font-bold mb-6 drop-shadow-lg">Our Portfolio</h1>
+                <p class="text-xl lg:text-2xl mb-8 text-gray-100 max-w-4xl mx-auto drop-shadow-md leading-relaxed">
+                    Explore our diverse collection of creative work across different categories. From logos to motion graphics, we bring your vision to life with exceptional design solutions.
                 </p>
+                <div class="mt-8">
+                    <div class="inline-block bg-white bg-opacity-20 backdrop-blur-sm rounded-full px-8 py-3 border border-white border-opacity-30">
+                        <span class="text-white font-semibold text-lg">Your Vision, Our Innovation</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1313,14 +1338,16 @@
                 </div>
 
                 <!-- Video & Motion Graphics Projects -->
-                <!-- YouTube Video 1 -->
-                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="video" data-title="Digiskool Explainer AD" data-description="Professional motion graphic showcasing Digiskool's Services  design capabilities and creative process" data-youtube-id="21Lt5vUVCSQ">
+                <!-- Local Video 1 -->
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="video" data-title="AGSK Project" data-description="Professional video showcasing AGSK project capabilities" data-video-src="./videos/AGSK.mp4">
                     <div class="relative">
-                        <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=21Lt5vUVCSQ', '_blank')">
-                            <img src="https://img.youtube.com/vi/21Lt5vUVCSQ/maxresdefault.jpg" alt="Digiskool Explainer AD" class="video-preview">
-                            <div class="youtube-button">
-                                <svg viewBox="0 0 24 24">
-                                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        <div class="video-thumbnail" onclick="openImagePopup('', 'AGSK Project', 'Professional video showcasing AGSK project capabilities', true, './videos/AGSK.mp4')">
+                            <video class="video-preview" preload="metadata" muted>
+                                <source src="./videos/AGSK.mp4" type="video/mp4">
+                            </video>
+                            <div class="play-button">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
                                 </svg>
                             </div>
                         </div>
@@ -1328,14 +1355,135 @@
                     </div>
                 </div>
 
-                <!-- YouTube Short 1 -->
-                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="video" data-title="Floydeez Product Showcase data-description="Showcase of Different Floydeez mabuyu flavors " data-youtube-id="wkOdBZ1XHX0">
+                <!-- Local Video 2 -->
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="video" data-title="Digiskool Advertisement" data-description="Creative advertisement for Digiskool services" data-video-src="./videos/Digiskool AD.mp4">
                     <div class="relative">
-                        <div class="video-thumbnail" onclick="window.open('https://youtube.com/shorts/wkOdBZ1XHX0', '_blank')">
-                            <img src="https://img.youtube.com/vi/wkOdBZ1XHX0/maxresdefault.jpg" alt="Showcase of Different Floydeez mabuyu flavors" class="video-preview">
-                            <div class="youtube-button">
-                                <svg viewBox="0 0 24 24">
-                                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        <div class="video-thumbnail" onclick="openImagePopup('', 'Digiskool Advertisement', 'Creative advertisement for Digiskool services', true, './videos/Digiskool AD.mp4')">
+                            <video class="video-preview" preload="metadata" muted>
+                                <source src="./videos/Digiskool AD.mp4" type="video/mp4">
+                            </video>
+                            <div class="play-button">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="category-badge">Video</div>
+                    </div>
+                </div>
+
+                <!-- Local Video 3 -->
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="video" data-title="Digiskool Robotics Bootcamp" data-description="Showcase of robotics bootcamp activities and student projects" data-video-src="./videos/Digiskool robotics boot camp video cohort 1.mp4">
+                    <div class="relative">
+                        <div class="video-thumbnail" onclick="openImagePopup('', 'Digiskool Robotics Bootcamp', 'Showcase of robotics bootcamp activities and student projects', true, './videos/Digiskool robotics boot camp video cohort 1.mp4')">
+                            <video class="video-preview" preload="metadata" muted>
+                                <source src="./videos/Digiskool robotics boot camp video cohort 1.mp4" type="video/mp4">
+                            </video>
+                            <div class="play-button">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="category-badge">Video</div>
+                    </div>
+                </div>
+
+                <!-- Local Video 4 -->
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="video" data-title="School Management System" data-description="Professional demonstration of school management system features" data-video-src="./videos/Digiskool School Management Ad.mp4">
+                    <div class="relative">
+                        <div class="video-thumbnail" onclick="openImagePopup('', 'School Management System', 'Professional demonstration of school management system features', true, './videos/Digiskool School Management Ad.mp4')">
+                            <video class="video-preview" preload="metadata" muted>
+                                <source src="./videos/Digiskool School Management Ad.mp4" type="video/mp4">
+                            </video>
+                            <div class="play-button">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="category-badge">Video</div>
+                    </div>
+                </div>
+
+                <!-- Local Video 5 -->
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="video" data-title="Student Project TikTok" data-description="Creative TikTok-style video showcasing student projects" data-video-src="./videos/Digiskool student project tiktok video.mp4">
+                    <div class="relative">
+                        <div class="video-thumbnail" onclick="openImagePopup('', 'Student Project TikTok', 'Creative TikTok-style video showcasing student projects', true, './videos/Digiskool student project tiktok video.mp4')">
+                            <video class="video-preview" preload="metadata" muted>
+                                <source src="./videos/Digiskool student project tiktok video.mp4" type="video/mp4">
+                            </video>
+                            <div class="play-button">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="category-badge">Video</div>
+                    </div>
+                </div>
+
+                <!-- Local Video 6 -->
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="video" data-title="Student Testimonial" data-description="Authentic student testimonials from first cohort" data-video-src="./videos/Digiskool student testimonial first cohort.mp4">
+                    <div class="relative">
+                        <div class="video-thumbnail" onclick="openImagePopup('', 'Student Testimonial', 'Authentic student testimonials from first cohort', true, './videos/Digiskool student testimonial first cohort.mp4')">
+                            <video class="video-preview" preload="metadata" muted>
+                                <source src="./videos/Digiskool student testimonial first cohort.mp4" type="video/mp4">
+                            </video>
+                            <div class="play-button">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="category-badge">Video</div>
+                    </div>
+                </div>
+
+                <!-- Local Video 7 -->
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="video" data-title="Digiskool STEM Ad" data-description="Educational advertisement promoting STEM learning" data-video-src="./videos/DigiskoolSTEM ad.mp4">
+                    <div class="relative">
+                        <div class="video-thumbnail" onclick="openImagePopup('', 'Digiskool STEM Ad', 'Educational advertisement promoting STEM learning', true, './videos/DigiskoolSTEM ad.mp4')">
+                            <video class="video-preview" preload="metadata" muted>
+                                <source src="./videos/DigiskoolSTEM ad.mp4" type="video/mp4">
+                            </video>
+                            <div class="play-button">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="category-badge">Video</div>
+                    </div>
+                </div>
+
+                <!-- Local Video 8 -->
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="video" data-title="Efficient Solutions" data-description="Showcase of efficient business solutions and processes" data-video-src="./videos/efficient.mp4">
+                    <div class="relative">
+                        <div class="video-thumbnail" onclick="openImagePopup('', 'Efficient Solutions', 'Showcase of efficient business solutions and processes', true, './videos/efficient.mp4')">
+                            <video class="video-preview" preload="metadata" muted>
+                                <source src="./videos/efficient.mp4" type="video/mp4">
+                            </video>
+                            <div class="play-button">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="category-badge">Video</div>
+                    </div>
+                </div>
+
+                <!-- Local Video 9 -->
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="video" data-title="Floydeez Project" data-description="Creative showcase of Floydeez product features" data-video-src="./videos/floydeez.mp4">
+                    <div class="relative">
+                        <div class="video-thumbnail" onclick="openImagePopup('', 'Floydeez Project', 'Creative showcase of Floydeez product features', true, './videos/floydeez.mp4')">
+                            <video class="video-preview" preload="metadata" muted>
+                                <source src="./videos/floydeez.mp4" type="video/mp4">
+                            </video>
+                            <div class="play-button">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
                                 </svg>
                             </div>
                         </div>
@@ -2058,6 +2206,36 @@
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeVideoModal();
+            }
+        });
+
+        // Simple hover effect for portfolio hero
+        document.addEventListener('DOMContentLoaded', function() {
+            const portfolioHero = document.querySelector('.portfolio-hero');
+            
+            if (portfolioHero) {
+                // Preload background image immediately
+                const img = new Image();
+                img.onload = function() {
+                    portfolioHero.classList.add('loaded');
+                };
+                img.onerror = function() {
+                    // If image fails to load, still add loaded class to prevent delay
+                    portfolioHero.classList.add('loaded');
+                };
+                img.src = './images/portfolio hero.webp';
+                
+                // Add loaded class immediately to prevent delay
+                portfolioHero.classList.add('loaded');
+                
+                // Add smooth hover effect
+                portfolioHero.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.02)';
+                });
+                
+                portfolioHero.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
             }
         });
 

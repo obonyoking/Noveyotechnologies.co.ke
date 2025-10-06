@@ -237,6 +237,34 @@
             z-index: 2;
         }
         
+        /* Hero Section Optimizations */
+        #home {
+            will-change: transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+        
+        /* Preload background image */
+        #home::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('./images/portfolio hero.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.2s ease;
+        }
+        
+        #home.loaded::before {
+            opacity: 1;
+        }
+        
         @media (max-width: 1024px) {
             .full-diagonal-frame {
                 transform: scale(0.9);
@@ -418,7 +446,7 @@
                         <a href="#services" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Services</a>
                         <a href="portfolio.html" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Portfolio</a>
                         <a href="vesial.html" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Vesial</a>
-                        <a href="blog/" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Blogs</a>
+                        <a href="blogs/blogs.html" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Blogs</a>
                         <a href="#about" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">About</a>
                         <a href="#contact" class="text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors" style="background-color: #060644;">
    Get Quote
@@ -441,7 +469,7 @@
                 <a href="#services" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Services</a>
                 <a href="portfolio.html" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Portfolio</a>
                 <a href="vesial.html" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Vesial</a>
-                <a href="blog/" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Blogs</a>
+                <a href="blogs/blogs.html" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Blogs</a>
                 <a href="#about" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">About</a>
                 <a href="#contact" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Contact</a>
             </div>
@@ -449,15 +477,18 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="gradient-bg min-h-screen flex items-center pt-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <section id="home" class="relative min-h-screen flex items-center pt-16 bg-cover bg-center bg-no-repeat" style="background-image: url('./images/portfolio hero.webp');">
+        <!-- Dark overlay for better text readability -->
+        <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative">
                 <div class="text-white hero-content">
-                    <h1 class="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                    <h1 class="text-5xl lg:text-6xl font-bold mb-6 leading-tight drop-shadow-lg">
                         Elevate Your Brand with 
-                        <span style="color: #060644;">Premium Designs</span>
+                        <span style="color: #41c1ba;">Premium Designs</span>
                     </h1>
-                    <p class="text-xl mb-8 text-gray-100 leading-relaxed">
+                    <p class="text-xl mb-8 text-gray-100 leading-relaxed drop-shadow-md">
                         From fresh startups to growing enterprises, we transform ideas into captivating visuals and tailored digital strategies that elevate brands to the next level
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4">
@@ -1131,7 +1162,7 @@
                                 <span class="text-xs text-gray-600">Collins Obonyo</span>
                             </div>
                             
-                                <a href="blog/future-of-brand-design" class="inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold text-sm transition-colors">
+                                <a href="blogs/blog-1.html" class="inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold text-sm transition-colors">
                                 Read More
                                 <i class="fas fa-arrow-right ml-1 text-xs"></i>
                             </a>
@@ -1202,7 +1233,7 @@
                     <ul class="space-y-2 text-gray-400">
                         <li><a href="#about" class="hover:text-white transition-colors">About Us</a></li>
                         <li><a href="portfolio.html" class="hover:text-white transition-colors">Portfolio</a></li>
-                        <li><a href="blog/" class="hover:text-white transition-colors">Blogs</a></li>
+                        <li><a href="blogs/blogs.html" class="hover:text-white transition-colors">Blogs</a></li>
                         <li><a href="#testimonials" class="hover:text-white transition-colors">Testimonials</a></li>
                         <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
                     </ul>
@@ -1486,6 +1517,26 @@
                 behavior: 'smooth'
             });
         }
+        
+        // Preload hero background image
+        document.addEventListener('DOMContentLoaded', function() {
+            const heroSection = document.getElementById('home');
+            if (heroSection) {
+                // Preload the background image
+                const img = new Image();
+                img.onload = function() {
+                    heroSection.classList.add('loaded');
+                };
+                img.onerror = function() {
+                    // If image fails to load, still add loaded class to prevent delay
+                    heroSection.classList.add('loaded');
+                };
+                img.src = './images/portfolio hero.webp';
+                
+                // Add loaded class immediately to prevent delay
+                heroSection.classList.add('loaded');
+            }
+        });
 
         // Quote modal functions
         function openQuoteModal(serviceName) {
