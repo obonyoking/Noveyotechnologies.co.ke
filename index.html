@@ -6,12 +6,11 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="Noveyo Technologies" />
-    <link rel="manifest" href="/site.webmanifest" />
-    
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+
     <!-- Primary Meta Tags -->
     <title>Noveyo Technologies - Digital Creative Agency | Web Development & Design Kenya</title>
     <meta name="title" content="Noveyo Technologies - Digital Creative Agency | Web Development & Design Kenya">
@@ -48,6 +47,8 @@
     <meta name="geo.region" content="KE">
     <meta name="geo.country" content="Kenya">
     <meta name="geo.placename" content="Nairobi">
+    <meta name="geo.position" content="-1.2921;36.8219">
+    <meta name="ICBM" content="-1.2921, 36.8219">
     <meta name="theme-color" content="#4F46E5">
     <meta name="msapplication-TileColor" content="#4F46E5">
     
@@ -57,28 +58,51 @@
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "Noveyo Technologies",
-        "description": "Leading digital creative agency specializing in web development, UI/UX design, branded merchandise, and digital marketing",
+        "alternateName": "Noveyo Tech",
+        "description": "Leading digital creative agency in Kenya specializing in web development, UI/UX design, brand strategy, logo design, poster design, brochure design, and digital marketing solutions",
         "url": "https://noveyotechnologies.com",
         "logo": "https://noveyotechnologies.com/images/logo.jpg",
         "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "+254",
+            "telephone": "+254-XXX-XXXXXX",
             "contactType": "customer service",
-            "areaServed": "KE",
+            "email": "admin@noveyotechnologies.com",
+            "areaServed": "Kenya",
             "availableLanguage": "English"
         },
         "address": {
             "@type": "PostalAddress",
-            "addressCountry": "KE",
-            "addressCity": "Nairobi"
+            "streetAddress": "Nairobi",
+            "addressLocality": "Nairobi",
+            "addressRegion": "Nairobi",
+            "addressCountry": "Kenya",
+            "postalCode": "00100"
         },
         "sameAs": [
             "https://www.facebook.com/noveyotech",
             "https://www.twitter.com/noveyotech",
-            "https://www.instagram.com/noveyotech"
+            "https://www.instagram.com/noveyotech",
+            "https://www.linkedin.com/company/noveyo-technologies"
         ],
         "foundingDate": "2020",
         "founders": ["Collins Obonyo"],
+        "areaServed": {
+            "@type": "Country",
+            "name": "Kenya"
+        },
+        "knowsAbout": [
+            "Web Development Kenya",
+            "UI/UX Design Kenya", 
+            "Brand Strategy Kenya",
+            "Digital Marketing Kenya",
+            "Graphic Design Kenya",
+            "Logo Design Kenya",
+            "Poster Design Kenya",
+            "Brochure Design Kenya",
+            "Social Media Design Kenya",
+            "Noveyo Technologies",
+            "Noveyo Tech"
+        ],
         "services": [
             "Web Development",
             "UI/UX Design",
@@ -1023,7 +1047,7 @@
                                 </div>
                                 <div>
                                     <p class="font-medium text-gray-900">Email</p>
-                                    <p class="text-gray-600">noveyotechnologies@gmail.com</p>
+                                    <p class="text-gray-600">admin@noveyotechnologies.com</p>
                                 </div>
                             </div>
                             <div class="flex items-center">
@@ -1350,7 +1374,7 @@
         // Email notification functions
         function sendQuoteEmailNotification(quoteData) {
             const templateParams = {
-                to_email: 'noveyotechnologies@gmail.com', // Replace with your email
+                to_email: 'admin@noveyotechnologies.com', // Replace with your email
                 from_name: `${quoteData.firstName} ${quoteData.lastName}`,
                 from_email: quoteData.email,
                 service: quoteData.service,
@@ -1369,7 +1393,7 @@
 
         function sendNewsletterEmailNotification(email) {
             const templateParams = {
-                to_email: 'noveyotechnologies@gmail.com', // Replace with your email
+                to_email: 'admin@noveyotechnologies.com', // Replace with your email
                 subscriber_email: email,
                 timestamp: new Date().toLocaleString()
             };

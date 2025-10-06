@@ -127,6 +127,155 @@
             object-position: center;
         }
         
+        /* Video-specific styling for proper aspect ratio */
+        .portfolio-item[data-category="video"] {
+            aspect-ratio: 16/9;
+        }
+        
+        .portfolio-item[data-category="video"] .relative {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        .portfolio-item[data-category="video"] .video-thumbnail {
+            position: relative;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .portfolio-item[data-category="video"] .video-preview {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        
+        .portfolio-item[data-category="video"] .youtube-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 0, 0, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .portfolio-item[data-category="video"] .youtube-button:hover {
+            background: rgba(255, 0, 0, 1);
+            transform: translate(-50%, -50%) scale(1.1);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+        }
+        
+        .portfolio-item[data-category="video"] .youtube-button svg {
+            width: 40px;
+            height: 40px;
+            fill: white;
+        }
+        
+        
+        
+        .portfolio-item[data-category="video"] .youtube-link {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: rgba(255, 0, 0, 0.9);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .portfolio-item[data-category="video"] .youtube-link:hover {
+            background: rgba(255, 0, 0, 1);
+            transform: scale(1.1);
+        }
+        
+        .portfolio-item[data-category="video"] .youtube-link svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+        
+        .portfolio-item[data-category="video"] .video-overlay {
+            display: none;
+        }
+        
+        .portfolio-item[data-category="video"] .video-title {
+            display: none;
+        }
+        
+        .portfolio-item[data-category="video"] .video-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+        
+        .portfolio-item[data-category="video"] .video-modal.active {
+            display: flex;
+        }
+        
+        .portfolio-item[data-category="video"] .video-modal-content {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .portfolio-item[data-category="video"] .video-modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.9);
+            color: #000;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            z-index: 1001;
+        }
+        
+        .portfolio-item[data-category="video"] .video-modal-close:hover {
+            background: white;
+        }
+        
+        .portfolio-item[data-category="video"] .video-modal iframe {
+            width: 100%;
+            height: 450px;
+            border: none;
+        }
+        
         .portfolio-overlay {
             display: none;
         }
@@ -1164,27 +1313,31 @@
                 </div>
 
                 <!-- Video & Motion Graphics Projects -->
-                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="video" data-title="Floydeez Logo Animation" data-description="Professional logo animation with smooth transitions and modern motion graphics" data-video-src="videos/floydeez.mp4">
+                <!-- YouTube Video 1 -->
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="video" data-title="Digiskool Explainer AD" data-description="Professional motion graphic showcasing Digiskool's Services  design capabilities and creative process" data-youtube-id="21Lt5vUVCSQ">
                     <div class="relative">
-                        <div class="video-preview">
-                            <video class="w-full h-64 object-cover" preload="metadata" poster="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMDAwIi8+CjxyZWN0IHg9IjEwIiB5PSIxMCIgd2lkdGg9IjI4MCIgaGVpZ2h0PSIyMjAiIGZpbGw9IiMzMzMiLz4KPHRleHQgeD0iMTUwIiB5PSIxMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RmxveWRlZXo8L3RleHQ+Cjx0ZXh0IHg9IjE1MCIgeT0iMTMwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiNjY2MiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxvZ28gQW5pbWF0aW9uPC90ZXh0Pgo8L3N2Zz4K'">
-                                <source src="videos/floydeez.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                            <div class="play-button"></div>
+                        <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=21Lt5vUVCSQ', '_blank')">
+                            <img src="https://img.youtube.com/vi/21Lt5vUVCSQ/maxresdefault.jpg" alt="Digiskool Explainer AD" class="video-preview">
+                            <div class="youtube-button">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                </svg>
+                            </div>
                         </div>
                         <div class="category-badge">Video</div>
                     </div>
                 </div>
 
-                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="video" data-title="Efficient Corporate Video" data-description="Professional corporate video showcasing business efficiency and modern solutions" data-video-src="videos/efficient.mp4">
+                <!-- YouTube Short 1 -->
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="video" data-title="Floydeez Product Showcase data-description="Showcase of Different Floydeez mabuyu flavors " data-youtube-id="wkOdBZ1XHX0">
                     <div class="relative">
-                        <div class="video-preview">
-                            <video class="w-full h-64 object-cover" preload="metadata" poster="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjMDAwIi8+CjxyZWN0IHg9IjEwIiB5PSIxMCIgd2lkdGg9IjI4MCIgaGVpZ2h0PSIyMjAiIGZpbGw9IiMzMzMiLz4KPHRleHQgeD0iMTUwIiB5PSIxMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RWZmaWNpZW50PC90ZXh0Pgo8dGV4dCB4PSIxNTAiIHk9IjEzMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmaWxsPSIjY2NjIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Db3Jwb3JhdGUgVmlkZW88L3RleHQ+Cjwvc3ZnPgo='">
-                                <source src="videos/efficient.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                            <div class="play-button"></div>
+                        <div class="video-thumbnail" onclick="window.open('https://youtube.com/shorts/wkOdBZ1XHX0', '_blank')">
+                            <img src="https://img.youtube.com/vi/wkOdBZ1XHX0/maxresdefault.jpg" alt="Showcase of Different Floydeez mabuyu flavors" class="video-preview">
+                            <div class="youtube-button">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                </svg>
+                            </div>
                         </div>
                         <div class="category-badge">Video</div>
                     </div>
@@ -1202,10 +1355,10 @@
                 Let's discuss how we can bring your vision to life with our creative design services.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="index.html#contact" class="bg-indigo-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-indigo-700 transition-colors">
+                <a href="index.html#contact" class="text-white px-8 py-4 rounded-lg font-semibold transition-colors" style="background-color: #41c1ba;">
                     Get Your Free Quote
                 </a>
-                <a href="index.html#services" class="border-2 border-indigo-600 text-indigo-600 px-8 py-4 rounded-lg font-semibold hover:bg-indigo-600 hover:text-white transition-colors">
+                <a href="index.html#services" class="border-2 text-white px-8 py-4 rounded-lg font-semibold transition-colors" style="border-color: #41c1ba; color: #41c1ba;" onmouseover="this.style.backgroundColor='#41c1ba'; this.style.color='white';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#41c1ba';">
                     View Our Services
                 </a>
             </div>
@@ -1279,7 +1432,7 @@
                 <div>
                     <h4 class="text-lg font-semibold mb-4">Contact</h4>
                     <div class="space-y-2 text-gray-400">
-                        <p>noveyotechnologies@gmail.com</p>
+                        <p>admin@noveyotechnologies.com</p>
                         <p>+254 793 520615</p>
                         <p>Roysambu, Nairobi Kenya</p>
                     </div>
@@ -1348,6 +1501,14 @@
                     </button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="video-modal">
+        <div class="video-modal-content">
+            <button class="video-modal-close" onclick="closeVideoModal()">&times;</button>
+            <iframe id="video-iframe" src="" frameborder="0" allowfullscreen></iframe>
         </div>
     </div>
 
@@ -1434,7 +1595,7 @@
         // Email notification functions
         function sendQuoteEmailNotification(quoteData) {
             const templateParams = {
-                to_email: 'noveyotechnologies@gmail.com', // Replace with your email
+                to_email: 'admin@noveyotechnologies.com', // Replace with your email
                 from_name: `${quoteData.firstName} ${quoteData.lastName}`,
                 from_email: quoteData.email,
                 service: quoteData.service,
@@ -1453,7 +1614,7 @@
 
         function sendNewsletterEmailNotification(email) {
             const templateParams = {
-                to_email: 'noveyotechnologies@gmail.com', // Replace with your email
+                to_email: 'admin@noveyotechnologies.com', // Replace with your email
                 subscriber_email: email,
                 timestamp: new Date().toLocaleString()
             };
@@ -1855,6 +2016,51 @@
         
         // Initialize lazy loading when DOM is loaded
         document.addEventListener('DOMContentLoaded', setupLazyLoading);
+
+        // Video Modal Functions
+        function openVideoModal(videoId, videoTitle) {
+            const modal = document.getElementById('video-modal');
+            const iframe = document.getElementById('video-iframe');
+            
+            // Set the video source
+            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+            
+            // Show the modal
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('video-modal');
+            const iframe = document.getElementById('video-iframe');
+            
+            // Hide the modal
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            
+            // Stop the video by clearing the src
+            iframe.src = '';
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('DOMContentLoaded', function() {
+            const videoModal = document.getElementById('video-modal');
+            if (videoModal) {
+                videoModal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        closeVideoModal();
+                    }
+                });
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeVideoModal();
+            }
+        });
+
     </script>
 </body>
 </html>
