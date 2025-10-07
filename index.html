@@ -66,7 +66,7 @@
             "@type": "ContactPoint",
             "telephone": "+254-XXX-XXXXXX",
             "contactType": "customer service",
-            "email": "admin@noveyotechnologies.com",
+            "email": "info@noveyotechnologies.com",
             "areaServed": "Kenya",
             "availableLanguage": "English"
         },
@@ -1078,7 +1078,7 @@
                                 </div>
                                 <div>
                                     <p class="font-medium text-gray-900">Email</p>
-                                    <p class="text-gray-600">admin@noveyotechnologies.com</p>
+                                    <p class="text-gray-600">info@noveyotechnologies.com</p>
                                 </div>
                             </div>
                             <div class="flex items-center">
@@ -1405,7 +1405,7 @@
         // Email notification functions
         function sendQuoteEmailNotification(quoteData) {
             const templateParams = {
-                to_email: 'admin@noveyotechnologies.com', // Replace with your email
+                to_email: 'info@noveyotechnologies.com', // Replace with your email
                 from_name: `${quoteData.firstName} ${quoteData.lastName}`,
                 from_email: quoteData.email,
                 service: quoteData.service,
@@ -1424,7 +1424,7 @@
 
         function sendNewsletterEmailNotification(email) {
             const templateParams = {
-                to_email: 'admin@noveyotechnologies.com', // Replace with your email
+                to_email: 'info@noveyotechnologies.com', // Replace with your email
                 subscriber_email: email,
                 timestamp: new Date().toLocaleString()
             };
