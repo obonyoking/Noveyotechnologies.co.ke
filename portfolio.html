@@ -42,13 +42,7 @@
         html, body {
             margin: 0 !important;
             padding: 0 !important;
-            height: 100%;
             overflow-x: hidden;
-        }
-        
-        /* Remove any extra spacing after footer */
-        footer {
-            margin-bottom: 0 !important;
         }
         
         .gradient-bg {
@@ -619,6 +613,28 @@
         button[onclick*="openQuoteModal"]:hover {
             opacity: 0.9 !important;
             transform: translateY(-1px) !important;
+        }
+        
+        /* Remove white space after footer */
+        footer {
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+        }
+        
+        /* Ensure no extra content after footer */
+        body {
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+        }
+        
+        /* Hide any content that might appear after footer */
+        footer ~ * {
+            display: none !important;
+        }
+        
+        /* Alternative: Set body background to match footer */
+        body {
+            background-color: #111827 !important;
         }
     </style>
 </head>
@@ -1513,7 +1529,7 @@
                     <div class="space-y-2 text-gray-400">
                         <p>info@noveyotechnologies.com</p>
                         <p>+254 793 520615</p>
-                        <p>Roysambu, Nairobi Kenya</p>
+                        <p>Nairobi, Kenya</p>
                     </div>
                 </div>
             </div>
@@ -1747,7 +1763,7 @@
         };
     </script>
 
-
+    <script>
         // Quote modal functions
         function openQuoteModal(serviceName) {
             console.log('Opening quote modal for:', serviceName);
