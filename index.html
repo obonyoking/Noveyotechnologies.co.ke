@@ -139,6 +139,12 @@
     
     
     
+    <!-- Preload critical portfolio images -->
+    <link rel="preload" as="image" href="images/cert.png">
+    <link rel="preload" as="image" href="images/Digi front.jpeg">
+    <link rel="preload" as="image" href="images/Tshirt.png">
+    <link rel="preload" as="image" href="images/Mediation Webinar Poster.png">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
@@ -192,6 +198,34 @@
             position: relative;
             overflow: hidden;
             border-radius: 12px;
+            aspect-ratio: 1;
+            min-height: 192px;
+        }
+        
+        /* Fix for portfolio item glitches and speed optimization */
+        .portfolio-item img {
+            transition: transform 0.3s ease;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            will-change: transform;
+            transform: translateZ(0);
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+        
+        .portfolio-item:hover img {
+            transform: scale(1.05) translateZ(0);
+        }
+        
+        /* Portfolio grid optimization */
+        .grid {
+            contain: layout style paint;
+        }
+        
+        /* Faster image loading */
+        img[loading="eager"] {
+            content-visibility: auto;
+            contain-intrinsic-size: 300px 192px;
         }
         
         .portfolio-overlay {
@@ -759,7 +793,7 @@
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
                 <!-- Portfolio Item 1 -->
                 <div class="relative rounded-lg shadow-lg overflow-hidden group">
-                    <img src="images/cert.png" alt="Certificate Design" class="w-full h-48 object-contain bg-gray-100">
+                    <img src="images/cert.png" alt="Certificate Design" class="w-full h-48 object-contain bg-gray-100" loading="eager" decoding="async" fetchpriority="high">
                     <div class="absolute inset-0 bg-black bg-opacity-60 flex items-end opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <div class="p-3 text-white">
                             <h4 class="text-base font-semibold mb-1">Certificate Design</h4>
@@ -770,7 +804,7 @@
 
                 <!-- Portfolio Item 2 -->
                 <div class="relative rounded-lg shadow-lg overflow-hidden group">
-                    <img src="images/Digi front.jpeg" alt="Business Card Design" class="w-full h-48 object-contain bg-gray-100">
+                    <img src="images/Digi front.jpeg" alt="Business Card Design" class="w-full h-48 object-contain bg-gray-100" loading="eager" decoding="async" fetchpriority="high">
                     <div class="absolute inset-0 bg-black bg-opacity-60 flex items-end opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <div class="p-3 text-white">
                             <h4 class="text-base font-semibold mb-1">Business Card Design</h4>
@@ -781,7 +815,7 @@
 
                 <!-- Portfolio Item 3 -->
                 <div class="relative rounded-lg shadow-lg overflow-hidden group">
-                    <img src="images/Tshirt.png" alt="Apparel Design" class="w-full h-48 object-contain bg-gray-100">
+                    <img src="images/Tshirt.png" alt="Apparel Design" class="w-full h-48 object-contain bg-gray-100" loading="eager" decoding="async" fetchpriority="high">
                     <div class="absolute inset-0 bg-black bg-opacity-60 flex items-end opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <div class="p-3 text-white">
                             <h4 class="text-base font-semibold mb-1">Apparel Design</h4>
@@ -792,11 +826,11 @@
 
                 <!-- Portfolio Item 4 -->
                 <div class="relative rounded-lg shadow-lg overflow-hidden group">
-                    <img src="images/Robotics classes facebook banner.jpeg" alt="Social Media Banner" class="w-full h-48 object-contain bg-gray-100">
+                    <img src="images/Mediation Webinar Poster.png" alt="Mediation Webinar Poster" class="w-full h-48 object-contain bg-gray-100" loading="eager" decoding="async" fetchpriority="high" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2QjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk1lZGlhdGlvbiBXZWJpbmFyPC90ZXh0Pgo8L3N2Zz4K'">
                     <div class="absolute inset-0 bg-black bg-opacity-60 flex items-end opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <div class="p-3 text-white">
-                            <h4 class="text-base font-semibold mb-1">Social Media Banner</h4>
-                            <p class="text-xs opacity-90">Educational Content</p>
+                            <h4 class="text-base font-semibold mb-1">Mediation Webinar Poster</h4>
+                            <p class="text-xs opacity-90">Professional Design</p>
                         </div>
                     </div>
                 </div>
@@ -1519,6 +1553,35 @@
                 mobileMenu.classList.add('hidden');
             });
         });
+
+        // Portfolio image optimization
+        function optimizePortfolioImages() {
+            const portfolioImages = document.querySelectorAll('.portfolio-item img');
+            
+            portfolioImages.forEach(img => {
+                // Add loading animation
+                img.style.opacity = '0';
+                img.style.transition = 'opacity 0.3s ease';
+                
+                // Load image with error handling
+                const imageLoader = new Image();
+                imageLoader.onload = function() {
+                    img.style.opacity = '1';
+                };
+                imageLoader.onerror = function() {
+                    img.style.opacity = '1';
+                    console.warn('Failed to load image:', img.src);
+                };
+                imageLoader.src = img.src;
+            });
+        }
+
+        // Initialize portfolio optimization when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', optimizePortfolioImages);
+        } else {
+            optimizePortfolioImages();
+        }
 
         // Ensure page starts at top on mobile
         window.addEventListener('load', function() {

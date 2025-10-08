@@ -33,6 +33,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
     
+    <!-- Preload critical portfolio images -->
+    <link rel="preload" as="image" href="images/clients logo/Kribisha.png">
+    <link rel="preload" as="image" href="images/clients logo/Mwas Grilll logo.png">
+    <link rel="preload" as="image" href="images/korir.jpg">
+    <link rel="preload" as="image" href="images/al.jpg">
+    <link rel="preload" as="image" href="images/Mediation Webinar Poster.png">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
@@ -445,6 +452,20 @@
             transform: translateZ(0);
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
+            content-visibility: auto;
+            contain-intrinsic-size: 300px 256px;
+        }
+        
+        /* Portfolio grid optimization */
+        #portfolio-grid {
+            contain: layout style paint;
+            content-visibility: auto;
+        }
+        
+        /* Faster image loading for portfolio */
+        .portfolio-item {
+            contain: layout style paint;
+            transform: translateZ(0);
         }
         
         /* Lazy loading optimization */
@@ -2126,6 +2147,39 @@
                 img.setAttribute('loading', 'lazy');
                 img.setAttribute('decoding', 'async');
             });
+
+            // Optimize portfolio grid performance
+            const portfolioGrid = document.getElementById('portfolio-grid');
+            if (portfolioGrid) {
+                portfolioGrid.style.contain = 'layout style paint';
+                portfolioGrid.style.contentVisibility = 'auto';
+            }
+
+            // Progressive image loading for portfolio
+            const portfolioImages = document.querySelectorAll('.portfolio-item img[loading="lazy"]');
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.classList.add('loaded');
+                            observer.unobserve(img);
+                        }
+                    });
+                }, {
+                    rootMargin: '50px 0px',
+                    threshold: 0.01
+                });
+
+                portfolioImages.forEach(img => {
+                    imageObserver.observe(img);
+                });
+            } else {
+                // Fallback for older browsers
+                portfolioImages.forEach(img => {
+                    img.classList.add('loaded');
+                });
+            }
         }
 
         // Clean, efficient initialization
