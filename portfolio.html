@@ -28,6 +28,11 @@
     <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
     <link rel="manifest" href="./site.webmanifest" />
     
+    <!-- Performance Optimization -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
@@ -436,6 +441,30 @@
             image-rendering: -webkit-optimize-contrast;
             image-rendering: crisp-edges;
             image-rendering: pixelated;
+            will-change: transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        
+        /* Lazy loading optimization */
+        .portfolio-item img[loading="lazy"] {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .portfolio-item img[loading="lazy"].loaded {
+            opacity: 1;
+        }
+        
+        /* Responsive image optimization */
+        @media (max-width: 768px) {
+            .portfolio-item img {
+                max-width: 100%;
+                height: auto;
+                transform: translateZ(0);
+                will-change: auto;
+            }
         }
         
         /* Mobile-specific optimizations */
@@ -457,9 +486,14 @@
                 contain-intrinsic-size: 300px 240px;
             }
             
-            .portfolio-grid {
+            #portfolio-grid {
                 grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
                 gap: 1rem;
+            }
+            
+            /* Reduce animation complexity on mobile */
+            .portfolio-item:hover {
+                transform: translateY(-4px);
             }
             
             /* Mobile portfolio loading improvements */
@@ -1193,7 +1227,7 @@
                 <!-- Social Media Graphics Projects -->
                 <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="social-media">
                     <div class="relative">
-                        <img src="images/korir.jpg" alt="korir Property" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2QjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlNvY2lhbCBNZWRpYTwvdGV4dD4KPC9zdmc+Cg=='">
+                        <img src="images/korir.jpg" alt="korir Property" loading="lazy" decoding="async" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2QjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlNvY2lhbCBNZWRpYTwvdGV4dD4KPC9zdmc+Cg=='">
                         <div class="category-badge">Social Media</div>
                         <div class="portfolio-overlay">
                             <div>
@@ -1206,7 +1240,7 @@
 
                 <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="social-media">
                     <div class="relative">
-                        <img src="images/al.jpg" alt="Al husnain" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2QjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkZhY2Vib29rIEFkPC90ZXh0Pgo8L3N2Zz4K'">
+                        <img src="images/al.jpg" alt="Al husnain" loading="lazy" decoding="async" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2QjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkZhY2Vib29rIEFkPC90ZXh0Pgo8L3N2Zz4K'">
                         <div class="category-badge">Social Media</div>
                         <div class="portfolio-overlay">
                             <div>
@@ -2050,8 +2084,55 @@
             }
         });
 
+        // Advanced Image Optimization
+        function optimizeImages() {
+            // Lazy loading with Intersection Observer
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.classList.add('loaded');
+                            observer.unobserve(img);
+                        }
+                    });
+                }, {
+                    rootMargin: '50px 0px',
+                    threshold: 0.01
+                });
+
+                // Observe all lazy images
+                document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+                    imageObserver.observe(img);
+                });
+            }
+
+            // Preload critical images
+            const criticalImages = [
+                'images/portfolio hero.webp',
+                'images/noveyo.png'
+            ];
+            
+            criticalImages.forEach(src => {
+                const link = document.createElement('link');
+                link.rel = 'preload';
+                link.as = 'image';
+                link.href = src;
+                document.head.appendChild(link);
+            });
+
+            // Add lazy loading to all portfolio images that don't have it
+            document.querySelectorAll('.portfolio-item img:not([loading])').forEach(img => {
+                img.setAttribute('loading', 'lazy');
+                img.setAttribute('decoding', 'async');
+            });
+        }
+
         // Clean, efficient initialization
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize image optimization
+            optimizeImages();
+            
             // Mobile menu toggle
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');

@@ -1100,7 +1100,7 @@
                                 </div>
                                 <div>
                                     <p class="font-medium text-gray-900">Office</p>
-                                    <p class="text-gray-600">Roysambu, Nairobi Kenya</p>
+                                    <p class="text-gray-600">Nairobi, Kenya</p>
                                 </div>
                             </div>
                         </div>
@@ -1363,9 +1363,16 @@
             measurementId: "G-2JSTP0DEGR"
         };
 
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const database = getDatabase(app);
+    // Initialize Firebase with error handling
+    let app, database;
+    try {
+        app = initializeApp(firebaseConfig);
+        database = getDatabase(app);
+        console.log('Firebase initialized successfully');
+    } catch (error) {
+        console.error('Firebase initialization error:', error);
+        // Continue without Firebase functionality
+    }
 
     // Initialize EmailJS
     (function() {
@@ -1469,6 +1476,11 @@
 
         // Newsletter subscription function
         window.addNewsletterToFirebase = async function(email) {
+            if (!database) {
+                console.error('Firebase not initialized');
+                throw new Error('Service temporarily unavailable');
+            }
+            
             try {
                 console.log('Sending newsletter subscription:', email);
                 const newsletterRef = ref(database, 'newsletters');
@@ -1498,6 +1510,14 @@
         document.getElementById('mobile-menu-btn').addEventListener('click', function() {
             const mobileMenu = document.getElementById('mobile-menu');
             mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when navigation links are clicked
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                const mobileMenu = document.getElementById('mobile-menu');
+                mobileMenu.classList.add('hidden');
+            });
         });
 
         // Ensure page starts at top on mobile
@@ -1727,5 +1747,5 @@
             });
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9642347de62c5bc6',t:'MTc1MzM0NzM5NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
