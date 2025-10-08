@@ -22,11 +22,11 @@
     <link rel="canonical" href="https://noveyotechnologies.com/portfolio.html">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/webp" href="./favicon.webp" sizes="16x16">
-    <link rel="icon" type="image/webp" href="./favicon.webp" sizes="32x32">
-    <link rel="icon" type="image/webp" href="./favicon.webp" sizes="48x48">
-    <link rel="apple-touch-icon" href="./favicon.webp" sizes="180x180">
-    <link rel="shortcut icon" href="./favicon.webp">
+    <link rel="icon" type="image/png" href="./favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="shortcut icon" href="./favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
+    <link rel="manifest" href="./site.webmanifest" />
     
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -145,6 +145,27 @@
             object-position: center;
         }
         
+        /* Social Media Graphics-specific styling for proper aspect ratio */
+        .portfolio-item[data-category="social-media"] {
+            aspect-ratio: 4/5;
+        }
+        
+        .portfolio-item[data-category="social-media"] .relative {
+            width: 100%;
+            height: 100%;
+            background-color: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .portfolio-item[data-category="social-media"] img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background-color: #f3f4f6;
+        }
+
         /* Video-specific styling for proper aspect ratio */
         .portfolio-item[data-category="video"] {
             aspect-ratio: 16/9;
@@ -1172,7 +1193,7 @@
                 <!-- Social Media Graphics Projects -->
                 <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="social-media">
                     <div class="relative">
-                        <img src="images/korir.jpg" alt="korir Property" class="w-full h-64 object-cover" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2QjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlNvY2lhbCBNZWRpYTwvdGV4dD4KPC9zdmc+Cg=='">
+                        <img src="images/korir.jpg" alt="korir Property" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2QjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlNvY2lhbCBNZWRpYTwvdGV4dD4KPC9zdmc+Cg=='">
                         <div class="category-badge">Social Media</div>
                         <div class="portfolio-overlay">
                             <div>
@@ -1185,22 +1206,7 @@
 
                 <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="social-media">
                     <div class="relative">
-                        <img src="images/al.jpg" alt="Al husnain" class="w-full h-64 object-cover" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2QjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkZhY2Vib29rIEFkPC90ZXh0Pgo8L3N2Zz4K'">
-                        <div class="category-badge">Social Media</div>
-                        <div class="portfolio-overlay">
-                            <div>
-                                <h3 class="text-xl font-bold mb-2">Facebook Ad</h3>
-                                <p class="text-sm">Digital marketing graphics</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                
-
-                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="social-media">
-                    <div class="relative">
-                        <img src="images/gym.jpg" alt="price list post" class="w-full h-64 object-cover" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2QjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkZhY2Vib29rIEFkPC90ZXh0Pgo8L3N2Zz4K'">
+                        <img src="images/al.jpg" alt="Al husnain" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2QjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkZhY2Vib29rIEFkPC90ZXh0Pgo8L3N2Zz4K'">
                         <div class="category-badge">Social Media</div>
                         <div class="portfolio-overlay">
                             <div>
@@ -1213,7 +1219,20 @@
 
                 <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="social-media">
                     <div class="relative">
-                        <img src="images/Fathers.jpg" alt="facebook post" class="w-full h-64 object-cover" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2QjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkZhY2Vib29rIEFkPC90ZXh0Pgo8L3N2Zz4K'">
+                        <img src="images/Mediation Webinar Poster.png" alt="Mediation Webinar Poster" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2QjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk1lZGlhdGlvbiBXZWJpbmFyPC90ZXh0Pgo8L3N2Zz4K'">
+                        <div class="category-badge">Social Media</div>
+                        <div class="portfolio-overlay">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Mediation Webinar Poster</h3>
+                                <p class="text-sm">Professional webinar promotion</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="social-media">
+                    <div class="relative">
+                        <img src="images/gym.jpg" alt="price list post" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2QjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkZhY2Vib29rIEFkPC90ZXh0Pgo8L3N2Zz4K'">
                         <div class="category-badge">Social Media</div>
                         <div class="portfolio-overlay">
                             <div>
@@ -1226,7 +1245,7 @@
 
                 <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="social-media">
                     <div class="relative">
-                        <img src="images/carousel.jpg" alt="instagram carousel" class="w-full h-64 object-cover" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2QjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkZhY2Vib29rIEFkPC90ZXh0Pgo8L3N2Zz4K'">
+                        <img src="images/Fathers.jpg" alt="facebook post" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2QjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkZhY2Vib29rIEFkPC90ZXh0Pgo8L3N2Zz4K'">
                         <div class="category-badge">Social Media</div>
                         <div class="portfolio-overlay">
                             <div>
@@ -1239,7 +1258,20 @@
 
                 <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="social-media">
                     <div class="relative">
-                        <img src="images/time.jpg" alt="Instagram Post" class="w-full h-64 object-cover" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2QjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkZhY2Vib29rIEFkPC90ZXh0Pgo8L3N2Zz4K'">
+                        <img src="images/carousel.jpg" alt="instagram carousel" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2QjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkZhY2Vib29rIEFkPC90ZXh0Pgo8L3N2Zz4K'">
+                        <div class="category-badge">Social Media</div>
+                        <div class="portfolio-overlay">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Facebook Ad</h3>
+                                <p class="text-sm">Digital marketing graphics</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item bg-white rounded-lg shadow-lg fade-in" data-category="social-media">
+                    <div class="relative">
+                        <img src="images/time.jpg" alt="Instagram Post" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDMwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM2QjcyODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkZhY2Vib29rIEFkPC90ZXh0Pgo8L3N2Zz4K'">
                         <div class="category-badge">Social Media</div>
                         <div class="portfolio-overlay">
                             <div>
