@@ -1811,6 +1811,31 @@
                 }
             });
         });
+
+        // Auto-scroll to contact section when coming from blog pages
+        function scrollToContact() {
+            const contactSection = document.getElementById('contact');
+            if (contactSection) {
+                contactSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        // Handle page load with hash
+        window.addEventListener('load', function() {
+            if (window.location.hash === '#contact') {
+                setTimeout(scrollToContact, 100); // Small delay to ensure page is fully loaded
+            }
+        });
+
+        // Handle hash changes (for direct navigation)
+        window.addEventListener('hashchange', function() {
+            if (window.location.hash === '#contact') {
+                setTimeout(scrollToContact, 50);
+            }
+        });
     </script>
 </body>
 </html>

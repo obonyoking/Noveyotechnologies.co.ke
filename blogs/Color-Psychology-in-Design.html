@@ -115,8 +115,7 @@
                         <a href="../portfolio.html" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Portfolio</a>
                         <a href="../vesial.html" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Vesial</a>
                         <a href="blogs.html" class="text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Blogs</a>
-                        <a href="index.html#about" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">About</a>
-                        <a href="index.html#contact" class="text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors" style="background-color: #060644;">Get Quote</a>
+                        <a href="../index.html#about" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">About</a>
                     </div>
                 </div>
                 <div class="md:hidden">
@@ -532,6 +531,9 @@
         </div>
     </footer>
 
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    
     <!-- Firebase SDK -->
     <script type="module">
         // Import the functions you need from the SDKs you need
@@ -554,6 +556,27 @@
         const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
 
+        // Initialize EmailJS
+        (function() {
+            emailjs.init("uRHTzpQ1K8P2XgfOM"); // Replace with your EmailJS public key
+        })();
+
+        // Email notification functions
+        function sendNewsletterEmailNotification(email) {
+            const templateParams = {
+                to_email: 'info@noveyotechnologies.com', // Replace with your email
+                subscriber_email: email,
+                timestamp: new Date().toLocaleString()
+            };
+
+            emailjs.send('service_2htqfpv', 'template_vdni0kk', templateParams)
+                .then(function(response) {
+                    console.log('Newsletter email notification sent successfully!', response.status, response.text);
+                }, function(error) {
+                    console.log('Failed to send newsletter email notification:', error);
+                });
+        }
+
         // Newsletter form submission
         function addNewsletterToFirebase(email) {
             try {
@@ -568,6 +591,10 @@
                 
                 set(newNewsletterRef, newsletterData).then(() => {
                     console.log('Newsletter subscription added to Firebase');
+                    
+                    // Send email notification
+                    sendNewsletterEmailNotification(email);
+                    
                     showNotification('Thank you for subscribing to our newsletter!', 'success');
                 }).catch((error) => {
                     console.error('Error adding newsletter subscription to Firebase:', error);
