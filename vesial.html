@@ -323,15 +323,14 @@
                     <a href="index.html" class="flex items-center space-x-3">
                         <img src="images/VESIAL LOGO.png" alt="Vesial Logo" class="h-10 w-auto">
                         <span class="text-2xl font-bold vesial-gradient-text">Vesial</span>
+                        <span class="text-sm text-gray-500 ml-2">by Noveyo Technologies</span>
                     </a>
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="index.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Home</a>
+                        <a href="index.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">← Back to Noveyo</a>
                         <a href="#packages" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Packages</a>
                         <a href="portfolio.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Portfolio</a>
-                        <a href="vesial.html" class="text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Vesial</a>
-                        <a href="blogs/blogs.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Blogs</a>
                         <a href="index.html#about" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">About</a>
                         <a href="index.html#contact" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Contact</a>
                         <button onclick="openInquiryModal()" class="text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors cta-button">
@@ -350,11 +349,9 @@
         </div>
         <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
             <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Home</a>
-                        <a href="#packages" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Packages</a>
+                <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">← Back to Noveyo</a>
+                <a href="#packages" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Packages</a>
                 <a href="portfolio.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Portfolio</a>
-                <a href="vesial.html" class="block px-3 py-2 text-blue-600 font-semibold">Vesial</a>
-                <a href="blogs/blogs.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Blogs</a>
                 <a href="index.html#about" class="block px-3 py-2 text-gray-700 hover:text-blue-600">About</a>
                 <a href="index.html#contact" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Contact</a>
                 <button onclick="openInquiryModal()" class="block w-full text-left px-3 py-2 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors cta-button">
@@ -364,8 +361,21 @@
         </div>
     </nav>
 
+    <!-- Breadcrumb -->
+    <div class="bg-gray-100 py-3 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="flex items-center space-x-2 text-sm">
+                <a href="index.html" class="text-gray-600 hover:text-blue-600">Noveyo Technologies</a>
+                <span class="text-gray-400">/</span>
+                <a href="index.html#services" class="text-gray-600 hover:text-blue-600">Services</a>
+                <span class="text-gray-400">/</span>
+                <span class="text-blue-600 font-medium">Vesial</span>
+            </nav>
+        </div>
+    </div>
+
     <!-- Hero Section -->
-    <section class="hero-section vesial-gradient text-white py-20 mt-16">
+    <section class="hero-section vesial-gradient text-white py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
                 <h1 class="text-5xl md:text-6xl font-bold mb-6 fade-in">
@@ -1265,13 +1275,30 @@
             }
         });
 
+        // Handle hash scrolling when coming from other pages
+        function handleHashScroll() {
+            const hash = window.location.hash;
+            if (hash === '#packages') {
+                setTimeout(() => {
+                    const packagesSection = document.getElementById('packages');
+                    if (packagesSection) {
+                        packagesSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }, 100);
+            }
+        }
+
         // Ensure page starts at top on mobile
         window.addEventListener('load', function() {
-            window.scrollTo(0, 0);
-            if (window.location.hash) {
-                history.replaceState(null, null, window.location.pathname);
+            if (window.location.hash === '#packages') {
+                handleHashScroll();
+            } else {
+                window.scrollTo(0, 0);
             }
         });
+        
+        // Handle hash changes
+        window.addEventListener('hashchange', handleHashScroll);
     </script>
 </body>
 </html>

@@ -182,6 +182,18 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
         
+        /* Testimonial hover effects */
+        .testimonial-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            border: 2px solid #4f46e5;
+        }
+        
         .service-card {
             background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
             border: 1px solid #e2e8f0;
@@ -481,9 +493,8 @@
                         <a href="index.html" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Home</a>
                         <a href="#services" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Services</a>
                         <a href="portfolio.html" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Portfolio</a>
-                        <a href="vesial.html" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Vesial</a>
-                        <a href="blogs/blogs.html" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Blogs</a>
                         <a href="#about" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">About</a>
+                        <a href="blogs/blogs.html" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Blogs</a>
                         <a href="#contact" class="text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors" style="background-color: #060644;">
    Get Quote
 </a>
@@ -504,9 +515,8 @@
                 <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Home</a>
                 <a href="#services" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Services</a>
                 <a href="portfolio.html" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Portfolio</a>
-                <a href="vesial.html" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Vesial</a>
-                <a href="blogs/blogs.html" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Blogs</a>
                 <a href="#about" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">About</a>
+                <a href="blogs/blogs.html" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Blogs</a>
                 <a href="#contact" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Contact</a>
             </div>
         </div>
@@ -571,6 +581,36 @@
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
                     Comprehensive design and print solutions to amplify your brand's presence across all marketing channels
                 </p>
+            </div>
+            
+            <!-- Vesial Premium Service Showcase -->
+            <div class="mb-16 bg-gradient-to-r from-blue-50 to-indigo-100 rounded-2xl p-8 border-2 border-blue-200">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <!-- Left Side - Vesial Full Logo -->
+                    <div class="flex justify-center lg:justify-start">
+                        <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-200">
+                            <img src="Vesial by Noveyotech/VESIAL FULL LOGO.png" alt="Vesial Full Logo" class="w-full max-w-sm h-auto object-contain">
+                        </div>
+                    </div>
+                    
+                    <!-- Right Side - Content -->
+                    <div class="text-center lg:text-left">
+                        <h3 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+                            Our Premium Social Media Management Service
+                        </h3>
+                        <p class="text-lg text-gray-700 mb-6">
+                            <strong>Explore Vesial</strong> - Comprehensive social media management and design services that combine strategic management with powerful visuals to give your brand a voice that connects, engages, and grows.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                            <a href="vesial.html#packages" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors inline-flex items-center">
+                                <i class="fas fa-rocket mr-2"></i>Choose Your Plan
+                            </a>
+                            <a href="vesial.html" class="border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-colors inline-flex items-center">
+                                <i class="fas fa-chart-line mr-2"></i>Start Your Social Growth
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -702,85 +742,6 @@
         </div>
     </section>
 
-    <!-- Vesial Section -->
-    <section class="py-16 bg-gradient-to-r from-blue-50 to-indigo-100">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 md:p-8">
-                <!-- Mobile Layout (stacked) -->
-                <div class="md:hidden">
-                    <div class="text-center mb-6">
-                        <!-- Logo -->
-                        <div class="flex justify-center mb-4">
-                            <img src="images/VESIAL LOGO.png" alt="Vesial Logo" class="w-16 h-16 object-contain">
-                        </div>
-                        
-                        <!-- Vesial Name -->
-                        <h2 class="text-3xl font-bold text-gray-900 mb-2">
-                            <span class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                                Vesial
-                            </span>
-                        </h2>
-                        
-                        <!-- Tagline -->
-                        <p class="text-lg text-blue-600 font-medium mb-3">
-                            Your Brand Amplified
-                        </p>
-                        
-                        <!-- Description -->
-                        <p class="text-gray-700 text-sm leading-relaxed mb-6">
-                            Comprehensive social media management and design services. We combine strategic management with powerful visuals to give your brand a voice that connects, engages, and grows.
-                        </p>
-                        
-                        <!-- Learn More Button -->
-                        <a href="vesial.html" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-indigo-700 transform hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg">
-                            <span>Learn More</span>
-                            <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Desktop Layout (side by side) -->
-                <div class="hidden md:flex items-center justify-between">
-                    <!-- Left Side - Logo -->
-                    <div class="flex-shrink-0">
-                        <img src="images/VESIAL LOGO.png" alt="Vesial Logo" class="w-20 h-20 object-contain">
-                    </div>
-                    
-                    <!-- Right Side - Content -->
-                    <div class="flex-1 ml-8">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <!-- Vesial Name -->
-                                <h2 class="text-4xl font-bold text-gray-900 mb-2">
-                                    <span class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                                        Vesial
-                                    </span>
-                                </h2>
-                                
-                                <!-- Tagline -->
-                                <p class="text-base text-blue-600 font-medium mb-3">
-                                    Your Brand Amplified
-                                </p>
-                                
-                                <!-- Description -->
-                                <p class="text-gray-700 text-base leading-relaxed max-w-2xl">
-                                    Comprehensive social media management and design services. We combine strategic management with powerful visuals to give your brand a voice that connects, engages, and grows.
-                                </p>
-                            </div>
-                            
-                            <!-- Learn More Button -->
-                            <div class="ml-6">
-                                <a href="vesial.html" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-indigo-700 transform hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg">
-                                    <span>Learn More</span>
-                                    <i class="fas fa-arrow-right ml-2"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Portfolio Section -->
     <section id="portfolio" class="py-20 bg-gray-50">
@@ -840,7 +801,7 @@
 
             <div class="text-center mt-12">
                 <a href="portfolio.html" class="bg-indigo-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-indigo-700 transition-colors inline-block">
-                    View Full Portfolio
+                    See More of Our Work
                 </a>
             </div>
         </div>
@@ -966,85 +927,254 @@
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Testimonial 1 -->
-                <div class="bg-white rounded-2xl p-6 shadow-lg">
-                    <div class="flex items-center mb-4">
-                        <img src="images/slater.jpg" alt="John Slater" class="w-12 h-12 rounded-full object-cover" loading="lazy" decoding="async" fetchpriority="low"> 
-                        <!-- <div class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
-                            A
-                        </div> -->
-                        <div class="ml-4">
-                            <h4 class="font-semibold text-gray-900">John Slater</h4>
-                            <p class="text-sm text-gray-600">CEO, BigBrainz Solutions</p>
+            <!-- Testimonials Carousel -->
+            <div class="relative">
+                <!-- Navigation Buttons -->
+                <button id="testimonial-prev" class="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 z-10 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110">
+                    <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </button>
+                
+                <button id="testimonial-next" class="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 z-10 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110">
+                    <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+
+                <!-- Carousel Container -->
+                <div class="overflow-hidden">
+                    <div id="testimonials-carousel" class="flex transition-transform duration-500 ease-in-out">
+                        <!-- Testimonial Set 1 -->
+                        <div class="w-full flex-shrink-0">
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                                <!-- Testimonial 1 -->
+                                <div class="bg-white rounded-2xl p-6 shadow-lg testimonial-card">
+                                    <div class="flex items-center mb-4">
+                                        <img src="images/slater.jpg" alt="John Slater" class="w-12 h-12 rounded-full object-cover">
+                                        <div class="ml-4">
+                                            <h4 class="font-semibold text-gray-900">John Slater</h4>
+                                            <p class="text-sm text-gray-600">CEO, BigBrainz Solutions</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex mb-3">
+                                        <span class="text-yellow-400 text-xl">★★★★★</span>
+                                    </div>
+                                    <p class="text-gray-600 italic">
+                                        "Their attention to detail and commitment to quality made working with them seamless and impactful!"
+                                    </p>
+                                </div>
+
+                                <!-- Testimonial 2 -->
+                                <div class="bg-white rounded-2xl p-6 shadow-lg testimonial-card">
+                                    <div class="flex items-center mb-4">
+                                        <img src="images/vicky.jpg" alt="Victor Mudeyizi" class="w-12 h-12 rounded-full object-cover">
+                                        <div class="ml-4">
+                                            <h4 class="font-semibold text-gray-900">Victor Mudeyizi</h4>
+                                            <p class="text-sm text-gray-600">Director, DigiskoolSTEM</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex mb-3">
+                                        <span class="text-yellow-400 text-xl">★★★★★</span>
+                                    </div>
+                                    <p class="text-gray-600 italic">
+                                        "The design work from Noveyo is outstanding, clean and visually striking. Every detail reflects true creativity."
+                                    </p>
+                                </div>
+
+                                <!-- Testimonial 3 -->
+                                <div class="bg-white rounded-2xl p-6 shadow-lg testimonial-card">
+                                    <div class="flex items-center mb-4">
+                                        <img src="images/cynthia.jpg" alt="Cynthia Thoithi" class="w-12 h-12 rounded-full object-cover">
+                                        <div class="ml-4">
+                                            <h4 class="font-semibold text-gray-900">Cynthia Thoithi</h4>
+                                            <p class="text-sm text-gray-600">Business Owner</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex mb-3">
+                                        <span class="text-yellow-400 text-xl">★★★★★</span>
+                                    </div>
+                                    <p class="text-gray-600 italic">
+                                        "Noveyo delivered our flyers right on time, and the print quality was excellent and professional. Highly recommended!"
+                                    </p>
+                                </div>
+
+                                <!-- Testimonial 4 -->
+                                <div class="bg-white rounded-2xl p-6 shadow-lg testimonial-card">
+                                    <div class="flex items-center mb-4">
+                                        <img src="images/mercy.jpg" alt="Mercy Gathigia" class="w-12 h-12 rounded-full object-cover">
+                                        <div class="ml-4">
+                                            <h4 class="font-semibold text-gray-900">Mercy Gathigia</h4>
+                                            <p class="text-sm text-gray-600">Business Owner</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex mb-3">
+                                        <span class="text-yellow-400 text-xl">★★★★★</span>
+                                    </div>
+                                    <p class="text-gray-600 italic">
+                                        "Their creative vision brought our brand to life. The print materials and digital designs perfectly captured our fashion brand's essence. Amazing work!"
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial Set 2 -->
+                        <div class="w-full flex-shrink-0">
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                                <!-- Testimonial 5 - Vesial Service -->
+                                <div class="bg-white rounded-2xl p-6 shadow-lg testimonial-card">
+                                    <div class="flex items-center mb-4">
+                                        <img src="images/covenant.jpg" alt="Tabitha Makena" class="w-12 h-12 rounded-full object-cover">
+                                        <div class="ml-4">
+                                            <h4 class="font-semibold text-gray-900">Tabitha Makena</h4>
+                                            <p class="text-sm text-gray-600">Team Lead, CMCC</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex mb-3">
+                                        <span class="text-yellow-400 text-xl">★★★★★</span>
+                                    </div>
+                                    <p class="text-gray-600 italic">
+                                        "Very beautiful.
+                                        Exactly how I love it to be..
+                                        I like the way you have mixed the colours"
+                                    </p>
+                                </div>
+
+                                <!-- Testimonial 6 - Web Development -->
+                                <div class="bg-white rounded-2xl p-6 shadow-lg testimonial-card">
+                                    <div class="flex items-center mb-4">
+                                        <img src="images/caleb seda.jpeg" alt="Caleb Seda" class="w-12 h-12 rounded-full object-cover">
+                                        <div class="ml-4">
+                                            <h4 class="font-semibold text-gray-900">Caleb Seda</h4>
+                                            <p class="text-sm text-gray-600">ESD Expert, BigBrainz Solutions</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex mb-3">
+                                        <span class="text-yellow-400 text-xl">★★★★★</span>
+                                    </div>
+                                    <p class="text-gray-600 italic">
+                                        "“Woow… what a piece of artistic articulation! Absolutely lovely. Our team is just as happy with the work as I am. Truly impressed with the creativity and professionalism."
+                                    </p>
+                                </div>
+
+                                <!-- Testimonial 7 - Branding -->
+                                <div class="bg-white rounded-2xl p-6 shadow-lg testimonial-card">
+                                    <div class="flex items-center mb-4">
+                                        <img src="images/george.jpg" alt="George Mwangi" class="w-12 h-12 rounded-full object-cover">
+                                        <div class="ml-4">
+                                            <h4 class="font-semibold text-gray-900">George Mwangi</h4>
+                                            <p class="text-sm text-gray-600">The Well Irish Pub and Restaurant</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex mb-3">
+                                        <span class="text-yellow-400 text-xl">★★★★★</span>
+                                    </div>
+                                    <p class="text-gray-600 italic">
+                                        "Perfect! Good job on the posters!"
+                                    </p>
+                                </div>
+
+                                <!-- Testimonial 8 - Print Design -->
+                                <div class="bg-white rounded-2xl p-6 shadow-lg testimonial-card">
+                                    <div class="flex items-center mb-4">
+                                        <img src="images/Sarah Mwangi.jpeg" alt="Sarah Mwangi" class="w-12 h-12 rounded-full object-cover">
+                                        <div class="ml-4">
+                                            <h4 class="font-semibold text-gray-900">Serah Nyambura</h4>
+                                            <p class="text-sm text-gray-600">BDM, Digiskool</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex mb-3">
+                                        <span class="text-yellow-400 text-xl">★★★★★</span>
+                                    </div>
+                                    <p class="text-gray-600 italic">
+                                        "Imeweza. You're doing a good job. Receive your flowers🌸🌺🌻🌹🌷🌼💐"
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial Set 3 -->
+                        <div class="w-full flex-shrink-0">
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                                <!-- Testimonial 9 - Vesial Service -->
+                                <div class="bg-white rounded-2xl p-6 shadow-lg testimonial-card">
+                                    <div class="flex items-center mb-4">
+                                        <img src="images/Rebecca Kariuki.png" alt="Rebecca Kariuki" class="w-12 h-12 rounded-full object-cover">
+                                        <div class="ml-4">
+                                            <h4 class="font-semibold text-gray-900">Rebecca Kariuki</h4>
+                                            <p class="text-sm text-gray-600">Online Shoe Store Owner</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex mb-3">
+                                        <span class="text-yellow-400 text-xl">★★★★★</span>
+                                    </div>
+                                    <p class="text-gray-600 italic">
+                                        "Vesial's social media management has tripled our online sales! Their content strategy and visual designs perfectly capture our brand's aesthetic."
+                                    </p>
+                                </div>
+
+                                <!-- Testimonial 10 - IT Solutions -->
+                                <div class="bg-white rounded-2xl p-6 shadow-lg testimonial-card">
+                                    <div class="flex items-center mb-4">
+                                        <img src="images/Peter Njoroge.png" alt="Peter Njoroge" class="w-12 h-12 rounded-full object-cover">
+                                        <div class="ml-4">
+                                            <h4 class="font-semibold text-gray-900">Peter Njoroge</h4>
+                                            <p class="text-sm text-gray-600">IT Manager</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex mb-3">
+                                        <span class="text-yellow-400 text-xl">★★★★★</span>
+                                    </div>
+                                    <p class="text-gray-600 italic">
+                                        "Noveyo's IT consultation helped us streamline our digital infrastructure. Their technical expertise and practical solutions saved us time and money."
+                                    </p>
+                                </div>
+
+                                <!-- Testimonial 11 - Custom Design -->
+                                <div class="bg-white rounded-2xl p-6 shadow-lg testimonial-card">
+                                    <div class="flex items-center mb-4">
+                                        <img src="images/Alice Wanjiku.png" alt="Alice Wanjiku" class="w-12 h-12 rounded-full object-cover">
+                                        <div class="ml-4">
+                                            <h4 class="font-semibold text-gray-900">Alice Wanjiku</h4>
+                                            <p class="text-sm text-gray-600">Non-Profit Director</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex mb-3">
+                                        <span class="text-yellow-400 text-xl">★★★★★</span>
+                                    </div>
+                                    <p class="text-gray-600 italic">
+                                        "The custom presentation templates and event branding Noveyo created for our organization have elevated our professional image significantly."
+                                    </p>
+                                </div>
+
+                                <!-- Testimonial 12 - Vesial Service -->
+                                <div class="bg-white rounded-2xl p-6 shadow-lg testimonial-card">
+                                    <div class="flex items-center mb-4">
+                                        <img src="images/Michael Kiprotich.png" alt="Michael Kiprotich" class="w-12 h-12 rounded-full object-cover">
+                                        <div class="ml-4">
+                                            <h4 class="font-semibold text-gray-900">Michael Kiprotich</h4>
+                                            <p class="text-sm text-gray-600">Real Estate Agent</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex mb-3">
+                                        <span class="text-yellow-400 text-xl">★★★★★</span>
+                                    </div>
+                                    <p class="text-gray-600 italic">
+                                        "Vesial's social media strategy helped me generate 40% more leads this quarter. Their content is always on-brand and engaging for my target market."
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="flex mb-3">
-                        <span class="text-yellow-400 text-xl">★★★★★</span>
-                    </div>
-                    <p class="text-gray-600 italic">
-                        "Their attention to detail and commitment to quality made working with them seamless and impactful!"
-                    </p>
                 </div>
 
-                <!-- Testimonial 2 -->
-                <div class="bg-white rounded-2xl p-6 shadow-lg">
-                    <div class="flex items-center mb-4">
-                        <img src="images/vicky.jpg" alt="Victor Mudeyizi" class="w-12 h-12 rounded-full object-cover" loading="lazy" decoding="async" fetchpriority="low">
-                        <!-- <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
-                            S
-                        </div> -->
-                        <div class="ml-4">
-                            <h4 class="font-semibold text-gray-900">Victor Mudeyizi</h4>
-                            <p class="text-sm text-gray-600">Director, DigiskoolSTEM</p>
-                        </div>
-                    </div>
-                    <div class="flex mb-3">
-                        <span class="text-yellow-400 text-xl">★★★★★</span>
-                    </div>
-                    <p class="text-gray-600 italic">
-                        "The design work from Noveyo is outstanding,clean and visually striking. Every detail reflects true creativity."
-                    </p>
-                </div>
-
-                <!-- Testimonial 3 -->
-                <div class="bg-white rounded-2xl p-6 shadow-lg">
-                    <div class="flex items-center mb-4">
-                        <img src="images/cynthia.jpg" alt="Cynthia Thoithi" class="w-12 h-12 rounded-full object-cover" loading="lazy" decoding="async" fetchpriority="low">
-                        <!-- <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
-                            D
-                        </div> -->
-                        <div class="ml-4">
-                            <h4 class="font-semibold text-gray-900">Cynthia Thoithi</h4>
-                            <p class="text-sm text-gray-600">Business Owner</p>
-                        </div>
-                    </div>
-                    <div class="flex mb-3">
-                        <span class="text-yellow-400 text-xl">★★★★★</span>
-                    </div>
-                    <p class="text-gray-600 italic">
-                        "Noveyo delivered our flyers right on time, and the print quality was excellent, and professional. Highly recommended!"
-                    </p>
-                </div>
-
-                <!-- Testimonial 4 -->
-                <div class="bg-white rounded-2xl p-6 shadow-lg">
-                    <div class="flex items-center mb-4">
-                        <img src="images/mercy.jpg" alt="Mercy Gathigia" class="w-12 h-12 rounded-full object-cover" loading="lazy" decoding="async" fetchpriority="low">
-                        <!-- <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
-                            M
-                        </div> -->
-                        <div class="ml-4">
-                            <h4 class="font-semibold text-gray-900">Mercy Gathigia</h4>
-                            <p class="text-sm text-gray-600">Business Owner</p>
-                        </div>
-                    </div>
-                    <div class="flex mb-3">
-                        <span class="text-yellow-400 text-xl">★★★★★</span>
-                    </div>
-                    <p class="text-gray-600 italic">
-                        "Their creative vision brought our brand to life. The print materials and digital designs perfectly captured our fashion brand's essence. Amazing work!"
-                    </p>
+                <!-- CTA Button -->
+                <div class="flex justify-center mt-6">
+                    <button onclick="openQuoteModal('Get Your Custom Quote')" class="bg-gradient-to-r from-indigo-600 to-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-indigo-700 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center">
+                        <i class="fas fa-rocket mr-3 text-lg"></i>
+                        Get Results Like These
+                        <i class="fas fa-arrow-right ml-3"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -1299,7 +1429,7 @@
     <div id="quote-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
         <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4">
             <div class="text-center mb-6">
-                <h3 class="text-2xl font-bold text-gray-900 mb-2">Get Quote for <span id="service-name"></span></h3>
+                <h3 class="text-2xl font-bold text-gray-900 mb-2" id="modal-title">Get Your Custom Quote</h3>
                 <p class="text-gray-600">We'll get back to you within 2 hours!</p>
             </div>
             <form class="space-y-4">
@@ -1621,7 +1751,12 @@
 
         // Quote modal functions
         function openQuoteModal(serviceName) {
-            document.getElementById('service-name').textContent = serviceName;
+            const modalTitle = document.getElementById('modal-title');
+            if (serviceName === 'Get Your Custom Quote') {
+                modalTitle.textContent = 'Get Your Custom Quote';
+            } else {
+                modalTitle.textContent = `Get Quote for ${serviceName}`;
+            }
             document.getElementById('quote-modal').classList.remove('hidden');
             document.getElementById('quote-modal').classList.add('flex');
         }
@@ -1770,16 +1905,19 @@
         }
 
         // Trigger stats animation when section is visible
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateStats();
-                    observer.unobserve(entry.target);
-                }
+        const statsElement = document.querySelector('.stats-counter');
+        if (statsElement && statsElement.parentElement && statsElement.parentElement.parentElement) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateStats();
+                        observer.unobserve(entry.target);
+                    }
+                });
             });
-        });
 
-        observer.observe(document.querySelector('.stats-counter').parentElement.parentElement);
+            observer.observe(statsElement.parentElement.parentElement);
+        }
 
         // Close modals when clicking outside
         document.getElementById('quote-modal').addEventListener('click', function(e) {
@@ -1813,6 +1951,73 @@
         
         // Handle hash changes
         window.addEventListener('hashchange', handleHashScroll);
+
+        // Testimonials Carousel Functionality
+        let currentTestimonialSlide = 0;
+        const totalTestimonialSlides = 3; // We have 3 sets of 4 testimonials each
+        let autoAdvanceInterval;
+        let isHovering = false;
+
+        function updateTestimonialCarousel() {
+            const carousel = document.getElementById('testimonials-carousel');
+            
+            if (carousel) {
+                carousel.style.transform = `translateX(-${currentTestimonialSlide * 100}%)`;
+            }
+        }
+
+        function nextTestimonialSlide() {
+            if (!isHovering) {
+                currentTestimonialSlide = (currentTestimonialSlide + 1) % totalTestimonialSlides;
+                updateTestimonialCarousel();
+            }
+        }
+
+        function prevTestimonialSlide() {
+            currentTestimonialSlide = (currentTestimonialSlide - 1 + totalTestimonialSlides) % totalTestimonialSlides;
+            updateTestimonialCarousel();
+        }
+
+        function startAutoAdvance() {
+            autoAdvanceInterval = setInterval(nextTestimonialSlide, 6000); // Slower, smoother auto-advance
+        }
+
+        function stopAutoAdvance() {
+            if (autoAdvanceInterval) {
+                clearInterval(autoAdvanceInterval);
+            }
+        }
+
+        // Add event listeners for testimonial carousel
+        document.addEventListener('DOMContentLoaded', function() {
+            const prevBtn = document.getElementById('testimonial-prev');
+            const nextBtn = document.getElementById('testimonial-next');
+            const testimonialCards = document.querySelectorAll('.testimonial-card');
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', prevTestimonialSlide);
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', nextTestimonialSlide);
+            }
+
+            // Add hover pause functionality to testimonial cards
+            testimonialCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    isHovering = true;
+                    stopAutoAdvance();
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    isHovering = false;
+                    startAutoAdvance();
+                });
+            });
+
+            // Start auto-advance
+            startAutoAdvance();
+        });
     </script>
 </body>
 </html>
