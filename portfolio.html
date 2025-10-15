@@ -726,12 +726,12 @@
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="/" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Home</a>
-                        <a href="/#services" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Services</a>
-                        <a href="/portfolio" class="text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Portfolio</a>
-                        <a href="/vesial" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Vesial</a>
-                        <a href="/blog" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Blogs</a>
-                        <a href="/#about" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">About</a>
+                        <a href="index.html" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Home</a>
+                        <a href="index.html#services" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Services</a>
+                        <a href="portfolio.html" class="text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Portfolio</a>
+                        <a href="vesial.html" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Vesial</a>
+                        <a href="blog/index.html" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Blogs</a>
+                        <a href="index.html#about" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">About</a>
                         <button onclick="openQuoteModal('Portfolio Inquiry')" class="text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-opacity-90 cursor-pointer" style="background-color: #060644;" type="button">
                             Get Quote
                         </button>
@@ -748,13 +748,13 @@
         </div>
         <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
             <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="/" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Home</a>
-                <a href="/#services" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Services</a>
-                <a href="/portfolio" class="block px-3 py-2 text-indigo-600">Portfolio</a>
-                <a href="/vesial" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Vesial</a>
-                <a href="/blog" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Blogs</a>
-                <a href="/#about" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">About</a>
-                <a href="/#contact" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Contact</a>
+                <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Home</a>
+                <a href="index.html#services" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Services</a>
+                <a href="portfolio.html" class="block px-3 py-2 text-indigo-600">Portfolio</a>
+                <a href="vesial.html" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Vesial</a>
+                <a href="blog/index.html" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Blogs</a>
+                <a href="index.html#about" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">About</a>
+                <a href="index.html#contact" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Contact</a>
                 <button onclick="openQuoteModal('Portfolio Inquiry')" class="block w-full text-left px-3 py-2 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-colors" style="background-color: #060644;">
                     Get Quote
                 </button>
@@ -2009,11 +2009,11 @@
                 const isVideo = videoSrc !== null;
                 
                 if (isVideo) {
-                    // For video items, use the video source directly
-                    openImagePopup('', title, description, true, videoSrc);
+                    // For video items, open Google Drive video in new tab
+                    openDriveVideo(videoSrc);
                 } else {
-                    // For regular image items
-                    openImagePopup(img.src, title, description, false);
+                    // For regular image items, do nothing for now
+                    console.log('Image clicked:', title);
                 }
             });
         });

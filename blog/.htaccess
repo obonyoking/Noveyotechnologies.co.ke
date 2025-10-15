@@ -1,8 +1,0 @@
-# Ensure blog directory uses index.html for main blog page
-DirectoryIndex index.html
-
-# Remove .html extension from URLs in blog directory
-RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^([^\.]+)$ $1.html [NC,L]
