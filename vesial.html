@@ -84,6 +84,26 @@
             background: linear-gradient(135deg, #060644 0%, #007bff 100%);
         }
         
+        .hero-section {
+            position: relative;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(6, 6, 68, 0.7);
+            z-index: 1;
+        }
+        
+        .hero-section > div {
+            position: relative;
+            z-index: 2;
+        }
+        
         .vesial-gradient-text {
             background: linear-gradient(135deg, #060644 0%, #007bff 100%);
             -webkit-background-clip: text;
@@ -294,9 +314,10 @@
                     margin-top: 2rem !important;
                 }
                 
-            /* Force gap for all flex-col containers on mobile */
-            .flex.flex-col {
-                gap: 2rem !important;
+                /* Force gap for all flex-col containers on mobile */
+                .flex.flex-col {
+                    gap: 2rem !important;
+                }
             }
         }
 
@@ -375,11 +396,11 @@
     </div>
 
     <!-- Hero Section -->
-    <section class="hero-section vesial-gradient text-white py-20">
+    <section class="hero-section vesial-gradient text-white py-20 bg-cover bg-center bg-no-repeat" style="background-image: url('./images/vesial futuristic.png');">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
                 <h1 class="text-5xl md:text-6xl font-bold mb-6 fade-in">
-                    Your Brand <span style="color: #060644;">Amplified</span>
+                    Your Brand <span style="color: #41c1ba;">Amplified</span>
                 </h1>
                 <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto fade-in">
                     Comprehensive social media management and design services that combine strategic management with powerful visuals to give your brand a voice that connects, engages, and grows.
