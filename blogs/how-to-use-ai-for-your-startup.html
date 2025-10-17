@@ -211,12 +211,27 @@
                         <i class="fas fa-clock mr-1"></i>
                         5 min read
                     </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-eye mr-1"></i>
+                        <span>1.2K readers</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-share-alt mr-1"></i>
+                        <span>89 shares</span>
+                    </div>
                 </div>
             </div>
             
             <!-- Featured Image -->
             <div class="mb-8">
                 <img src="../images/Ai in Business.png" alt="AI for Startups Guide" class="w-full h-64 md:h-96 object-cover rounded-lg shadow-lg">
+            </div>
+            
+            <!-- Share Button -->
+            <div class="text-center mb-8">
+                <button onclick="openShareModal()" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl">
+                    <i class="fas fa-share-alt mr-2"></i>Share This Article
+                </button>
             </div>
         </div>
     </div>
@@ -281,39 +296,6 @@
         </div>
     </div>
 
-    <!-- Stay Updated Section -->
-    <div class="bg-gradient-to-r from-blue-600 to-indigo-600 py-16">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="bg-white rounded-2xl p-8 shadow-2xl">
-                <div class="mb-6">
-                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-envelope text-blue-600 text-2xl"></i>
-                    </div>
-                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Stay Updated</h2>
-                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                        Don't miss out on the latest insights, tips, and trends in AI, technology, and business. 
-                        Subscribe to our newsletter and get expert advice delivered straight to your inbox.
-                    </p>
-                </div>
-                
-                <form class="newsletter-form max-w-md mx-auto">
-                    <div class="flex flex-col sm:flex-row gap-3">
-                        <input type="email" name="email" placeholder="Enter your email address" 
-                               class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 placeholder-gray-500"
-                               required>
-                        <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center">
-                            <i class="fas fa-paper-plane mr-2"></i>
-                            Subscribe
-                        </button>
-                    </div>
-                    <p class="text-sm text-gray-500 mt-3">
-                        We respect your privacy. Unsubscribe at any time.
-                    </p>
-                </form>
-            </div>
-        </div>
-    </div>
-
     <!-- Related Articles -->
     <div class="bg-gray-50 py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -357,6 +339,64 @@
                         <a href="web-development-trends.html" class="text-blue-600 hover:text-blue-800 font-medium text-sm mt-4 inline-block">Read More →</a>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter Section -->
+    <section class="py-16 bg-gradient-to-r from-indigo-600 to-blue-600">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold text-white mb-4">Stay Updated</h2>
+            <p class="text-xl text-blue-100 mb-8">Get the latest articles and insights delivered to your inbox</p>
+            
+            <form class="newsletter-form max-w-md mx-auto flex gap-4">
+                <input type="email" name="email" placeholder="Enter your email" 
+                       class="flex-1 px-4 py-3 rounded-lg border-0 focus:ring-2 focus:ring-blue-300">
+                <button type="submit" class="bg-white text-indigo-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                    Subscribe
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Share Modal -->
+    <div id="share-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4">
+            <div class="text-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-2">Share This Article</h3>
+                <p class="text-gray-600">Help others discover this valuable content</p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-4 mb-6">
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://noveyotechnologies.com/blogs/how-to-use-ai-for-your-startup.html" 
+                   target="_blank" class="flex items-center justify-center p-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                    <i class="fab fa-facebook-f text-xl mr-2"></i>
+                    Facebook
+                </a>
+                <a href="https://twitter.com/intent/tweet?url=https://noveyotechnologies.com/blogs/how-to-use-ai-for-your-startup.html&text=How to Use AI for Your Startup: A Non-Tech Founder's Guide" 
+                   target="_blank" class="flex items-center justify-center p-4 bg-blue-400 text-white rounded-lg hover:bg-blue-500 transition-colors">
+                    <i class="fab fa-twitter text-xl mr-2"></i>
+                    Twitter
+                </a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://noveyotechnologies.com/blogs/how-to-use-ai-for-your-startup.html" 
+                   target="_blank" class="flex items-center justify-center p-4 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-colors">
+                    <i class="fab fa-linkedin-in text-xl mr-2"></i>
+                    LinkedIn
+                </a>
+                <a href="https://wa.me/?text=Check out this article: How to Use AI for Your Startup: A Non-Tech Founder's Guide https://noveyotechnologies.com/blogs/how-to-use-ai-for-your-startup.html" 
+                   target="_blank" class="flex items-center justify-center p-4 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                    <i class="fab fa-whatsapp text-xl mr-2"></i>
+                    WhatsApp
+                </a>
+            </div>
+            
+            <div class="flex items-center justify-between">
+                <button onclick="copyLink()" class="flex-1 mr-2 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors">
+                    <i class="fas fa-copy mr-2"></i>Copy Link
+                </button>
+                <button onclick="closeShareModal()" class="flex-1 ml-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors">
+                    Close
+                </button>
             </div>
         </div>
     </div>
@@ -408,20 +448,6 @@
                         <li><a href="../index.html#contact" class="hover:text-white transition-colors">Contact</a></li>
                     </ul>
                 </div>
-                
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Newsletter</h3>
-                    <p class="text-gray-400 mb-4">Subscribe to our newsletter for the latest updates</p>
-                    <form class="newsletter-form">
-                        <div class="flex">
-                            <input type="email" name="email" placeholder="Your email" 
-                                   class="flex-1 px-4 py-2 bg-gray-800 text-white placeholder-gray-400 border border-gray-700 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                            <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded-r-lg hover:bg-indigo-700 transition-colors">
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
-                        </div>
-                    </form>
-                </div>
             </div>
             
             <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
@@ -430,154 +456,36 @@
         </div>
     </footer>
 
-    <!-- EmailJS SDK -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    
-    <!-- Firebase SDK -->
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-        import { getDatabase, ref, push, set } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
-
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyAFmne0ScTC41OnQFYkkYtntWv9M8eShXY",
-            authDomain: "noveyotechnologies-85cac.firebaseapp.com",
-            databaseURL: "https://noveyotechnologies-85cac-default-rtdb.firebaseio.com",
-            projectId: "noveyotechnologies-85cac",
-            storageBucket: "noveyotechnologies-85cac.firebasestorage.app",
-            messagingSenderId: "1054231755361",
-            appId: "1:1054231755361:web:8d3cc5dff4ef36afc80820",
-            measurementId: "G-2JSTP0DEGR"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const database = getDatabase(app);
-
-        // Initialize EmailJS
-        (function() {
-            emailjs.init("uRHTzpQ1K8P2XgfOM"); // Replace with your EmailJS public key
-        })();
-
-        // Email notification functions
-        function sendNewsletterEmailNotification(email) {
-            const templateParams = {
-                to_email: 'info@noveyotechnologies.com', // Replace with your email
-                subscriber_email: email,
-                timestamp: new Date().toLocaleString()
-            };
-
-            emailjs.send('service_2htqfpv', 'template_vdni0kk', templateParams)
-                .then(function(response) {
-                    console.log('Newsletter email notification sent successfully!', response.status, response.text);
-                }, function(error) {
-                    console.log('Failed to send newsletter email notification:', error);
-                });
-        }
-
-        // Newsletter form submission
-        async function addNewsletterToFirebase(email) {
-            try {
-                const newsletterRef = ref(database, 'newsletters');
-                const newNewsletterRef = push(newsletterRef);
-                
-                const newsletterData = {
-                    email: email,
-                    timestamp: new Date().toISOString(),
-                    source: 'ai-blog'
-                };
-                
-                await set(newNewsletterRef, newsletterData);
-                console.log('Newsletter subscription added to Firebase');
-                
-                // Send email notification
-                sendNewsletterEmailNotification(email);
-                
-                showNotification('Thank you for subscribing to our newsletter!', 'success');
-                return true;
-            } catch (error) {
-                console.error('Error adding newsletter subscription to Firebase:', error);
-                showNotification('Error subscribing to newsletter. Please try again.', 'error');
-                throw error;
-            }
-        }
-
-        // Notification functions
-        function showNotification(message, type = 'success') {
-            // Create notification element if it doesn't exist
-            let notification = document.getElementById('notification');
-            if (!notification) {
-                notification = document.createElement('div');
-                notification.id = 'notification';
-                notification.className = 'fixed top-4 right-4 z-50 hidden';
-                document.body.appendChild(notification);
-            }
-
-            const icon = type === 'success' 
-                ? '<svg class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>'
-                : '<svg class="h-6 w-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>';
-            
-            const bgColor = type === 'success' ? 'bg-white border-l-4 border-green-400' : 'bg-white border-l-4 border-red-400';
-            
-            notification.innerHTML = `
-                <div class="${bgColor} rounded-lg shadow-lg p-4 max-w-sm">
-                    <div class="flex items-center">
-                        <div class="flex-shrink-0">
-                            ${icon}
-                        </div>
-                        <div class="ml-3">
-                            <p class="text-sm font-medium text-gray-900">${message}</p>
-                        </div>
-                        <button onclick="closeNotification()" class="ml-4 text-gray-400 hover:text-gray-600">
-                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            `;
-            
-            notification.classList.remove('hidden');
-            
-            // Auto-hide after 4 seconds
-            setTimeout(() => {
-                closeNotification();
-            }, 4000);
-        }
-
-        function closeNotification() {
-            const notification = document.getElementById('notification');
-            if (notification) {
-                notification.classList.add('hidden');
-            }
-        }
-
-        // Make functions globally available
-        window.closeNotification = closeNotification;
-
-        // Newsletter form
-        document.querySelectorAll('.newsletter-form').forEach(form => {
-            form.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                const email = e.target.email.value;
-                if (email) {
-                    try {
-                        await addNewsletterToFirebase(email);
-                        e.target.reset();
-                    } catch (error) {
-                        console.error('Newsletter subscription error:', error);
-                    }
-                }
-            });
-        });
-    </script>
-
     <script>
         // Mobile menu toggle
         document.getElementById('mobile-menu-btn').addEventListener('click', function() {
             const mobileMenu = document.getElementById('mobile-menu');
             mobileMenu.classList.toggle('hidden');
+        });
+
+        // Share modal functions
+        function openShareModal() {
+            document.getElementById('share-modal').classList.remove('hidden');
+            document.getElementById('share-modal').classList.add('flex');
+        }
+
+        function closeShareModal() {
+            document.getElementById('share-modal').classList.add('hidden');
+            document.getElementById('share-modal').classList.remove('flex');
+        }
+
+        function copyLink() {
+            const url = window.location.href;
+            navigator.clipboard.writeText(url).then(function() {
+                alert('Link copied to clipboard!');
+            });
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('share-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeShareModal();
+            }
         });
     </script>
 </body>
