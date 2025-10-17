@@ -4,58 +4,89 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
-    <!-- Homepage -->
+    <!-- Homepage - Highest Priority -->
     <url>
-        <loc>https://noveyotechnologies.com/index.html</loc>
-        <lastmod>2025-01-18</lastmod>
+        <loc>https://noveyotechnologies.com/</loc>
+        <lastmod>2025-01-15</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
 
-    <!-- Portfolio Page -->
+    <!-- Main Pages - High Priority -->
     <url>
         <loc>https://noveyotechnologies.com/portfolio.html</loc>
-        <lastmod>2025-01-18</lastmod>
+        <lastmod>2025-01-15</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
 
-    <!-- Vesial Service Page -->
     <url>
         <loc>https://noveyotechnologies.com/vesial.html</loc>
-        <lastmod>2025-01-18</lastmod>
+        <lastmod>2025-01-15</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Blog Section - High Priority -->
+    <url>
+        <loc>https://noveyotechnologies.com/blogs/blogs.html</loc>
+        <lastmod>2025-01-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Individual Blog Posts - Medium-High Priority -->
+    <!-- Latest AI Blog - High Priority (Most Recent) -->
+    <url>
+        <loc>https://noveyotechnologies.com/blogs/how-to-use-ai-for-your-startup.html</loc>
+        <lastmod>2025-01-15</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
-    <!-- Blog Main Page -->
+    <!-- Design & Branding Blogs -->
     <url>
-        <loc>https://noveyotechnologies.com/blog/index.html</loc>
-        <lastmod>2025-01-18</lastmod>
-        <changefreq>weekly</changefreq>
+        <loc>https://noveyotechnologies.com/blogs/the-future-of-brand-design.html</loc>
+        <lastmod>2025-01-15</lastmod>
+        <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
 
-    <!-- Individual Blog Posts -->
     <url>
-        <loc>https://noveyotechnologies.com/blog/future-of-brand-design.html</loc>
-        <lastmod>2025-01-18</lastmod>
+        <loc>https://noveyotechnologies.com/blogs/logo-design-principles.html</loc>
+        <lastmod>2025-01-15</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
+        <priority>0.7</priority>
     </url>
 
     <url>
-        <loc>https://noveyotechnologies.com/blog/logo-design-principles.html</loc>
-        <lastmod>2025-01-18</lastmod>
+        <loc>https://noveyotechnologies.com/blogs/Color-Psychology-in-Design.html</loc>
+        <lastmod>2025-01-15</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Marketing & Business Blogs -->
+    <url>
+        <loc>https://noveyotechnologies.com/blogs/social-media-marketing.html</loc>
+        <lastmod>2025-01-15</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
     </url>
 
     <url>
-        <loc>https://noveyotechnologies.com/blog/small-business-marketing.html</loc>
-        <lastmod>2025-01-18</lastmod>
+        <loc>https://noveyotechnologies.com/blogs/small-business-marketing.html</loc>
+        <lastmod>2025-01-15</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Technology Blogs -->
+    <url>
+        <loc>https://noveyotechnologies.com/blogs/web-development-trends.html</loc>
+        <lastmod>2025-01-15</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
     </url>
 
 </urlset>

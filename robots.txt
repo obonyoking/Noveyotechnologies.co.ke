@@ -1,0 +1,28 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://noveyotechnologies.com/sitemap.xml
+
+# Allow all search engines to crawl all content
+Disallow: 
+
+# Block access to admin or private directories (if any)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Allow all image files
+Allow: /images/
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.png
+Allow: /*.gif
+Allow: /*.webp
+Allow: /*.svg
+
+# Allow CSS and JS files
+Allow: /*.css
+Allow: /*.js
+
+# Crawl delay (optional - helps prevent overwhelming your server)
+Crawl-delay: 1
