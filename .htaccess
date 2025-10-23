@@ -1,0 +1,13 @@
+# Redirect old blog URLs to new SEO-friendly URLs
+Redirect 301 /blogs/log-1.html /blogs/how-to-use-ai-for-your-startup.html
+Redirect 301 /blogs/log-2.html /blogs/the-future-of-brand-design.html
+Redirect 301 /blogs/log-3.html /blogs/logo-design-principles.html
+Redirect 301 /blogs/log-4.html /blogs/Color-Psychology-in-Design.html
+Redirect 301 /blogs/log-5.html /blogs/social-media-marketing.html
+Redirect 301 /blogs/log-6.html /blogs/small-business-marketing.html
+Redirect 301 /blogs/log-7.html /blogs/web-development-trends.html
+
+# Force HTTPS
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
