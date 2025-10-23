@@ -97,6 +97,47 @@
             transform: scale(1.05);
         }
         
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .blog-card {
+                margin-bottom: 1.5rem;
+            }
+            
+            .blog-meta-mobile {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .blog-meta-row {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                flex-wrap: wrap;
+            }
+            
+            .blog-author-mobile {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+            
+            .blog-title-mobile {
+                font-size: 1.125rem;
+                line-height: 1.4;
+            }
+            
+            .blog-excerpt-mobile {
+                font-size: 0.875rem;
+                line-height: 1.5;
+            }
+            
+            .category-badge {
+                font-size: 0.75rem;
+                padding: 0.25rem 0.5rem;
+            }
+        }
+        
         .fade-in {
             opacity: 0;
             transform: translateY(20px);
@@ -212,24 +253,38 @@
                         </div>
                     </div>
                     
-                    <div class="p-6">
-                        <div class="flex items-center text-sm text-gray-500 mb-3">
-                            <i class="fas fa-calendar-alt mr-2"></i>
-                            <span>October 18, 2025</span>
-                            <span class="mx-2">•</span>
-                            <i class="fas fa-clock mr-1"></i>
-                            <span>8 min read</span>
+                    <div class="p-4 sm:p-6">
+                        <div class="blog-meta-mobile flex items-center text-sm text-gray-500 mb-3">
+                            <div class="blog-meta-row flex items-center">
+                                <i class="fas fa-calendar-alt mr-2"></i>
+                                <span>October 18, 2025</span>
+                                <span class="mx-2 hidden sm:inline">•</span>
+                            </div>
+                            <div class="blog-meta-row flex items-center">
+                                <i class="fas fa-clock mr-1"></i>
+                                <span>8 min read</span>
+                                <span class="mx-2 hidden sm:inline">•</span>
+                            </div>
+                            <div class="blog-meta-row flex items-center">
+                                <i class="fas fa-eye mr-1"></i>
+                                <span>1.2K views</span>
+                                <span class="mx-2 hidden sm:inline">•</span>
+                            </div>
+                            <div class="blog-meta-row flex items-center">
+                                <i class="fas fa-share-alt mr-1"></i>
+                                <span>45 shares</span>
+                            </div>
                         </div>
                         
-                        <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+                        <h3 class="blog-title-mobile text-lg sm:text-xl font-bold text-gray-900 mb-3 line-clamp-2">
                             Website vs. Social Media: Which Should Your Kenyan Business Invest in First?
                         </h3>
                         
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
+                        <p class="blog-excerpt-mobile text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
                             Confused about whether to build a website or focus on social media for your business in Kenya? This ultimate guide breaks down the pros, cons, and the winning strategy.
                         </p>
                         
-                        <div class="flex items-center justify-between">
+                        <div class="blog-author-mobile flex items-center justify-between">
                             <div class="flex items-center">
                                 <img src="../images/VESIAL LOGO.png" 
                                      alt="Vesial Team" 
@@ -263,24 +318,38 @@
                         </div>
                     </div>
                     
-                    <div class="p-6">
-                        <div class="flex items-center text-sm text-gray-500 mb-3">
-                            <i class="fas fa-calendar-alt mr-2"></i>
-                            <span>October 17, 2025</span>
-                            <span class="mx-2">•</span>
-                            <i class="fas fa-clock mr-1"></i>
-                            <span>5 min read</span>
+                    <div class="p-4 sm:p-6">
+                        <div class="blog-meta-mobile flex items-center text-sm text-gray-500 mb-3">
+                            <div class="blog-meta-row flex items-center">
+                                <i class="fas fa-calendar-alt mr-2"></i>
+                                <span>October 17, 2025</span>
+                                <span class="mx-2 hidden sm:inline">•</span>
+                            </div>
+                            <div class="blog-meta-row flex items-center">
+                                <i class="fas fa-clock mr-1"></i>
+                                <span>5 min read</span>
+                                <span class="mx-2 hidden sm:inline">•</span>
+                            </div>
+                            <div class="blog-meta-row flex items-center">
+                                <i class="fas fa-eye mr-1"></i>
+                                <span>2.1K views</span>
+                                <span class="mx-2 hidden sm:inline">•</span>
+                            </div>
+                            <div class="blog-meta-row flex items-center">
+                                <i class="fas fa-share-alt mr-1"></i>
+                                <span>78 shares</span>
+                            </div>
                         </div>
                         
-                        <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+                        <h3 class="blog-title-mobile text-lg sm:text-xl font-bold text-gray-900 mb-3 line-clamp-2">
                             How to Use AI for Your Startup: A Non-Tech Founder's Guide
                         </h3>
                         
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
+                        <p class="blog-excerpt-mobile text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
                             Discover how startups can leverage AI to automate operations, enhance customer service, and make data-driven decisions. A practical guide for non-tech founders.
                         </p>
                         
-                        <div class="flex items-center justify-between">
+                        <div class="blog-author-mobile flex items-center justify-between">
                             <div class="flex items-center">
                                 <img src="../images/team.png" 
                                      alt="Noveyo Team" 
@@ -311,24 +380,38 @@
                         </div>
                     </div>
                     
-                    <div class="p-6">
-                        <div class="flex items-center text-sm text-gray-500 mb-3">
-                            <i class="fas fa-calendar-alt mr-2"></i>
-                            <span>January 15, 2025</span>
-                            <span class="mx-2">•</span>
-                            <i class="fas fa-clock mr-1"></i>
-                            <span>5 min read</span>
+                    <div class="p-4 sm:p-6">
+                        <div class="blog-meta-mobile flex items-center text-sm text-gray-500 mb-3">
+                            <div class="blog-meta-row flex items-center">
+                                <i class="fas fa-calendar-alt mr-2"></i>
+                                <span>January 15, 2025</span>
+                                <span class="mx-2 hidden sm:inline">•</span>
+                            </div>
+                            <div class="blog-meta-row flex items-center">
+                                <i class="fas fa-clock mr-1"></i>
+                                <span>5 min read</span>
+                                <span class="mx-2 hidden sm:inline">•</span>
+                            </div>
+                            <div class="blog-meta-row flex items-center">
+                                <i class="fas fa-eye mr-1"></i>
+                                <span>856 views</span>
+                                <span class="mx-2 hidden sm:inline">•</span>
+                            </div>
+                            <div class="blog-meta-row flex items-center">
+                                <i class="fas fa-share-alt mr-1"></i>
+                                <span>32 shares</span>
+                            </div>
                         </div>
                         
-                        <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+                        <h3 class="blog-title-mobile text-lg sm:text-xl font-bold text-gray-900 mb-3 line-clamp-2">
                             The Future of Brand Design: Trends to Watch in 2025
                         </h3>
                         
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
+                        <p class="blog-excerpt-mobile text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
                             Discover the emerging design trends that will shape brand identity in 2025. From minimalist aesthetics to bold color palettes, we explore what's next in the world of visual communication.
                         </p>
                         
-                        <div class="flex items-center justify-between">
+                        <div class="blog-author-mobile flex items-center justify-between">
                             <div class="flex items-center">
                                 <img src="../images/KING.jpg" 
                                      alt="Collins Obonyo" 
@@ -359,24 +442,38 @@
                         </div>
                     </div>
                     
-                    <div class="p-6">
-                        <div class="flex items-center text-sm text-gray-500 mb-3">
-                            <i class="fas fa-calendar-alt mr-2"></i>
-                            <span>January 17, 2025</span>
-                            <span class="mx-2">•</span>
-                            <i class="fas fa-clock mr-1"></i>
-                            <span>6 min read</span>
+                    <div class="p-4 sm:p-6">
+                        <div class="blog-meta-mobile flex items-center text-sm text-gray-500 mb-3">
+                            <div class="blog-meta-row flex items-center">
+                                <i class="fas fa-calendar-alt mr-2"></i>
+                                <span>January 17, 2025</span>
+                                <span class="mx-2 hidden sm:inline">•</span>
+                            </div>
+                            <div class="blog-meta-row flex items-center">
+                                <i class="fas fa-clock mr-1"></i>
+                                <span>6 min read</span>
+                                <span class="mx-2 hidden sm:inline">•</span>
+                            </div>
+                            <div class="blog-meta-row flex items-center">
+                                <i class="fas fa-eye mr-1"></i>
+                                <span>1.5K views</span>
+                                <span class="mx-2 hidden sm:inline">•</span>
+                            </div>
+                            <div class="blog-meta-row flex items-center">
+                                <i class="fas fa-share-alt mr-1"></i>
+                                <span>67 shares</span>
+                            </div>
                         </div>
                         
-                        <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+                        <h3 class="blog-title-mobile text-lg sm:text-xl font-bold text-gray-900 mb-3 line-clamp-2">
                             Social Media Marketing: Building Your Brand's Digital Presence
                         </h3>
                         
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
+                        <p class="blog-excerpt-mobile text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
                             Learn how to build a strong digital presence through effective social media marketing strategies. From platform selection to content creation, discover the keys to social media success.
                         </p>
                         
-                        <div class="flex items-center justify-between">
+                        <div class="blog-author-mobile flex items-center justify-between">
                             <div class="flex items-center">
                                 <img src="../images/Zuri Imani.png" 
                                      alt="Zuri Imani" 
@@ -407,24 +504,38 @@
                         </div>
                     </div>
                     
-                    <div class="p-6">
-                        <div class="flex items-center text-sm text-gray-500 mb-3">
-                            <i class="fas fa-calendar-alt mr-2"></i>
-                            <span>February 16, 2025</span>
-                            <span class="mx-2">•</span>
-                            <i class="fas fa-clock mr-1"></i>
-                            <span>5 min read</span>
+                    <div class="p-4 sm:p-6">
+                        <div class="blog-meta-mobile flex items-center text-sm text-gray-500 mb-3">
+                            <div class="blog-meta-row flex items-center">
+                                <i class="fas fa-calendar-alt mr-2"></i>
+                                <span>February 16, 2025</span>
+                                <span class="mx-2 hidden sm:inline">•</span>
+                            </div>
+                            <div class="blog-meta-row flex items-center">
+                                <i class="fas fa-clock mr-1"></i>
+                                <span>5 min read</span>
+                                <span class="mx-2 hidden sm:inline">•</span>
+                            </div>
+                            <div class="blog-meta-row flex items-center">
+                                <i class="fas fa-eye mr-1"></i>
+                                <span>743 views</span>
+                                <span class="mx-2 hidden sm:inline">•</span>
+                            </div>
+                            <div class="blog-meta-row flex items-center">
+                                <i class="fas fa-share-alt mr-1"></i>
+                                <span>28 shares</span>
+                            </div>
                         </div>
                         
-                        <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+                        <h3 class="blog-title-mobile text-lg sm:text-xl font-bold text-gray-900 mb-3 line-clamp-2">
                             Logo Design Principles: Creating Memorable Brand Identities
                         </h3>
                         
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
+                        <p class="blog-excerpt-mobile text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
                             Master the art of logo design with these essential principles. Learn how to create memorable, scalable, and timeless brand identities that effectively communicate your company's values.
                         </p>
                         
-                        <div class="flex items-center justify-between">
+                        <div class="blog-author-mobile flex items-center justify-between">
                             <div class="flex items-center">
                                 <img src="../images/Samson Odera.png" 
                                      alt="Samson Odera" 
@@ -455,24 +566,38 @@
                         </div>
                     </div>
                     
-                    <div class="p-6">
-                        <div class="flex items-center text-sm text-gray-500 mb-3">
-                            <i class="fas fa-calendar-alt mr-2"></i>
-                            <span>January 15, 2025</span>
-                            <span class="mx-2">•</span>
-                            <i class="fas fa-clock mr-1"></i>
-                            <span>9 min read</span>
+                    <div class="p-4 sm:p-6">
+                        <div class="blog-meta-mobile flex items-center text-sm text-gray-500 mb-3">
+                            <div class="blog-meta-row flex items-center">
+                                <i class="fas fa-calendar-alt mr-2"></i>
+                                <span>January 15, 2025</span>
+                                <span class="mx-2 hidden sm:inline">•</span>
+                            </div>
+                            <div class="blog-meta-row flex items-center">
+                                <i class="fas fa-clock mr-1"></i>
+                                <span>9 min read</span>
+                                <span class="mx-2 hidden sm:inline">•</span>
+                            </div>
+                            <div class="blog-meta-row flex items-center">
+                                <i class="fas fa-eye mr-1"></i>
+                                <span>1.8K views</span>
+                                <span class="mx-2 hidden sm:inline">•</span>
+                            </div>
+                            <div class="blog-meta-row flex items-center">
+                                <i class="fas fa-share-alt mr-1"></i>
+                                <span>54 shares</span>
+                            </div>
                         </div>
                         
-                        <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+                        <h3 class="blog-title-mobile text-lg sm:text-xl font-bold text-gray-900 mb-3 line-clamp-2">
                             Web Development Trends: Building Modern Websites in 2025
                         </h3>
                         
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
+                        <p class="blog-excerpt-mobile text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
                             Explore the latest web development trends shaping 2025. From Progressive Web Apps to AI integration, discover the technologies that will define modern web experiences.
                         </p>
                         
-                        <div class="flex items-center justify-between">
+                        <div class="blog-author-mobile flex items-center justify-between">
                             <div class="flex items-center">
                                 <img src="../images/Neema Baraka.png" 
                                      alt="Neema Baraka" 
@@ -503,24 +628,38 @@
                         </div>
                     </div>
                     
-                    <div class="p-6">
-                        <div class="flex items-center text-sm text-gray-500 mb-3">
-                            <i class="fas fa-calendar-alt mr-2"></i>
-                            <span>January 14, 2025</span>
-                            <span class="mx-2">•</span>
-                            <i class="fas fa-clock mr-1"></i>
-                            <span>10 min read</span>
+                    <div class="p-4 sm:p-6">
+                        <div class="blog-meta-mobile flex items-center text-sm text-gray-500 mb-3">
+                            <div class="blog-meta-row flex items-center">
+                                <i class="fas fa-calendar-alt mr-2"></i>
+                                <span>January 14, 2025</span>
+                                <span class="mx-2 hidden sm:inline">•</span>
+                            </div>
+                            <div class="blog-meta-row flex items-center">
+                                <i class="fas fa-clock mr-1"></i>
+                                <span>10 min read</span>
+                                <span class="mx-2 hidden sm:inline">•</span>
+                            </div>
+                            <div class="blog-meta-row flex items-center">
+                                <i class="fas fa-eye mr-1"></i>
+                                <span>1.1K views</span>
+                                <span class="mx-2 hidden sm:inline">•</span>
+                            </div>
+                            <div class="blog-meta-row flex items-center">
+                                <i class="fas fa-share-alt mr-1"></i>
+                                <span>41 shares</span>
+                            </div>
                         </div>
                         
-                        <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+                        <h3 class="blog-title-mobile text-lg sm:text-xl font-bold text-gray-900 mb-3 line-clamp-2">
                             Small Business Marketing: Strategies That Actually Work
                         </h3>
                         
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
+                        <p class="blog-excerpt-mobile text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
                             Discover proven marketing strategies that work for small businesses. From content marketing to social media, learn how to grow your business with limited resources.
                         </p>
                         
-                        <div class="flex items-center justify-between">
+                        <div class="blog-author-mobile flex items-center justify-between">
                             <div class="flex items-center">
                                 <img src="../images/Clinton Amuga.png" 
                                      alt="Clinton Amuga" 
@@ -551,24 +690,38 @@
                         </div>
                     </div>
                     
-                    <div class="p-6">
-                        <div class="flex items-center text-sm text-gray-500 mb-3">
-                            <i class="fas fa-calendar-alt mr-2"></i>
-                            <span>January 13, 2025</span>
-                            <span class="mx-2">•</span>
-                            <i class="fas fa-clock mr-1"></i>
-                            <span>5 min read</span>
+                    <div class="p-4 sm:p-6">
+                        <div class="blog-meta-mobile flex items-center text-sm text-gray-500 mb-3">
+                            <div class="blog-meta-row flex items-center">
+                                <i class="fas fa-calendar-alt mr-2"></i>
+                                <span>January 13, 2025</span>
+                                <span class="mx-2 hidden sm:inline">•</span>
+                            </div>
+                            <div class="blog-meta-row flex items-center">
+                                <i class="fas fa-clock mr-1"></i>
+                                <span>5 min read</span>
+                                <span class="mx-2 hidden sm:inline">•</span>
+                            </div>
+                            <div class="blog-meta-row flex items-center">
+                                <i class="fas fa-eye mr-1"></i>
+                                <span>934 views</span>
+                                <span class="mx-2 hidden sm:inline">•</span>
+                            </div>
+                            <div class="blog-meta-row flex items-center">
+                                <i class="fas fa-share-alt mr-1"></i>
+                                <span>36 shares</span>
+                            </div>
                         </div>
                         
-                        <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+                        <h3 class="blog-title-mobile text-lg sm:text-xl font-bold text-gray-900 mb-3 line-clamp-2">
                             Color Psychology in Design: How Colors Affect User Behavior
                         </h3>
                         
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
+                        <p class="blog-excerpt-mobile text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
                             Understanding how colors influence emotions and behavior is crucial for effective design. Learn the psychology behind different colors and how to use them strategically.
                         </p>
                         
-                        <div class="flex items-center justify-between">
+                        <div class="blog-author-mobile flex items-center justify-between">
                             <div class="flex items-center">
                                 <img src="../images/team.png" 
                                      alt="Noveyo Team" 
