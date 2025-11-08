@@ -1,3 +1,6 @@
+# Redirect /blog/ (singular) to /blogs/ (plural) to fix GSC indexing issues
+RedirectMatch 301 ^/blog/(.*)$ /blogs/$1
+
 # Redirect old blog URLs to new SEO-friendly URLs
 Redirect 301 /blogs/log-1.html /blogs/how-to-use-ai-for-your-startup.html
 Redirect 301 /blogs/log-2.html /blogs/the-future-of-brand-design.html
