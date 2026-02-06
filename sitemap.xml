@@ -27,12 +27,28 @@
         <priority>0.9</priority>
     </url>
 
-    <!-- Offers Page - High Priority (Promotions & Conversions) -->
+    <!-- Offers Page - Highest Priority (Promotions & Conversions - Valentine's 2026) -->
     <url>
         <loc>https://noveyotechnologies.com/offers.html</loc>
-        <lastmod>2026-01-01</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
+        <lastmod>2026-02-06</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- Valentine's Day Offers - Top Priority for February 2026 -->
+    <url>
+        <loc>https://noveyotechnologies.com/offers.html#valentines-offer</loc>
+        <lastmod>2026-02-06</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- Branded Gift Packages - High Priority -->
+    <url>
+        <loc>https://noveyotechnologies.com/offers.html#special-offer</loc>
+        <lastmod>2026-02-06</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.95</priority>
     </url>
 
     <!-- Blog Section - High Priority -->
