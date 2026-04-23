@@ -51,6 +51,14 @@
         <priority>0.95</priority>
     </url>
 
+    <!-- Pinterest to Print Service - Ongoing Offer -->
+    <url>
+        <loc>https://noveyotechnologies.com/offers.html#pinterest-to-print</loc>
+        <lastmod>2026-02-12</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+
     <!-- Blog Section - High Priority -->
     <url>
         <loc>https://noveyotechnologies.com/blogs/blogs.html</loc>
